@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:paddingBottom="@dimen/vertical_margin"
+    android:paddingLeft="@dimen/horizontal_margin"
+    android:paddingRight="@dimen/horizontal_margin"
+    android:paddingTop="@dimen/vertical_margin"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="80dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:stretchColumns="2">
+
+        <TableRow>
+            <TextView
+                android:id="@+id/SecurityId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Security ID"/>
+            <EditText
+                android:id="@+id/EmpId"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:inputType="number"
+                android:maxLength="20"
+                android:paddingLeft="15dp"
+                />
+        </TableRow>
+    </TableLayout>
+
+
+
+</RelativeLayout>
