@@ -5,6 +5,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -43,14 +44,22 @@ public class OperatorActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
+                        menuItem.setChecked(false);
                         // close drawer when item is tapped
                         drawerLayout.closeDrawers();
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
 
-                        return true;
+                        switch (menuItem.getItemId()){
+
+                            case R.id.jr:
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.master_container, OperatorJobRequestList.newInstance())
+                                        .commit();
+                                break;
+                        }
+                        return false;
                     }
                 });
 
@@ -94,6 +103,15 @@ public class OperatorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void addFragment(Fragment fragment, boolean addToBackStack, String tag){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
 
+        if(addToBackStack){
+            ft.addToBackStack(tag);
+        }
+        ft.replace(R.id.master_container, fragment, tag);
+        ft.commitAllowingStateLoss();
+    }
 }
 

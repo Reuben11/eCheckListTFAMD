@@ -5,5 +5,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="operatortermofuse">Terms Of Use</string>
     <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
-    <!-- Strings related to login -->
+
+    <string-array name="process">
+        <item>Die Prep</item>
+    </string-array>
+
+    <string-array name="equipment">
+        <item>Pick And Place</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
