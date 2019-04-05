@@ -1,6 +1,7 @@
-package tf.www.echecklisttfamd;
+package tf.www.echecklisttfamd.Operator;
 
 
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,22 +16,27 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import tf.www.echecklisttfamd.R;
+
 public class OperatorActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operator);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //getSupportActionBar().setElevation(4.0f);
+        getSupportActionBar().setElevation(0);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -73,6 +79,9 @@ public class OperatorActivity extends AppCompatActivity {
                 }
         );
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.master_container, TermOfUseOperator.newInstance())
+                .commit();
     }
 
     @Override
@@ -84,5 +93,7 @@ public class OperatorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
 

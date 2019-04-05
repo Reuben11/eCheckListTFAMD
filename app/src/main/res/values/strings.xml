@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">eCheckList</string>
     <string name="title_activity_login">Sign in</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="operatortermofuse">Terms Of Use</string>
+    <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
     <!-- Strings related to login -->
 </resources>

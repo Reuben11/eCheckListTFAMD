@@ -28,7 +28,7 @@
             android:theme="@style/AppThemeActionBarLogin">
 
         </activity>
-        <activity android:name=".OperatorActivity"
+        <activity android:name=".Operator.OperatorActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBarOperator"
             android:label="Operator eCheckList">

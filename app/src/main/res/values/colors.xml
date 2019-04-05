@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF0408</color>
-    <color name="colorPrimaryDark">#FF0408</color>
-    <color name="colorAccent">#FF0408</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#FFFFFF</color>
 
     <color name="colorPrimaryLogin">#5F5F5F</color>
-    <color name="colorPrimaryDarkLogin">#5F5F5F</color>
-    <color name="colorAccentLogin">#5F5F5F</color>
+    <color name="colorPrimaryDarkLogin">#FFFFFF</color>
+    <color name="colorAccentLogin">#FFFFFF</color>
 
     <color name="colorPrimaryOperator">#FF7F31</color>
-    <color name="colorPrimaryDarkOperator">#FF7F31</color>
+    <color name="colorPrimaryDarkOperator">#FF6000</color>
     <color name="colorAccentOperator">#FF7F31</color>
+
 </resources>

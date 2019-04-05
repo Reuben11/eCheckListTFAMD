@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
-       <item name="android:textColor">#FFFFFF</item>
+
    </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -23,10 +23,19 @@
         <item name="colorPrimary">@color/colorPrimaryOperator</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkOperator</item>
         <item name="colorAccent">@color/colorAccentOperator</item>
+
     </style>
 
     <!-- Toolbar -->
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="ToolBarStyle" parent="Widget.AppCompat.ActionBar">
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimaryOperator</item>
+    </style>
 
 </resources>

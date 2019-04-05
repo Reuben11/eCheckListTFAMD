@@ -12,6 +12,6 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
-        app:srcCompat="@drawable/logotfamd"
+        android:src="@drawable/logotfamd"
         />
 </RelativeLayout>
