@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF0408</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FF0004</color>
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="colorPrimaryLogin">#5F5F5F</color>
     <color name="colorPrimaryDarkLogin">#FFFFFF</color>
     <color name="colorAccentLogin">#FFFFFF</color>
 
-    <color name="colorPrimaryOperator">#FF7F31</color>
-    <color name="colorPrimaryDarkOperator">#ED5900</color>
+    <color name="colorPrimaryOperator">#FF6000</color>
+    <color name="colorPrimaryDarkOperator">#FE7B2B</color>
     <color name="colorAccentOperator">#FF7F31</color>
 
 </resources>

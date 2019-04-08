@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -38,8 +39,14 @@ public class OperatorEquipmentScanner extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            Snackbar snackbar = Snackbar.make(tvBarcodeLabel, eBarcode.toString(), Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(tvBarcodeLabel, eBarcode.getText().toString(), Snackbar.LENGTH_LONG);
             snackbar.show();
+
+               Fragment newFragment = new OperatorJobRequestList();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.master_container, ((OperatorJobRequestList) newFragment).newInstance());
+                /*transaction.addToBackStack(null);*/
+                transaction.commit();
         }
     };
 
@@ -55,8 +62,8 @@ public class OperatorEquipmentScanner extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_equipment_scanner, container, false);
-        eBarcode = view.findViewById(R.id.equipmentbarcode);
-        tvBarcodeLabel = view.findViewById(R.id.barcodelable);
+        eBarcode = view.findViewById(R.id.equipmentbarcode1);
+        tvBarcodeLabel = view.findViewById(R.id.barcodelabe1);
 
         eBarcode.setShowSoftInputOnFocus(false);
         eBarcode.addTextChangedListener(textWatcher);

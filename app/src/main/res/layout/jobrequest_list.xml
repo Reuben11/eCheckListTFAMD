@@ -9,7 +9,7 @@
         android:id="@+id/process"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:text="Item 1"
         android:textColor="#0108FC"/>
@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:paddingLeft="5dp"
+        android:textSize="14dp"
         android:text="SubItem 1"
         />
 </LinearLayout>

@@ -25,14 +25,12 @@
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBarLogin">
-
-        </activity>
-        <activity android:name=".Operator.OperatorActivity"
+            android:theme="@style/AppThemeActionBarLogin"></activity>
+        <activity
+            android:name=".Operator.OperatorActivity"
+            android:label="Operator eCheckList"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBarOperator"
-            android:label="Operator eCheckList">
-        </activity>
+            android:theme="@style/AppThemeActionBarOperator"></activity>
     </application>
 
 </manifest>

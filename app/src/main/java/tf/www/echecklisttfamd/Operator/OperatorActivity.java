@@ -1,6 +1,7 @@
 package tf.www.echecklisttfamd.Operator;
 
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -54,8 +55,8 @@ public class OperatorActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()){
 
                             case R.id.jr:
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.master_container, OperatorJobRequestList.newInstance())
+                               getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
                                         .commit();
                                 break;
                         }

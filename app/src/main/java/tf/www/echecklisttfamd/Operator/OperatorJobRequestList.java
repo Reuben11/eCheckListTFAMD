@@ -2,6 +2,7 @@ package tf.www.echecklisttfamd.Operator;
 
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ import tf.www.echecklisttfamd.R;
  */
 public class OperatorJobRequestList extends Fragment {
     private ListView lv;
+    private TextView tvTextsnack;
 
     public static OperatorJobRequestList newInstance() {
         OperatorJobRequestList fragment = new OperatorJobRequestList();
@@ -32,6 +35,7 @@ public class OperatorJobRequestList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_operator_jobrequest, container, false);
         ArrayList<jobrequestequipmentlist> listprocess = getBuyOfflist();
+        tvTextsnack = view.findViewById(R.id.textsnack);
         lv = view.findViewById(R.id.processequipment);
         lv.setAdapter(new JobRequestAdapter(getActivity(), listprocess));
         return view;
@@ -47,12 +51,20 @@ public class OperatorJobRequestList extends Fragment {
                 // Do the onItemClick action
                 String name = adapterView.getItemAtPosition(position).toString();
 
+                switch (position){
+                    case 0:
+                        Fragment newFragment = new Device_Change_Setup_CheckList();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.master_container, newFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        break;
+                }
                 /*Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();*/
-                /*Fragment newFragment = new picknplace();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.master_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();*/
+
+
+                /*Snackbar snackbar = Snackbar.make(tvTextsnack, name, Snackbar.LENGTH_LONG);
+                snackbar.show();*/
 
             }
         });
