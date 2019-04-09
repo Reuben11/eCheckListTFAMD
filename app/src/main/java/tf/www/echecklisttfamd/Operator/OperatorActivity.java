@@ -59,6 +59,11 @@ public class OperatorActivity extends AppCompatActivity {
                                         .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
                                         .commit();
                                 break;
+                            case R.id.buyoff:
+                                    getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.master_container, OperatorBuyOffList.newInstance())
+                                            .commit();
+                                    break;
                         }
                         return false;
                     }

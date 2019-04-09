@@ -23,7 +23,18 @@
         </menu>
     </item>
 
+    <item android:title="Current Awaitng List">
+        <menu>
+            <group android:checkableBehavior="none">
+                <item
+                    android:id="@+id/pending"
+                    android:title="Jobs Request"
+                    android:icon="@drawable/pending"/>
+            </group>
+
+        </menu>
+    </item>
     <item android:id="@+id/none"
-        android:checkable="true"
+        android:checkable="false"
         android:visible="false" />
 </menu>

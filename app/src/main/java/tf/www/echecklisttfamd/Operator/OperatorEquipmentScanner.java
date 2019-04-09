@@ -39,8 +39,8 @@ public class OperatorEquipmentScanner extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            Snackbar snackbar = Snackbar.make(tvBarcodeLabel, eBarcode.getText().toString(), Snackbar.LENGTH_LONG);
-            snackbar.show();
+           /* Snackbar snackbar = Snackbar.make(tvBarcodeLabel, eBarcode.getText().toString(), Snackbar.LENGTH_LONG);
+            snackbar.show();*/
 
                Fragment newFragment = new OperatorJobRequestList();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();

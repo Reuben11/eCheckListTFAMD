@@ -35,7 +35,7 @@ public class OperatorJobRequestList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_operator_jobrequest, container, false);
         ArrayList<jobrequestequipmentlist> listprocess = getBuyOfflist();
-        tvTextsnack = view.findViewById(R.id.textsnack);
+       /* tvTextsnack = view.findViewById(R.id.textsnack);*/
         lv = view.findViewById(R.id.processequipment);
         lv.setAdapter(new JobRequestAdapter(getActivity(), listprocess));
         return view;
