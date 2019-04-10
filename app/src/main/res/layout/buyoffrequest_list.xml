@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/analytics"
+                android:layout_alignParentLeft="true"/>
+        </LinearLayout>
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:paddingLeft="20dp"
+           android:paddingTop="6dp">
+           <TextView
+               android:id="@+id/jrnumber"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="18dp"
+               android:textStyle="bold"
+               android:text="Item 1"
+               android:textColor="#00C600"
+               android:paddingTop="10dp"/>
+
+           <TextView
+               android:id="@+id/equipmentname"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingLeft="5dp"
+               android:textSize="14dp"
+               android:text="SubItem 1"
+               android:textColor="#343434"
+               android:layout_below="@+id/jrnumber"
+               />
+           <TextView
+               android:id="@+id/buyoffdatetime"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="14dp"
+               android:text="SubItem 2"
+               android:paddingBottom="10dp"
+               android:layout_alignBaseline="@+id/equipmentname"
+               android:layout_alignBottom="@+id/equipmentname"
+               android:layout_alignParentRight="true"
+               android:textColor="#343434"
+               />
+       </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

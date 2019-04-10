@@ -14,6 +14,25 @@
         <item>Device Change Setup CheckList</item>
     </string-array>
 
+    <string-array name="revision">
+        <item>G</item>
+    </string-array>
+
+    <string-array name="jrnumber">
+        <item>219843987249884 </item>
+        <item>219843987249763 </item>
+    </string-array>
+
+    <string-array name="equipmentname">
+        <item>DB-01</item>
+        <item>DB-02</item>
+    </string-array>
+
+    <string-array name="date">
+        <item>4:20pm, 26 Feb 2019</item>
+        <item>4:42pm, 26 Feb 2019</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

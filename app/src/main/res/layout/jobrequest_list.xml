@@ -1,28 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/resume"
+                android:layout_alignParentLeft="true"
+                android:elevation="5dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="0dp">
+            <TextView
+                android:id="@+id/process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Item 1"
+                android:textColor="#4D50FF"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:id="@+id/equipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:textSize="14dp"
+                android:text="SubItem 1"
+                android:textColor="#343434"
+                android:layout_below="@+id/process"
+                />
+            <TextView
+                android:id="@+id/revision"
+                android:paddingLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="SubItem 2"
+                android:paddingBottom="10dp"
+                android:layout_below="@+id/equipment"
+                android:textColor="#343434"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     >
 
-    <TextView
-        android:id="@+id/process"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:text="Item 1"
-        android:textColor="#0108FC"
-        android:paddingTop="10dp"/>
+        android:layout_height="80dp">
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/equipment"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:paddingLeft="5dp"
-        android:textSize="14dp"
-        android:text="SubItem 1"
-        android:paddingBottom="10dp"
-        />
-</LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/analytics"
+                android:layout_alignParentLeft="true"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="6dp">
+            <TextView
+                android:id="@+id/process"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Item 1"
+                android:textColor="#00C600"
+                android:paddingTop="10dp"/>
+
+            <TextView
+                android:id="@+id/equipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:textSize="14dp"
+                android:text="SubItem 1"
+                android:textColor="#343434"
+                android:layout_below="@+id/jrnumber"
+                />
+            <TextView
+                android:id="@+id/buyoffdatetime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="SubItem 2"
+                android:paddingBottom="10dp"
+                android:layout_alignBaseline="@+id/equipmentname"
+                android:layout_alignBottom="@+id/equipmentname"
+                android:layout_alignParentRight="true"
+                android:textColor="#343434"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>-->

@@ -36,7 +36,7 @@ public class JobRequestAdapter extends BaseAdapter {
     }
 
     static class Viewholder{
-        TextView process, equipment;
+        TextView process, equipment, revision;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
@@ -48,10 +48,12 @@ public class JobRequestAdapter extends BaseAdapter {
         holder = new Viewholder();
         holder.process = convertView.findViewById(R.id.process);
         holder.equipment = convertView.findViewById(R.id.equipment);
+        holder.revision = convertView.findViewById(R.id.revision);
         convertView.setTag(holder);
 
         holder.process.setText(listjobrequest.get(position).getProcess());
         holder.equipment.setText(listjobrequest.get(position).getEquipment());
+        holder.revision.setText("Revision : " + listjobrequest.get(position).getRevision());
 
         return convertView;
 

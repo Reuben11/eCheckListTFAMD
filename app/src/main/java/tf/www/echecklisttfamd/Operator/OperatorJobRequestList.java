@@ -77,11 +77,13 @@ public class OperatorJobRequestList extends Fragment {
 
         String[] process = getResources().getStringArray(R.array.process);
         String[] equipment = getResources().getStringArray(R.array.equipment);
+        String[] revision = getResources().getStringArray(R.array.revision);
 
         for(int i = 0; i < process.length; i++){
             newBF = new jobrequestequipmentlist();
             newBF.setProcess(process[i]);
             newBF.setEquipment(equipment[i]);
+            newBF.setRevision(revision[i]);
             newBuyOffList.add(newBF);
         }
 

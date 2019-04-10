@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Operator.OperatorBuyOffList">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,15 +17,15 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </FrameLayout>
+                android:layout_height="wrap_content"></FrameLayout>
 
 
             <ListView
                 android:id="@+id/buyofflist"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:divider="#C4C4C4"
+                android:dividerHeight="1dp">
 
             </ListView>
         </LinearLayout>
