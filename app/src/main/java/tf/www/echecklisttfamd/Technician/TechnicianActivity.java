@@ -54,7 +54,7 @@ public class TechnicianActivity extends AppCompatActivity {
 
                             case R.id.technicianjr:
                                 getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
+                                        .replace(R.id.master_container, JobAvailable.newInstance())
                                         .commit();
                                 break;
                         }
@@ -88,7 +88,7 @@ public class TechnicianActivity extends AppCompatActivity {
         );
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.master_container, TermOfUseOperator.newInstance())
+                .replace(R.id.master_container, TermOfUseTechnician.newInstance())
                 .commit();
     }
 

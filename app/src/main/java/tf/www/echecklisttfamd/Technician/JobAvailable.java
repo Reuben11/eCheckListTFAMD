@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+import tf.www.echecklisttfamd.Operator.jobrequestequipmentlist;
 import tf.www.echecklisttfamd.R;
 
 /**
@@ -29,7 +32,37 @@ public class JobAvailable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
+        ArrayList<JobAvailableClass> jobAvailableArr = getJobAvailable();
+        lv = view.findViewById(R.id.jobawailablelist);
+        lv.setAdapter(new JobAvailableAdapter(getActivity(), jobAvailableArr));
         return view;
     }
 
+    private ArrayList<JobAvailableClass> getJobAvailable(){
+        ArrayList<JobAvailableClass> newBuyOffList = new ArrayList<JobAvailableClass>();
+
+        JobAvailableClass newBF;
+
+        String[] jrnumber = getResources().getStringArray(R.array.jrnumber);
+        String[] area = getResources().getStringArray(R.array.area);
+        String[] jobtype = getResources().getStringArray(R.array.jobtype);
+        String[] equipment = getResources().getStringArray(R.array.equipmentname);
+        String[] requestor = getResources().getStringArray(R.array.requestor);
+        String[] requesttime = getResources().getStringArray(R.array.date);
+
+
+        for(int i = 0; i < jrnumber.length; i++){
+            newBF = new JobAvailableClass();
+            newBF.setJrNumber(jrnumber[i]);
+            newBF.setArea(area[i]);
+            newBF.setJobType(jobtype[i]);
+            newBF.setEquipment(equipment[i]);
+            newBF.setRequestor(requestor[i]);
+            newBF.setJrDateTime(requesttime[i]);
+            newBuyOffList.add(newBF);
+        }
+
+
+        return newBuyOffList;
+    }
 }

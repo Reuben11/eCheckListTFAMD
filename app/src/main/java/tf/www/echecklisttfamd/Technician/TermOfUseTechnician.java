@@ -1,8 +1,7 @@
-package tf.www.echecklisttfamd.Operator;
+package tf.www.echecklisttfamd.Technician;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,12 @@ import tf.www.echecklisttfamd.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TermOfUseOperator extends Fragment {
+public class TermOfUseTechnician extends Fragment {
     View view;
 
-    public static TermOfUseOperator newInstance() {
+    public static TermOfUseTechnician newInstance() {
         // Required empty public constructor
-        TermOfUseOperator fragment = new TermOfUseOperator();
+        TermOfUseTechnician fragment = new TermOfUseTechnician();
         return fragment;
     }
 
@@ -27,13 +26,8 @@ public class TermOfUseOperator extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         view = inflater.inflate(R.layout.fragment_term_of_use_operator, container, false);
+        view = inflater.inflate(R.layout.fragment_term_of_use_technician, container, false);
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
     }
 
 }

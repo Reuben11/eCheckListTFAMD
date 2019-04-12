@@ -1,7 +1,21 @@
 package tf.www.echecklisttfamd.Technician;
 
 public class JobAvailableClass {
-    private String jrNumber, requestor, jrDateTime, jobType, equipment;
+    private String jrNumber;
+    private String requestor;
+    private String jrDateTime;
+    private String jobType;
+    private String equipment;
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    private String area;
 
     public String getJrNumber() {
         return jrNumber;

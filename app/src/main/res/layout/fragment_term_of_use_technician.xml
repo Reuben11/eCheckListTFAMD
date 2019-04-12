@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Technician.TermOfUseTechnician">
+
+
+    <TextView
+        android:id="@+id/toutitle"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/operatortermofuse"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:textAlignment="center"
+        android:paddingTop="20dp"
+        />
+
+    <TextView
+        android:paddingTop="50dp"
+        android:layout_below="@+id/toutitle"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:textAlignment="center"
+        android:text="@string/tou"/>
+</FrameLayout>
