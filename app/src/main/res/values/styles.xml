@@ -26,6 +26,15 @@
 
     </style>
 
+    <style name="AppThemeActionBarTechnician" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryTechnician</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkTechnician</item>
+        <item name="colorAccent">@color/colorAccentTechnician</item>
+
+    </style>
+
+
     <!-- Toolbar -->
     <style name="ToolBarStyle" parent="Widget.AppCompat.ActionBar">
 
@@ -38,4 +47,7 @@
         <item name="colorPrimary">@color/colorPrimaryOperator</item>
     </style>
 
+    <style name="AppTheme.PopupOverlaytechnician" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimaryTechnician</item>
+    </style>
 </resources>

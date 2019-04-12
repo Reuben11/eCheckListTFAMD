@@ -5,11 +5,14 @@
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="colorPrimaryLogin">#5F5F5F</color>
-    <color name="colorPrimaryDarkLogin">#FFFFFF</color>
-    <color name="colorAccentLogin">#FFFFFF</color>
+    <color name="colorPrimaryDarkLogin">#999999</color>
+    <color name="colorAccentLogin">#FF0408</color>
 
     <color name="colorPrimaryOperator">#FF6000</color>
     <color name="colorPrimaryDarkOperator">#FE7B2B</color>
     <color name="colorAccentOperator">#FF7F31</color>
 
+    <color name="colorPrimaryTechnician">#0003DE</color>
+    <color name="colorPrimaryDarkTechnician">#3C3EFF</color>
+    <color name="colorAccentTechnician">#FF7F31</color>
 </resources>

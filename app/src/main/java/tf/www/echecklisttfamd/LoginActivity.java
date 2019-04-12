@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import tf.www.echecklisttfamd.Operator.OperatorActivity;
+import tf.www.echecklisttfamd.Technician.TechnicianActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etempid;
@@ -23,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void run() {
             // TDO Auto-generated method stub
-            startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
-            finish();
+           /* startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+            finish();*/
         }
     };
 
@@ -34,7 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         etempid = findViewById(R.id.EmpId);
         tvSecurityID = findViewById(R.id.SecurityId);
-
+        Button technician, operator;
+        technician = findViewById(R.id.button2);
+        operator = findViewById(R.id.button1);
 
         Timer timer = new Timer();
         timer.schedule(task,delay);
@@ -55,7 +60,27 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 //Snackbar snackbar = Snackbar.make(tvSecurityID, "OK!", Snackbar.LENGTH_LONG);
                 //snackbar.show();
+                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                finish();
+            }
+        });
+
+        operator.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+
                 startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
+                finish();
+            }
+        });
+
+        technician.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+
+                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                 finish();
             }
         });

@@ -22,13 +22,34 @@
             android:scrollbars="vertical">
 
 
+            <TextView
+                android:id="@+id/jrnumberlable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="JR"
+                android:textColor="#00C600"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/jrnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/jrnumberlable"
+                android:layout_toRightOf="@+id/jrnumberlable"
+                android:textColor="#00C600"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                />
+
                     <TextView
                         android:id="@+id/buyoffms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MS Emp#"
+                        android:layout_below="@id/jrnumberlable"
+                        android:paddingTop="15dp"
                         />
-                    <EditText
+                    <TextView
                         android:id="@+id/msemp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -39,6 +60,8 @@
                         android:editable="false"
                         android:layout_alignBaseline="@+id/buyoffms"
                         android:layout_toRightOf="@+id/buyoffms"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
                         />
                     <TextView
                         android:id="@+id/buyoffdatetime"
@@ -46,8 +69,10 @@
                         android:layout_height="wrap_content"
                         android:text="DateTime"
                         android:layout_below="@id/buyoffms"
+                        android:paddingTop="15dp"
+
                         />
-                    <EditText
+                    <TextView
                         android:id="@+id/nowdatetime"
                         android:layout_span="2"
                         android:layout_width="match_parent"
@@ -59,15 +84,18 @@
                         android:editable="false"
                         android:layout_alignBaseline="@+id/buyoffdatetime"
                         android:layout_toRightOf="@+id/buyoffdatetime"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
                         />
-
-             <!--   <TableRow>
                     <TextView
+                        android:id="@+id/equipmentnamelabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Equipment Name"
+                        android:layout_below="@id/buyoffdatetime"
+                        android:paddingTop="15dp"
                         />
-                    <EditText
+                    <TextView
                         android:id="@+id/equipmentname"
                         android:layout_span="2"
                         android:layout_width="match_parent"
@@ -77,21 +105,168 @@
                         android:paddingRight="5dp"
                         android:maxLength="30"
                         android:editable="false"
+                        android:layout_alignBaseline="@+id/equipmentnamelabel"
+                        android:layout_toRightOf="@+id/equipmentnamelabel"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
                         />
-                </TableRow>
-                <TableRow>
-
-                </TableRow>
-
-
-
             <TextView
+                android:id="@+id/technicianlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Technician ID"
+                android:layout_below="@id/equipmentnamelabel"
+                android:paddingTop="15dp"
+                android:paddingBottom="20dp"
+                />
+            <TextView
+                android:id="@+id/technicianid"
+                android:layout_span="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLength="30"
+                android:editable="false"
+                android:layout_alignBaseline="@+id/technicianlabel"
+                android:layout_toRightOf="@+id/technicianlabel"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#919191"
+                android:layout_below="@id/technicianlabel"/>
+            <TextView
+                android:id="@+id/productbuyoff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PRODUCT BUYOFF"
                 android:textStyle="bold"
                 android:textSize="18dp"
-                android:paddingTop="30dp"/>
+                android:paddingTop="20dp"
+                android:layout_below="@id/view1"/>
+            <TextView
+                android:id="@+id/uvdone"
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UV Done?"
+                android:paddingRight="20dp"
+                android:layout_below="@id/productbuyoff"
+                />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="18dp"
+                android:paddingLeft="136dp"
+                android:layout_below="@id/productbuyoff"
+                android:layout_toRightOf="@+id/uvdone"
+
+               >
+
+                <RadioButton
+                    android:id="@+id/uvyes"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="Yes"
+                    />
+
+                <RadioButton
+                    android:id="@+id/uvno"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="No"
+                    />
+
+            </RadioGroup>
+            <TextView
+                android:id="@+id/wafercarcasseslabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wafer Carcasses Verification"
+                android:layout_below="@id/uvdone"
+                android:paddingTop="20dp"
+                />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="18dp"
+                android:layout_below="@id/uvdone"
+                android:layout_toRightOf="@+id/wafercarcasseslabel"
+                android:paddingLeft="36dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/waferyes"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="Yes"
+                    />
+
+                <RadioButton
+                    android:id="@+id/waferno"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="No"
+                    />
+
+            </RadioGroup>
+            <TextView
+                android:id="@+id/wafercarcassesremark"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="(Ensure needle mark is centering, no needle offset, no die debris and etc)"
+                android:layout_below="@id/wafercarcasseslabel"
+                android:textColor="#00A508"
+                />
+            <TextView
+                android:id="@+id/wafercarcassesidlabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wafer Carcasses verification ID"
+                android:layout_below="@id/wafercarcassesremark"
+                android:paddingTop="20dp"
+                />
+            <EditText
+                android:id="@+id/waferid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLength="30"
+                android:layout_alignBaseline="@+id/wafercarcassesidlabel"
+                android:layout_toRightOf="@+id/wafercarcassesidlabel"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingRight="10dp"
+                android:layout_below="@id/waferid">
+
+                <Button
+                    android:id="@+id/buyoffsubmit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Submit" />
+            </RelativeLayout>
+             <!--
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -101,32 +276,7 @@
                     android:stretchColumns="2">
 
                     <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="UV Done?"
-                            android:paddingRight="20dp"
-                            />
 
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingTop="10dp">
-
-                            <RadioButton
-                                android:id="@+id/uvyes"
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                android:text="Yes"
-                                />
-
-                            <RadioButton
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                />
-
-                        </RadioGroup>
 
                     </TableRow>
                     <TableRow>
