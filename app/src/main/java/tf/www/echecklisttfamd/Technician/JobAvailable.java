@@ -3,13 +3,17 @@ package tf.www.echecklisttfamd.Technician;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import tf.www.echecklisttfamd.Operator.OperatorBuyOffCheckList;
+import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
 import tf.www.echecklisttfamd.Operator.jobrequestequipmentlist;
 import tf.www.echecklisttfamd.R;
 
@@ -19,6 +23,10 @@ import tf.www.echecklisttfamd.R;
 public class JobAvailable extends Fragment {
     private ListView lv;
     View view;
+
+ /*   getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
+            .commit();*/
 
     public static JobAvailable newInstance() {
         // Required empty public constructor
@@ -35,6 +43,31 @@ public class JobAvailable extends Fragment {
         ArrayList<JobAvailableClass> jobAvailableArr = getJobAvailable();
         lv = view.findViewById(R.id.jobawailablelist);
         lv.setAdapter(new JobAvailableAdapter(getActivity(), jobAvailableArr));
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
+                // Do the onItemClick action
+                String name = adapterView.getItemAtPosition(position).toString();
+
+                switch (position){
+                    case 0:
+                        Fragment newFragment = new TechnicianScanner();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.master_container, newFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        break;
+                }
+                /*Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();*/
+
+
+                /*Snackbar snackbar = Snackbar.make(tvTextsnack, name, Snackbar.LENGTH_LONG);
+                snackbar.show();*/
+
+            }
+        });
         return view;
     }
 
