@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content"
+        card_view:contentPadding="1dp"
+        android:elevation="8dp"
+        android:dividerHeight="0.0px"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:cardElevation="10dp"
+        android:layout_margin="4dp"
+        app:cardPreventCornerOverlap="false">
         <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/analytics"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"/>
         </LinearLayout>
        <RelativeLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:paddingLeft="20dp"
+           android:paddingLeft="5dp"
            android:paddingTop="6dp">
            <TextView
                android:id="@+id/jrnumber"
@@ -52,12 +68,12 @@
                android:textSize="14dp"
                android:text="SubItem 2"
                android:paddingBottom="10dp"
-               android:layout_alignBaseline="@+id/equipmentname"
-               android:layout_alignBottom="@+id/equipmentname"
-               android:layout_alignParentRight="true"
+               android:layout_below="@+id/equipmentname"
+               android:paddingLeft="5dp"
                android:textColor="#343434"
                />
        </RelativeLayout>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>

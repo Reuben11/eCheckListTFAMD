@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -20,6 +20,12 @@
             android:scrollbars="vertical"
             tools:context=".technician.Machinesetup">
 
+            <RelativeLayout
+                android:id="@+id/informations"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
             <TextView
                 android:id="@+id/jrnumberlable"
                 android:layout_width="wrap_content"
@@ -130,6 +136,7 @@
                 android:paddingRight="5dp"
                 android:paddingBottom="20dp"
                 android:textColor="#0003DE" />
+            </RelativeLayout>
             <!-- <View
                android:id="@+id/view1"
                android:layout_width="match_parent"
@@ -137,391 +144,370 @@
                android:layout_marginTop="10dp"
                android:background="#919191"
                android:layout_below="@id/requestorlabel"/>-->
-            <TextView
-                android:id="@+id/machinesetup"
+
+            <RelativeLayout
+                android:id="@+id/machinesetuplayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/requestorid"
-                android:background="#5153FF"
-                android:elevation="2dp"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="MACHINE SETUP"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-            <TextView
-                android:id="@+id/purpose"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/machinesetup"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="1. Purpose" />
+                <TextView
+                    android:id="@+id/machinesetup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#5153FF"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="MACHINE SETUP"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+               <!-- android:layout_below="@id/requestorid"-->
+                <TextView
+                    android:id="@+id/purpose"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machinesetup"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="1. Purpose" />
+                <TextView
+                    android:id="@+id/purposeoption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/purpose"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/purpose"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/rubbertipsizelbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/purpose"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="2. Rubber Tip Size :" />
+                <TextView
+                    android:id="@+id/apollo"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rubbertipsizelbl"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="10dp"
+                    android:text="Apollo" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/apollo"
+                    android:layout_toRightOf="@+id/apollo"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="18dp">
 
-            <TextView
-                android:id="@+id/purposeoption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/purpose"
-                android:layout_marginLeft="5dp"
-                android:layout_span="2"
-                android:layout_toRightOf="@+id/purpose"
-                android:editable="false"
-                android:maxLength="30"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#0003DE" />
+                    <RadioButton
+                        android:id="@+id/apollo2"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="0.2" />
 
-            <TextView
-                android:id="@+id/rubbertipsizelbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/purpose"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="2. Rubber Tip Size :" />
+                    <RadioButton
+                        android:id="@+id/apollo3"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="0.3" />
 
-            <TextView
-                android:id="@+id/apollo"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/rubbertipsizelbl"
-                android:paddingLeft="20dp"
-                android:paddingTop="20dp"
-                android:paddingRight="10dp"
-                android:text="Apollo" />
+                    <RadioButton
+                        android:id="@+id/apollo36"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="0.36" />
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/apollo"
-                android:layout_toRightOf="@+id/apollo"
-                android:orientation="horizontal"
-                android:paddingLeft="0dp"
-                android:paddingTop="18dp">
+                    <RadioButton
+                        android:id="@+id/apollo4"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="0.4" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/unicorn"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/apollo"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Unicorn" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/unicorn"
+                    android:layout_toRightOf="@+id/unicorn"
+                    android:orientation="horizontal"
+                    android:paddingTop="18dp">
 
-                <RadioButton
-                    android:id="@+id/apollo2"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="0.2" />
+                    <RadioButton
+                        android:id="@+id/unicornrr050"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="RR-050" />
 
-                <RadioButton
-                    android:id="@+id/apollo3"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="0.3" />
+                    <RadioButton
+                        android:id="@+id/unicornrr025"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="RR-025" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/estoollbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/unicorn"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="3. ES Tool Configuration" />
+                <EditText
+                    android:id="@+id/estool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/estoollbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/estoollbl"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/estoolnote"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/estoollbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="(Xmm x Ymm vs ES Tool handle on left)(State out configuration used)"
+                    android:textColor="#00A508" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_alignTop="@+id/estoolnote"
+                    android:layout_toRightOf="@+id/estoolnote"
+                    android:src="@drawable/pnpmachinesetup" />
+                <TextView
+                    android:id="@+id/noofpinslbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/estoolnote"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="4. Number of Pins" />
+                <EditText
+                    android:id="@+id/noofpins"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/noofpinslbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/noofpinslbl"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/escapnolbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/noofpinslbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="64dp"
+                    android:text="5. ES Cap#"
 
-                <RadioButton
-                    android:id="@+id/apollo36"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="0.36" />
+                    />
+                <EditText
+                    android:id="@+id/escapno"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/escapnolbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/escapnolbl"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/eskitnolbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/escapnolbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="73dp"
+                    android:text="6. ES Kit#" />
+                <EditText
+                    android:id="@+id/eskitno"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/eskitnolbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/eskitnolbl"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/estoolnolbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/eskitnolbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="63dp"
+                    android:text="7. ES Tool#" />
+                <EditText
+                    android:id="@+id/estooltno"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/estoolnolbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/estoolnolbl"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/checkestoollbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/estoolnolbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="8. Checkestool" />
+                <EditText
+                    android:id="@+id/checkestool"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/checkestoollbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/checkestoollbl"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/checkeslbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkestoollbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="9. Check ES tool condition under naked eyes" />
+                <EditText
+                    android:id="@+id/checkes"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/checkeslbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/checkeslbl"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/checkesnote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkeslbl"
+                    android:paddingTop="0dp"
+                    android:text="(Rej if ES base magnet missing, clean if any debris, shaking/any gap found after fix on calibration jib)"
+                    android:textColor="#00A508" />
+                <TextView
+                    android:id="@+id/checkneedlelbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkesnote"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="10. Check needle levelling under low opt 30x" />
+                <EditText
+                    android:id="@+id/checkneedle"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/checkneedlelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/checkneedlelbl"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/checkneedlenote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkneedlelbl"
+                    android:paddingTop="0dp"
+                    android:paddingRight="20dp"
+                    android:text="(Adjust the needles to touch mirror surface if any gap)"
+                    android:textColor="#00A508" />
+                <TextView
+                    android:id="@+id/pptoolcenteringlbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/checkneedlenote"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="11. PP Tool Centering" />
+                <EditText
+                    android:id="@+id/pptoolcentering"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/pptoolcenteringlbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/pptoolcenteringlbl"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#0003DE" />
+                <TextView
+                    android:id="@+id/calibrateESToollbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pptoolcenteringlbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="12. Calibrate ES tool height, XY position and needle zero position" />
+                <EditText
+                    android:id="@+id/calibrateESTool"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/calibrateESToollbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/calibrateESToollbl"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:textColor="#0003DE" />
+            </RelativeLayout>
 
-                <RadioButton
-                    android:id="@+id/apollo4"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="0.4" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/unicorn"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/apollo"
-                android:paddingLeft="20dp"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="Unicorn" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/unicorn"
-                android:layout_toRightOf="@+id/unicorn"
-                android:orientation="horizontal"
-                android:paddingTop="18dp">
-
-                <RadioButton
-                    android:id="@+id/unicornrr050"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="RR-050" />
-
-                <RadioButton
-                    android:id="@+id/unicornrr025"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="RR-025" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/estoollbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/unicorn"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="3. ES Tool Configuration" />
-
-            <EditText
-                android:id="@+id/estool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/estoollbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/estoollbl"
-                android:maxLength="30"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:singleLine="true"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/estoolnote"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/estoollbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="(Xmm x Ymm vs ES Tool handle on left)(State out configuration used)"
-                android:textColor="#00A508" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_alignTop="@+id/estoolnote"
-                android:layout_toRightOf="@+id/estoolnote"
-                android:src="@drawable/pnpmachinesetup" />
-
-            <TextView
-                android:id="@+id/noofpinslbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/estoolnote"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="4. Number of Pins" />
-
-            <EditText
-                android:id="@+id/noofpins"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/noofpinslbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/noofpinslbl"
-                android:inputType="number"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:singleLine="true"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/escapnolbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/noofpinslbl"
-                android:paddingTop="20dp"
-                android:paddingRight="64dp"
-                android:text="5. ES Cap#"
-
-                />
-
-            <EditText
-                android:id="@+id/escapno"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/escapnolbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/escapnolbl"
-                android:inputType="number"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:singleLine="true"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/eskitnolbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/escapnolbl"
-                android:paddingTop="20dp"
-                android:paddingRight="73dp"
-                android:text="6. ES Kit#" />
-
-            <EditText
-                android:id="@+id/eskitno"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/eskitnolbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/eskitnolbl"
-                android:inputType="number"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:singleLine="true"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/estoolnolbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/eskitnolbl"
-                android:paddingTop="20dp"
-                android:paddingRight="63dp"
-                android:text="7. ES Tool#" />
-
-            <EditText
-                android:id="@+id/estooltno"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/estoolnolbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/estoolnolbl"
-                android:inputType="number"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/checkestoollbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/estoolnolbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="8. Checkestool" />
-
-            <EditText
-                android:id="@+id/checkestool"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/checkestoollbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/checkestoollbl"
-                android:inputType="text"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/checkeslbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkestoollbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="9. Check ES tool condition under naked eyes" />
-
-            <EditText
-                android:id="@+id/checkes"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/checkeslbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/checkeslbl"
-                android:inputType="text"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/checkesnote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkeslbl"
-                android:paddingTop="0dp"
-                android:text="(Rej if ES base magnet missing, clean if any debris, shaking/any gap found after fix on calibration jib)"
-                android:textColor="#00A508" />
-
-            <TextView
-                android:id="@+id/checkneedlelbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkesnote"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="10. Check needle levelling under low opt 30x" />
-
-            <EditText
-                android:id="@+id/checkneedle"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/checkneedlelbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/checkneedlelbl"
-                android:inputType="text"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/checkneedlenote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkneedlelbl"
-                android:paddingTop="0dp"
-                android:paddingRight="20dp"
-                android:text="(Adjust the needles to touch mirror surface if any gap)"
-                android:textColor="#00A508" />
-
-            <TextView
-                android:id="@+id/pptoolcenteringlbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/checkneedlenote"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="11. PP Tool Centering" />
-
-            <EditText
-                android:id="@+id/pptoolcentering"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/pptoolcenteringlbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/pptoolcenteringlbl"
-                android:inputType="text"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:textColor="#0003DE" />
-
-            <TextView
-                android:id="@+id/calibrateESToollbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pptoolcenteringlbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="20dp"
-                android:text="12. Calibrate ES tool height, XY position and needle zero position" />
-
-            <EditText
-                android:id="@+id/calibrateESTool"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/calibrateESToollbl"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/calibrateESToollbl"
-                android:inputType="text"
-                android:maxLength="3"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="20dp"
-                android:textColor="#0003DE" />
             <!-- <View
                android:id="@+id/view2"
                android:layout_width="match_parent"
@@ -529,220 +515,212 @@
                android:layout_marginTop="10dp"
                android:background="#919191"
                android:layout_below="@id/calibrateESToollbl"/>-->
-            <TextView
-                android:id="@+id/buyoff"
+            <RelativeLayout
+                android:id="@+id/dieejectionlayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/calibrateESToollbl"
-                android:background="#5153FF"
-                android:elevation="2dp"
-                android:gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="DIE EJECTION AND PICK &amp; PLACE BUYOFF"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+                <TextView
+                    android:id="@+id/buyoff"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#5153FF"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="DIE EJECTION AND PICK &amp; PLACE BUYOFF"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/ejectorlbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buyoff"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="0dp"
+                    android:text="1. Calibrate ES tool height, XY position and needle zero position" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/ejectorlbl"
+                    android:layout_toRightOf="@+id/ejectorlbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="35dp">
 
-            <TextView
-                android:id="@+id/ejectorlbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/buyoff"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="0dp"
-                android:text="1. Calibrate ES tool height, XY position and needle zero position" />
+                    <RadioButton
+                        android:id="@+id/ejectoryes"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Yes" />
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/ejectorlbl"
-                android:layout_toRightOf="@+id/ejectorlbl"
-                android:orientation="horizontal"
-                android:paddingTop="35dp">
+                    <RadioButton
+                        android:id="@+id/ejectorno"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="No" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/ejectornote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ejectorlbl"
+                    android:paddingTop="0dp"
+                    android:text="@string/ejectornote"
+                    android:textColor="#00A508" />
+                <TextView
+                    android:id="@+id/machineautocalibrationlbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ejectornote"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="2. Machine Auto Calibration" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/machineautocalibrationlbl"
+                    android:layout_toRightOf="@+id/machineautocalibrationlbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="27dp">
 
-                <RadioButton
-                    android:id="@+id/ejectoryes"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Yes" />
+                    <RadioButton
+                        android:id="@+id/macautopass"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Pass" />
 
-                <RadioButton
-                    android:id="@+id/ejectorno"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="No" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/macautofailed"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Failed" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/dieejectlbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/machineautocalibrationlbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="3. Die ejected higher than die on tape &amp; eject parallely" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/dieejectlbl"
+                    android:layout_toRightOf="@+id/dieejectlbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="35dp">
 
-            <TextView
-                android:id="@+id/ejectornote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ejectorlbl"
-                android:paddingTop="0dp"
-                android:text="@string/ejectornote"
-                android:textColor="#00A508" />
+                    <RadioButton
+                        android:id="@+id/dieejecyes"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Yes" />
 
-            <TextView
-                android:id="@+id/machineautocalibrationlbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ejectornote"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="2. Machine Auto Calibration" />
+                    <RadioButton
+                        android:id="@+id/dieejecno"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="No" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/dieejectnote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dieejectlbl"
+                    android:paddingTop="0dp"
+                    android:text="@string/diejectnote"
+                    android:textColor="#00A508" />
+                <TextView
+                    android:id="@+id/pickupdielbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dieejectnote"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="4. Can die be picked up on 1st pick?" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/pickupdielbl"
+                    android:layout_toRightOf="@+id/pickupdielbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="27dp">
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/machineautocalibrationlbl"
-                android:layout_toRightOf="@+id/machineautocalibrationlbl"
-                android:orientation="horizontal"
-                android:paddingTop="27dp">
+                    <RadioButton
+                        android:id="@+id/pickupdieyes"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Pass" />
 
-                <RadioButton
-                    android:id="@+id/macautopass"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Pass" />
+                    <RadioButton
+                        android:id="@+id/pickupdieno"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Failed" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/diepositionlbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/pickupdielbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="5. Die properly sitted on waffle pack &amp; not hit pocket's side wall?" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/diepositionlbl"
+                    android:layout_toRightOf="@+id/diepositionlbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="35dp">
 
-                <RadioButton
-                    android:id="@+id/macautofailed"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Failed" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/diepositionyes"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Pass" />
 
-            <TextView
-                android:id="@+id/dieejectlbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/machineautocalibrationlbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="3. Die ejected higher than die on tape &amp; eject parallely" />
+                    <RadioButton
+                        android:id="@+id/diepositionno"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Failed" />
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/diestickylbl"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/diepositionlbl"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="20dp"
+                    android:text="6. Die sticking on rubber tip?" />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/diestickylbl"
+                    android:layout_toRightOf="@+id/diestickylbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="27dp">
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/dieejectlbl"
-                android:layout_toRightOf="@+id/dieejectlbl"
-                android:orientation="horizontal"
-                android:paddingTop="35dp">
+                    <RadioButton
+                        android:id="@+id/diestickyyes"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Pass" />
 
-                <RadioButton
-                    android:id="@+id/dieejecyes"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/dieejecno"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="No" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/dieejectnote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dieejectlbl"
-                android:paddingTop="0dp"
-                android:text="@string/diejectnote"
-                android:textColor="#00A508" />
-
-            <TextView
-                android:id="@+id/pickupdielbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dieejectnote"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="4. Can die be picked up on 1st pick?" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/pickupdielbl"
-                android:layout_toRightOf="@+id/pickupdielbl"
-                android:orientation="horizontal"
-                android:paddingTop="27dp">
-
-                <RadioButton
-                    android:id="@+id/pickupdieyes"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Pass" />
-
-                <RadioButton
-                    android:id="@+id/pickupdieno"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Failed" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/diepositionlbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pickupdielbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:text="5. Die properly sitted on waffle pack &amp; not hit pocket's side wall?" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/diepositionlbl"
-                android:layout_toRightOf="@+id/diepositionlbl"
-                android:orientation="horizontal"
-                android:paddingTop="35dp">
-
-                <RadioButton
-                    android:id="@+id/diepositionyes"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Pass" />
-
-                <RadioButton
-                    android:id="@+id/diepositionno"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Failed" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/diestickylbl"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/diepositionlbl"
-                android:paddingTop="20dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="20dp"
-                android:text="6. Die sticking on rubber tip?" />
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/diestickylbl"
-                android:layout_toRightOf="@+id/diestickylbl"
-                android:orientation="horizontal"
-                android:paddingTop="27dp">
-
-                <RadioButton
-                    android:id="@+id/diestickyyes"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Pass" />
-
-                <RadioButton
-                    android:id="@+id/diestickyno"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:text="Failed" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/diestickyno"
+                        android:layout_width="80dp"
+                        android:layout_height="20dp"
+                        android:text="Failed" />
+                </RadioGroup>
+            </RelativeLayout>
             <!--  <View
                android:id="@+id/view3"
                android:layout_width="match_parent"
@@ -871,8 +849,7 @@
                         android:layout_height="20dp"
                         android:text="No" />
                 </RadioGroup>
-            </RelativeLayout>
-
+            </RelativeLayout>j
             <RelativeLayout
                 android:id="@+id/unicorn6101"
                 android:layout_width="match_parent"
@@ -1004,11 +981,17 @@
                android:layout_marginTop="10dp"
                android:background="#919191"
                android:layout_below="@id/unicorn6101"/>-->
+        <RelativeLayout
+            android:id="@+id/dailychecklist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <!--android:layout_below="@id/unicorn510461045112B"-->
             <TextView
                 android:id="@+id/dailychecking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/unicorn6101"
                 android:background="#5153FF"
                 android:elevation="2dp"
                 android:gravity="center_horizontal"
@@ -1018,6 +1001,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+            <!--android:layout_below="@id/unicorn6101"-->
             <TextView
                 android:id="@+id/dailyejectormarklbl"
                 android:layout_width="180dp"
@@ -1027,14 +1011,99 @@
                 android:paddingRight="20dp"
                 android:text="1. Ejector mark center? Need to look at the needle mark 90&#176; angle from the die to sure it centered"
                 />
-            <Switch
-                android:id="@+id/dailyejectormark"
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/dailyejectormarklbl"
+                android:layout_alignTop="@+id/dailyejectormarklbl"
                 android:layout_toRightOf="@+id/dailyejectormarklbl"
-                android:text="Yes"
+                android:orientation="horizontal"
+                android:paddingTop="43dp">
+
+                <RadioButton
+                    android:id="@+id/dailyejectormarkyes"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/dailyejectormarkno"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="No" />
+            </RadioGroup>
+            <TextView
+                android:id="@+id/dailymachineblowerlbl"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dailyejectormarklbl"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:text="2. Machine blower heater function?"
                 />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/dailymachineblowerlbl"
+                android:layout_toRightOf="@+id/dailymachineblowerlbl"
+                android:orientation="horizontal"
+                android:paddingTop="27dp">
+
+                <RadioButton
+                    android:id="@+id/dailymachinebloweryes"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/dailymachineblowerno"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="No" />
+            </RadioGroup>
+            <TextView
+                android:id="@+id/dailymachinesolenidlbl"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dailymachineblowerlbl"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:text="3. Machine blower solenid function?"
+                />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/dailymachinesolenidlbl"
+                android:layout_toRightOf="@+id/dailymachinesolenidlbl"
+                android:orientation="horizontal"
+                android:paddingTop="27dp">
+
+                <RadioButton
+                    android:id="@+id/dailymachinesolenidyes"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/dailymachinesolenidno"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:text="No" />
+            </RadioGroup>
         </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:paddingRight="10dp">
+
+                <Button
+                    android:id="@+id/setupsubmit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Submit" />
+            </RelativeLayout>
+
+        </LinearLayout>
     </ScrollView>
 </FrameLayout>

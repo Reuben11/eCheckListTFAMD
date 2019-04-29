@@ -22,226 +22,286 @@
             android:paddingBottom="10dp"
             android:scrollbars="vertical">
 
-            <TableLayout
+            <RelativeLayout
+                android:id="@+id/dailycheckcontainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="2"
-                android:paddingTop="10dp">
+                android:layout_height="120dp"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <TableRow>
+                <TextView
+                    android:id="@+id/dailycheck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF9352"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="DAILY CHECK"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_below="@id/dailycheck">
+
                     <TextView
                         android:id="@+id/ms"
-                        android:layout_width="match_parent"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:text="Daily?"
-                        android:textSize="18dp"
                         android:paddingRight="20dp"
-                        android:textStyle="bold"/>
-
+                        android:paddingTop="20dp"/>
 
                     <CheckBox
                         android:id="@+id/checkBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes"
-                        android:textSize="18dp"/>
+                        android:layout_alignBaseline="@+id/ms"
+                        android:layout_toRightOf="@+id/ms"/>
+                </RelativeLayout>
 
-                </TableRow>
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Equipment Name"
-                        />
-                    <EditText
-                        android:id="@+id/equipmentname"
-                        android:layout_span="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:maxLength="30"
-                        android:editable="false"
-                        />
-                </TableRow>
-            </TableLayout>
-
-
-            <TextView
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/lotinfocontainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="A. LOT INFO"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:paddingTop="30dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+
+
+                <TextView
+                    android:id="@+id/lotinfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="2">
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MS Emp#"
-                            />
-                        <EditText
-                            android:id="@+id/msemp"
-                            android:layout_span="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            android:editable="false"
-                            />
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="DateTime"
-                            />
-                        <EditText
-                            android:id="@+id/nowdatetime"
-                            android:layout_span="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            android:editable="false"
-                            />
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Device"
-                            />
-                        <EditText
-                            android:id="@+id/device"
-                            android:layout_span="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            />
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MES Lot#"
-                            />
-                        <EditText
-                            android:id="@+id/meslot"
-                            android:layout_span="2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="B. PRODUCT SETUP"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:paddingTop="30dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="2"
-                    >
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Waffle pack part#"
-                            />
-                        <EditText
-                            android:id="@+id/wpackpart"
-                            android:layout_span="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="2"
-                    android:paddingTop="10dp">
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Waffle pack orientation"/>
-                    </TableRow>
-                    <TableRow>
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingTop="10dp">
-
-                            <RadioButton
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                android:drawableStart="@drawable/tl"
-                                />
-
-                            <RadioButton
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                android:drawableStart="@drawable/tr"
-                                />
-
-                            <RadioButton
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                android:drawableStart="@drawable/bl"
-                                />
-                            <RadioButton
-                                android:layout_width="70dp"
-                                android:layout_height="30dp"
-                                android:drawableStart="@drawable/br"
-                                />
-                        </RadioGroup>
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
+                    android:background="#FF9352"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="LOT INFO"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_below="@id/lotinfo">
+
+                <TextView
+                    android:id="@+id/mslbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="MS Emp#"
+                    />
+                <TextView
+                    android:id="@+id/msemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/mslbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/mslbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:paddingBottom="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/timelbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mslbl"
+                    android:paddingTop="20dp"
+                    android:text="DateTime" />
+                <TextView
+                    android:id="@+id/nowdatetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/timelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/timelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:paddingBottom="20dp"
+                    />
+                <TextView
+                    android:id="@+id/equipmentlbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timelbl"
+                    android:text="Equipment Name"
+                    android:paddingTop="20dp"
+                    />
+                <TextView
+                    android:id="@+id/equipmentname"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/equipmentlbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/equipmentlbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:paddingBottom="20dp"/>
+
+                <TextView
+                    android:id="@+id/devicelbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/equipmentlbl"
+                    android:paddingTop="20dp"
+                    android:text="Device" />
+                <EditText
+                    android:id="@+id/device"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:layout_alignBaseline="@+id/devicelbl"
+                    android:layout_toRightOf="@+id/devicelbl"
+                    />
+                <TextView
+                    android:id="@+id/meslotlbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="MES Lot#"
+                    android:paddingTop="20dp"
+                    android:layout_below="@id/devicelbl"
+                    android:paddingBottom="60dp"
+                    />
+                <EditText
+                    android:id="@+id/meslot"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:layout_alignBaseline="@+id/meslotlbl"
+                    android:layout_toRightOf="@+id/meslotlbl"
+                    />
+            </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/productsetupcontainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+
+            <TextView
+                android:id="@+id/productsetup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FF9352"
+                android:elevation="2dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="PRODUCT SETUP"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_below="@id/productsetup">
+
+                <TextView
+                    android:id="@+id/wafflepartlbl"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Waffle pack part#"
+                    android:paddingTop="20dp"
+                    />
+                <EditText
+                    android:id="@+id/wpackpart"
+                    android:layout_span="2"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:layout_alignBaseline="@+id/wafflepartlbl"
+                    android:layout_toRightOf="@+id/wafflepartlbl"
+                    />
+                <TextView
+                    android:id="@+id/waffleorientation"
+                    android:paddingTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waffle pack orientation"
+                    android:layout_below="@id/wafflepartlbl"/>
+                <RadioGroup
+                    android:id="@+id/radioorientation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:layout_below="@id/waffleorientation">
+
+                    <RadioButton
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:drawableStart="@drawable/tl"
+                        />
+
+                    <RadioButton
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:drawableStart="@drawable/tr"
+                        />
+
+                    <RadioButton
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:drawableStart="@drawable/bl"
+                        />
+                    <RadioButton
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:drawableStart="@drawable/br"
+                        />
+                </RadioGroup>
+            </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:paddingBottom="20dp">
 
                 <Button
                     android:id="@+id/jrsubmit"

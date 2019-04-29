@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +28,61 @@ public class Device_Change_Setup_CheckList extends Fragment {
     private AlertDialog alertDialog;
     private TextView tvEmp;
     private Button btnSubmit;
+    private EditText etDevice, etMesLot, etWaffepart;
+    private RadioGroup rgOrientation;
+    private CheckBox cbdailycheck;
     View view;
+
+    TextWatcher textWatcherdevice = new TextWatcher() {
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            etMesLot.requestFocus();
+        }
+    };
+
+    TextWatcher textWatchermeslot = new TextWatcher() {
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            etWaffepart.requestFocus();
+        }
+    };
+
+    TextWatcher textWatcherwpackpart = new TextWatcher() {
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            btnSubmit.requestFocus();
+        }
+    };
 
     public static Device_Change_Setup_CheckList newInstance() {
         // Required empty public constructor
@@ -37,6 +96,27 @@ public class Device_Change_Setup_CheckList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_device__change__setup__check_list, container, false);
+
+        cbdailycheck = view.findViewById(R.id.checkBox);
+
+        etDevice = view.findViewById(R.id.device);
+        etDevice.setShowSoftInputOnFocus(false);
+        etDevice.addTextChangedListener(textWatcherdevice);
+        etDevice.setLongClickable(false);
+
+        etMesLot = view.findViewById(R.id.meslot);
+        etMesLot.setShowSoftInputOnFocus(false);
+        etMesLot.addTextChangedListener(textWatchermeslot);
+        etMesLot.setLongClickable(false);
+
+        etWaffepart = view.findViewById(R.id.wpackpart);
+        etWaffepart.setShowSoftInputOnFocus(false);
+        etWaffepart.addTextChangedListener(textWatcherwpackpart);
+        etWaffepart.setLongClickable(false);
+
+        rgOrientation = view.findViewById(R.id.radioorientation);
+
+
         btnSubmit = view.findViewById(R.id.jrsubmit);
         tvEmp = view.findViewById(R.id.ms);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
