@@ -55,7 +55,6 @@ public class OperatorBuyOffList extends Fragment {
                         Fragment newFragment = new OperatorBuyOffCheckList();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.replace(R.id.master_container, newFragment);
-                        transaction.addToBackStack(null);
                         transaction.commit();
                         break;
                 }

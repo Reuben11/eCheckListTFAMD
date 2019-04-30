@@ -1,7 +1,10 @@
 package tf.www.echecklisttfamd.Operator;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
 
 public class OperatorActivity extends AppCompatActivity {
@@ -56,7 +60,8 @@ public class OperatorActivity extends AppCompatActivity {
 
                             case R.id.jr:
                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
+                                        .replace(R.id.master_container, OperatorJobRequestList.newInstance())
+                                       .addToBackStack("jobstacker")
                                         .commit();
                                 break;
                             case R.id.buyoff:
@@ -124,5 +129,6 @@ public class OperatorActivity extends AppCompatActivity {
         ft.replace(R.id.master_container, fragment, tag);
         ft.commitAllowingStateLoss();
     }
+
 }
 

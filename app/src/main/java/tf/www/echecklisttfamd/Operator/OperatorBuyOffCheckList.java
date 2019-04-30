@@ -3,6 +3,7 @@ package tf.www.echecklisttfamd.Operator;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,12 +16,14 @@ import android.widget.Toast;
 
 import tf.www.echecklisttfamd.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class OperatorBuyOffCheckList extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp;
+    private TextView tvEmp, tvEquipmentName;
     private Button btnSubmit;
     View view;
 
@@ -36,6 +39,7 @@ public class OperatorBuyOffCheckList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_buy_off_check_list, container, false);
+
         btnSubmit = view.findViewById(R.id.buyoffsubmit);
         tvEmp = view.findViewById(R.id.jrnumberlable);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +50,9 @@ public class OperatorBuyOffCheckList extends Fragment {
                 alertDialog.show();
             }
         });
+
+
+
         return view;
     }
 
@@ -90,4 +97,6 @@ public class OperatorBuyOffCheckList extends Fragment {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
                 .show();
     }
+
+
 }

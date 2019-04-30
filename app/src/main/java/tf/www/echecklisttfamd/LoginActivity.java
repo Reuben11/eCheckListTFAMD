@@ -1,6 +1,8 @@
 package tf.www.echecklisttfamd;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -86,4 +88,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    protected void SetEquipmentName() {
+        SharedPreferences prefs = getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        SharedPreferences.Editor editor = getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("equipmentname", "12348784".toString());
+        editor.apply();
+
+      /*  String test = prefs.getString("emp",null);
+        if(test!=null){
+
+        }*/
+    }
+
+
 }

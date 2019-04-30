@@ -154,7 +154,7 @@
                     android:paddingTop="20dp"
                     />
                 <TextView
-                    android:id="@+id/equipmentname"
+                    android:id="@+id/changeequipmentname"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/equipmentlbl"

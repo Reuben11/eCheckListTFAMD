@@ -2,8 +2,11 @@ package tf.www.echecklisttfamd.Operator;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -19,14 +22,21 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Device_Change_Setup_CheckList extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp;
+    private TextView tvEmp, tvEquipmentName, tvDateTime;
     private Button btnSubmit;
     private EditText etDevice, etMesLot, etWaffepart;
     private RadioGroup rgOrientation;
@@ -97,7 +107,15 @@ public class Device_Change_Setup_CheckList extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_device__change__setup__check_list, container, false);
 
+        tvEquipmentName = view.findViewById(R.id.changeequipmentname);
+        tvDateTime = view.findViewById(R.id.nowdatetime);
         cbdailycheck = view.findViewById(R.id.checkBox);
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a, dd-MMM-yy");
+        String dateStr = df.format(c);
+        tvDateTime.setText(dateStr);
+
 
         etDevice = view.findViewById(R.id.device);
         etDevice.setShowSoftInputOnFocus(false);
@@ -127,6 +145,10 @@ public class Device_Change_Setup_CheckList extends Fragment {
                 alertDialog.show();
             }
         });
+
+        /*if(savedInstanceState != null){*/
+            GetEquipmentName();
+       /* }*/
 
         return view;
     }
@@ -171,5 +193,15 @@ public class Device_Change_Setup_CheckList extends Fragment {
     private void showToastMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
                 .show();
+    }
+
+    protected void GetEquipmentName(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvEquipmentName.setText(prefs.getString("equipmentname","no data"));
+    }
+
+    protected void GetEmp(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvEmp.setText(prefs.getString("emp","no data"));
     }
 }
