@@ -62,7 +62,8 @@ public class LoginActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 //Snackbar snackbar = Snackbar.make(tvSecurityID, "OK!", Snackbar.LENGTH_LONG);
                 //snackbar.show();
-                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                SetEmp(etempid.getText().toString());
+                startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
                 finish();
             }
         });
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-
+                SetEmp("123131");
                 startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
                 finish();
             }
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-
+                SetEmp("231231@");
                 startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                 finish();
             }
@@ -89,11 +90,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    protected void SetEquipmentName() {
-        SharedPreferences prefs = getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        SharedPreferences.Editor editor = getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
-        editor.putString("equipmentname", "12348784".toString());
-        editor.apply();
+    protected void SetEmp(String empid) {
+
+        SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("emp", empid);
+        editor.commit();
 
       /*  String test = prefs.getString("emp",null);
         if(test!=null){

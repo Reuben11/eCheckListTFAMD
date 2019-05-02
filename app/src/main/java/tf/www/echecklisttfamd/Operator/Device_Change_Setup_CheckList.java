@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
 
@@ -36,12 +40,12 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class Device_Change_Setup_CheckList extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp, tvEquipmentName, tvDateTime;
+    private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp;
     private Button btnSubmit;
     private EditText etDevice, etMesLot, etWaffepart;
     private RadioGroup rgOrientation;
     private CheckBox cbdailycheck;
-    View view;
+       View view;
 
     TextWatcher textWatcherdevice = new TextWatcher() {
 
@@ -90,7 +94,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            btnSubmit.requestFocus();
+            rgOrientation.requestFocus();
         }
     };
 
@@ -100,19 +104,19 @@ public class Device_Change_Setup_CheckList extends Fragment {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_device__change__setup__check_list, container, false);
 
+        tvMsEmp = view.findViewById(R.id.msemp);
         tvEquipmentName = view.findViewById(R.id.changeequipmentname);
         tvDateTime = view.findViewById(R.id.nowdatetime);
         cbdailycheck = view.findViewById(R.id.checkBox);
 
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a, dd-MMM-yy");
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a,  dd MMM yy");
         String dateStr = df.format(c);
         tvDateTime.setText(dateStr);
 
@@ -141,13 +145,15 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                alertDialog = showJobRequestSubmitDialog();
-                alertDialog.show();
+                CreateData();
+
             }
         });
 
         /*if(savedInstanceState != null){*/
             GetEquipmentName();
+            GetDaily();
+            GetEmp();
        /* }*/
 
         return view;
@@ -164,7 +170,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         }
     }
 
-    private AlertDialog showJobRequestSubmitDialog(){
+   /* private AlertDialog showJobRequestSubmitDialog(){
         return new AlertDialog.Builder(getActivity())
             .setTitle("Job Request Submission")
             .setMessage("Please make sure all informations are correct before submission")
@@ -176,7 +182,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
                     Fragment newFragment = new TermOfUseOperator();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
-                    /*transaction.addToBackStack(null);*/
+                    *//*transaction.addToBackStack(null);*//*
                     transaction.commit();
                 }
             })
@@ -188,7 +194,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
                 })
             .setCancelable(false)
             .create();
-    }
+    }*/
 
     private void showToastMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
@@ -200,8 +206,134 @@ public class Device_Change_Setup_CheckList extends Fragment {
         tvEquipmentName.setText(prefs.getString("equipmentname","no data"));
     }
 
+    protected void GetDaily(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        if(prefs.getBoolean("daily",false)==true){
+            cbdailycheck.setChecked(true);
+        }
+        else{
+            cbdailycheck.setEnabled(false);
+        }
+    }
+
     protected void GetEmp(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvEmp.setText(prefs.getString("emp","no data"));
+        tvMsEmp.setText(prefs.getString("emp","no data"));
+    }
+
+    private void CreateData(){
+        boolean alert = false;
+        String msg = null;
+
+        if(!TextUtils.isEmpty(etDevice.getText().toString())){
+            if(!TextUtils.isEmpty(etMesLot.getText().toString())){
+                if(!TextUtils.isEmpty(etWaffepart.getText().toString())){
+                    if(rgOrientation.getCheckedRadioButtonId() != -1){
+
+                    }
+                    else{
+                        alert = true;
+                        msg = "Invalid Waffle Pack Orientation!";
+                    }
+                }
+                else{
+                    alert = true;
+                    msg = "Invalid Waffle Pack Part!";
+                }
+            }
+            else{
+                alert = true;
+                msg = "Invalid MES Lot!";
+            }
+        }
+        else{
+            alert = true;
+            msg = "Invalid Device!";
+        }
+
+        if(alert == true){
+            ShowAlert("Alert!", msg);
+        }
+        else{
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://pngjvfa01")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            String daily = "false";
+            int orientationoption = rgOrientation.getCheckedRadioButtonId();
+
+            if(cbdailycheck.isChecked()){
+                daily = "true";
+            }
+
+            String test = "api/eChecklist?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                    + "\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
+                    +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
+                    + "\"orientation\":\"" + orientationoption + "\"}";
+
+            Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR("api/eChecklist?datalist={\"equipment\":" + tvEquipmentName.getText().toString()
+                    + ",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
+                    +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
+                    + "\"orientation\":\"" + orientationoption + "\"}");
+            ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission");
+        }
+    }
+
+    private void ShowAlert(String title, String msg){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(title);
+        builder1.setMessage(msg);
+
+        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog  alert1 = builder1.create();
+        alert1.show();
+    }
+
+    private void ShowAlertSubmit(String title, String msg) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(title);
+        builder1.setMessage(msg);
+
+        builder1.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                showToastMsg("Job Request Submitted!");
+
+                Fragment newFragment = new TermOfUseOperator();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
+                /*transaction.addToBackStack(null);*/
+                transaction.commit();
+            }
+        });
+
+        builder1.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog  alert1 = builder1.create();
+        alert1.show();
+    }
+
+    public class jR{
+        protected int JR;
+
+        public int getJR() {
+            return JR;
+        }
+
+        public void setJR(int JR) {
+            this.JR = JR;
+        }
     }
 }

@@ -24,8 +24,13 @@ import com.google.gson.annotations.Expose;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Retrofit;
+import retrofit2.http.Path;
+import retrofit2.http.Url;
 import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
 import retrofit2.Call;
@@ -43,7 +48,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorEquipmentScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel;
-
+    private String test;
     View view;
 
     TextWatcher textWatcher = new TextWatcher() {
@@ -59,15 +64,20 @@ public class OperatorEquipmentScanner extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-           /* Snackbar snackbar = Snackbar.make(tvBarcodeLabel, eBarcode.getText().toString(), Snackbar.LENGTH_LONG);
-            snackbar.show();*/
+            Date c = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a, dd-MMM-yy");
+            String dateStr = df.format(c);
+
+
+            /*"/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}";*/
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://pngjvfa01")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData();
+
+            Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData("/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}");
             call.enqueue(new Callback<GetExist>() {
                 @Override
                 public void onResponse(Call<GetExist> call, Response<GetExist> response) {
@@ -85,7 +95,7 @@ public class OperatorEquipmentScanner extends Fragment {
                     }
                     else{
                         SetEquipmentName();
-
+                        SetDaily(obj.daily);
                         /*eBarcode.getText().clear();*/
                         Fragment newFragment = new Device_Change_Setup_CheckList();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -153,6 +163,15 @@ public class OperatorEquipmentScanner extends Fragment {
     public class GetExist{
         @Expose
         protected boolean exist;
+        protected boolean daily;
+
+        public boolean isDaily() {
+            return daily;
+        }
+
+        public void setDaily(boolean daily) {
+            this.daily = daily;
+        }
 
         public boolean isExist() {
             return exist;
@@ -165,15 +184,17 @@ public class OperatorEquipmentScanner extends Fragment {
 
 
     protected void SetEquipmentName() {
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+       /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putString("equipmentname", eBarcode.getText().toString());
         editor.apply();
+    }
 
-      /*  String test = prefs.getString("equipmentname",null);
-        if(test!=null){
-
-        }*/
+    protected void SetDaily(boolean daily) {
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putBoolean("daily", daily);
+        editor.apply();
     }
 
 
