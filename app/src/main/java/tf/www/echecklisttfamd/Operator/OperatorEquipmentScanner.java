@@ -1,7 +1,9 @@
 package tf.www.echecklisttfamd.Operator;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -48,7 +50,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorEquipmentScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel;
-    private String test;
+    private String link;
+    private Boolean clearText;
     View view;
 
     TextWatcher textWatcher = new TextWatcher() {
@@ -65,68 +68,67 @@ public class OperatorEquipmentScanner extends Fragment {
         @Override
         public void afterTextChanged(Editable s) {
             Date c = Calendar.getInstance().getTime();
-            SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a, dd-MMM-yy");
+            SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss , dd-MMM-yy");
             String dateStr = df.format(c);
 
 
+            /* Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
+
             /*"/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}";*/
+            if (clearText == false) {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://pngjvfa01")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://pngjvfa01")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
+                link = "/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}";
+                /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
+                Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData(link);
+                call.enqueue(new Callback<GetExist>() {
+                    @Override
+                    public void onResponse(Call<GetExist> call, Response<GetExist> response) {
 
-            Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData("/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}");
-            call.enqueue(new Callback<GetExist>() {
-                @Override
-                public void onResponse(Call<GetExist> call, Response<GetExist> response) {
-                    /*String results = response.body();*/
-                        /*Snackbar snackbar1 = Snackbar.make(tvLocation, results, Snackbar.LENGTH_LONG);
-                        snackbar1.show();*/
-
-                    if (response.isSuccessful()){
-                        GetExist obj = response.body();
-                        //try {
-
-                    if(obj.exist == true){
-                        Snackbar snackbar = Snackbar.make(tvBarcodeLabel, obj.exist + " - OK!", Snackbar.LENGTH_LONG);
-                        snackbar.show();
-                    }
-                    else{
-                        SetEquipmentName();
-                        SetDaily(obj.daily);
-                        /*eBarcode.getText().clear();*/
-                        Fragment newFragment = new Device_Change_Setup_CheckList();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.master_container, newFragment);
-                        transaction.commit();
-                    }
+                        if (response.isSuccessful()) {
+                            GetExist obj = response.body();
+                            //try {
 
 
+                            if (obj.equip == true) {
+                                if (obj.exist == true) {
+                                    ShowAlert("Job Pending Error Code : JRE0001", "This Equipment Still Pending For Previous Job Request!");
+                                } else {
+                                    SetEquipmentName();
+                                    SetDaily(obj.daily);
 
-                    }
-                    else
-                    {
-                      /*  Snackbar snackbar = Snackbar.make(tvLocation, "Error1", Snackbar.LENGTH_LONG);
-                        snackbar.show();*/
-                    }
-                }
-                @Override
-                public void onFailure(Call<GetExist> call, Throwable t) {
-                    if(t instanceof IOException){
+                                    Fragment newFragment = new Device_Change_Setup_CheckList();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.master_container, newFragment);
+                                    transaction.commit();
+                                }
+                            } else {
+                                ShowAlert("Server Connection Error Code: SCE0001!", "Invalid Information!");
+                            }
 
-                    }
-                    else {
+                        } else {
 
-                        // todo log to some central bug tracking service
+                        }
                     }
 
-                }
-            });
+                    @Override
+                    public void onFailure(Call<GetExist> call, Throwable t) {
+                        if (t instanceof IOException) {
+                            ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                        } else {
+
+                            // todo log to some central bug tracking service
+                        }
+
+                    }
+                });
 
 
-
+            }
         }
     };
 
@@ -146,7 +148,7 @@ public class OperatorEquipmentScanner extends Fragment {
 
         eBarcode = view.findViewById(R.id.equipmentbarcode1);
         tvBarcodeLabel = view.findViewById(R.id.barcodelabe1);
-
+        clearText = false;
         eBarcode.setShowSoftInputOnFocus(false);
         eBarcode.addTextChangedListener(textWatcher);
         eBarcode.requestFocus();
@@ -164,6 +166,15 @@ public class OperatorEquipmentScanner extends Fragment {
         @Expose
         protected boolean exist;
         protected boolean daily;
+        protected boolean equip;
+
+        public boolean isEquip() {
+            return equip;
+        }
+
+        public void setEquip(boolean equip) {
+            this.equip = equip;
+        }
 
         public boolean isDaily() {
             return daily;
@@ -187,16 +198,35 @@ public class OperatorEquipmentScanner extends Fragment {
        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putString("equipmentname", eBarcode.getText().toString());
-        editor.apply();
+        editor.commit();
     }
 
     protected void SetDaily(boolean daily) {
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putBoolean("daily", daily);
-        editor.apply();
+        editor.commit();
     }
 
+
+    private void ShowAlert(String title, String msg){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(title);
+        builder1.setMessage(msg);
+
+        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                clearText = true;
+                eBarcode.getText().clear();
+                clearText = false;
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog  alert1 = builder1.create();
+        alert1.show();
+    }
 
 
 }

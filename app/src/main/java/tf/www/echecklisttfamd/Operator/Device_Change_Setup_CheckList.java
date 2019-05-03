@@ -23,11 +23,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.LoginActivity;
@@ -209,10 +212,10 @@ public class Device_Change_Setup_CheckList extends Fragment {
     protected void GetDaily(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         if(prefs.getBoolean("daily",false)==true){
-            cbdailycheck.setChecked(true);
+            cbdailycheck.setEnabled(false);
         }
         else{
-            cbdailycheck.setEnabled(false);
+            cbdailycheck.setChecked(true);
         }
     }
 
@@ -268,15 +271,39 @@ public class Device_Change_Setup_CheckList extends Fragment {
             }
 
             String test = "api/eChecklist?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
-                    + "\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
+                    + "\",\"clid\":\"1\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
                     +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
                     + "\"orientation\":\"" + orientationoption + "\"}";
 
-            Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR("api/eChecklist?datalist={\"equipment\":" + tvEquipmentName.getText().toString()
-                    + ",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
-                    +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
-                    + "\"orientation\":\"" + orientationoption + "\"}");
-            ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission");
+            /*ShowAlert("Connection Error!", test);*/
+            Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR(test);
+            call.enqueue(new Callback<jR>() {
+                @Override
+                public void onResponse(Call<jR> call, Response<jR> response) {
+                    if(response.isSuccessful()){
+                        jR obj = response.body();
+
+                        /*if(Integer.parseInt(obj.id) == 0){
+                            ShowAlert("Invalid Data!", "Please check your information");
+                        }
+                        else{
+                            ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission", obj.id);
+                        }*/
+                        ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission", obj.id);
+                    }
+                    else{
+                        ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<jR> call, Throwable t) {
+                    if(t instanceof IOException){
+                        Toast.makeText(getContext(), "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
     }
 
@@ -296,7 +323,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         alert1.show();
     }
 
-    private void ShowAlertSubmit(String title, String msg) {
+    private void ShowAlertSubmit(String title, String msg, final String JRnumber) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
         builder1.setTitle(title);
         builder1.setMessage(msg);
@@ -304,7 +331,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         builder1.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showToastMsg("Job Request Submitted!");
+                showToastMsg("Job Request JR " + JRnumber + " created!");
 
                 Fragment newFragment = new TermOfUseOperator();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -326,14 +353,14 @@ public class Device_Change_Setup_CheckList extends Fragment {
     }
 
     public class jR{
-        protected int JR;
+        protected String id;
 
-        public int getJR() {
-            return JR;
+        public String getID() {
+            return id;
         }
 
-        public void setJR(int JR) {
-            this.JR = JR;
+        public void setID(String ID) {
+            this.id = ID;
         }
     }
 }

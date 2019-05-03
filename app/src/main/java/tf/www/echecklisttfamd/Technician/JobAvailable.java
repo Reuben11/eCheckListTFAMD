@@ -21,6 +21,7 @@ import tf.www.echecklisttfamd.R;
  * A simple {@link Fragment} subclass.
  */
 public class JobAvailable extends Fragment {
+    private ArrayList<AvailableJobs> data;
     private ListView lv;
     View view;
 
@@ -97,5 +98,79 @@ public class JobAvailable extends Fragment {
 
 
         return newBuyOffList;
+    }
+
+    public class JsonResponse{
+        private AvailableJobs[] joblists;
+
+        public AvailableJobs[] getJoblists(){
+            return joblists;
+        }
+    }
+
+    public class AvailableJobs{
+        private String jrNumber;
+        private String area;
+        private String checklistname;
+        private String equipmentName;
+        private String requestor;
+        private String date;
+
+        public  AvailableJobs(String jrNumber, String area, String checklistname, String equipmentName, String requestor, String date){
+            this.jrNumber = jrNumber;
+            this.area = area;
+            this.checklistname = checklistname;
+            this.equipmentName = equipmentName;
+            this.requestor = requestor;
+            this.date = date;
+        }
+
+        public String getJrNumber() {
+            return jrNumber;
+        }
+
+        public void setJrNumber(String jrNumber) {
+            this.jrNumber = jrNumber;
+        }
+
+        public String getArea() {
+            return area;
+        }
+
+        public void setArea(String area) {
+            this.area = area;
+        }
+
+        public String getChecklistname() {
+            return checklistname;
+        }
+
+        public void setChecklistname(String checklistname) {
+            this.checklistname = checklistname;
+        }
+
+        public String getEquipmentName() {
+            return equipmentName;
+        }
+
+        public void setEquipmentName(String equipmentName) {
+            this.equipmentName = equipmentName;
+        }
+
+        public String getRequestor() {
+            return requestor;
+        }
+
+        public void setRequestor(String requestor) {
+            this.requestor = requestor;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
     }
 }
