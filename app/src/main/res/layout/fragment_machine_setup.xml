@@ -732,9 +732,8 @@
                 android:id="@+id/unicorn510461045112B"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/diestickylbl"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/unicornproduct1"
@@ -854,9 +853,8 @@
                 android:id="@+id/unicorn6101"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/unicorn510461045112B"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/unicornproduct2"
@@ -986,7 +984,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
             <!--android:layout_below="@id/unicorn510461045112B"-->
             <TextView
                 android:id="@+id/dailychecking"

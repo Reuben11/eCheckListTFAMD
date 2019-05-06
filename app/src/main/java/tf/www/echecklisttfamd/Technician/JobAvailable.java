@@ -1,6 +1,9 @@
 package tf.www.echecklisttfamd.Technician;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,18 +13,29 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
 import tf.www.echecklisttfamd.Operator.OperatorBuyOffCheckList;
 import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
+import tf.www.echecklisttfamd.Operator.allclass;
 import tf.www.echecklisttfamd.Operator.jobrequestequipmentlist;
 import tf.www.echecklisttfamd.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class JobAvailable extends Fragment {
-    private ArrayList<AvailableJobs> data;
+    private ArrayList<JobAvailableClass> data;
     private ListView lv;
     View view;
 
@@ -41,7 +55,7 @@ public class JobAvailable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
-        ArrayList<JobAvailableClass> jobAvailableArr = getJobAvailable();
+        /*ArrayList<JobAvailableClass> jobAvailableArr = JsonResponse;
         lv = view.findViewById(R.id.jobawailablelist);
         lv.setAdapter(new JobAvailableAdapter(getActivity(), jobAvailableArr));
 
@@ -65,112 +79,129 @@ public class JobAvailable extends Fragment {
 
 
                 /*Snackbar snackbar = Snackbar.make(tvTextsnack, name, Snackbar.LENGTH_LONG);
-                snackbar.show();*/
+                snackbar.show();
 
             }
-        });
+        });*/
+        GetReqJobs();
         return view;
     }
 
-    private ArrayList<JobAvailableClass> getJobAvailable(){
-        ArrayList<JobAvailableClass> newBuyOffList = new ArrayList<JobAvailableClass>();
+    private void GetReqJobs(){
+        String requestapilink = "/api/eChecklist?requestlist=ok";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        JobAvailableClass newBF;
+        Call<JsonResponse> call = retrofit.create(allclass.GetJobRequest.class).getJson(requestapilink);
+        call.enqueue(new Callback<JsonResponse>() {
+            @Override
+            public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
 
-        String[] jrnumber = getResources().getStringArray(R.array.jrnumber);
-        String[] area = getResources().getStringArray(R.array.area);
-        String[] jobtype = getResources().getStringArray(R.array.jobtype);
-        String[] equipment = getResources().getStringArray(R.array.equipmentname);
-        String[] requestor = getResources().getStringArray(R.array.requestor);
-        String[] requesttime = getResources().getStringArray(R.array.date);
+                if (response.isSuccessful()) {
+                    JsonResponse jsonResponse = response.body();
+                    data = new ArrayList<>(Arrays.asList((jsonResponse.getJoblists())));
+                    lv = view.findViewById(R.id.jobawailablelist);
+                    lv.setAdapter(new JobAvailableAdapter(getActivity(), data));
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
+                            // Do the onItemClick action
+
+                            if(data.get(position).getChecklist().equals("Device Change Setup Checklist")){
+                                SetJRName(data.get(position).getJr());
+                                SetRequestor(data.get(position).getRequestor());
+                                SetDevice(data.get(position).getDevice());
+                                SetEquipmentName( data.get(position).getEquipment());
+                                SetDaily(data.get(position).getDaily());
+
+                                Fragment newFragment = new TechnicianScanner();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.master_container, newFragment);
+                                transaction.commit();
+                            }
 
 
-        for(int i = 0; i < jrnumber.length; i++){
-            newBF = new JobAvailableClass();
-            newBF.setJrNumber(jrnumber[i]);
-            newBF.setArea(area[i]);
-            newBF.setJobType(jobtype[i]);
-            newBF.setEquipment(equipment[i]);
-            newBF.setRequestor(requestor[i]);
-            newBF.setJrDateTime(requesttime[i]);
-            newBuyOffList.add(newBF);
-        }
 
 
-        return newBuyOffList;
+                                    }
+                                });
+
+                } else {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Invalid Information!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonResponse> call, Throwable t) {
+                if (t instanceof IOException) {
+                    ShowAlert("Error!", t.getMessage());
+                } else {
+
+                    // todo log to some central bug tracking service
+                }
+
+            }
+        });
     }
 
     public class JsonResponse{
-        private AvailableJobs[] joblists;
+        private JobAvailableClass[] joblists;
 
-        public AvailableJobs[] getJoblists(){
+        public JobAvailableClass[] getJoblists(){
             return joblists;
         }
     }
 
-    public class AvailableJobs{
-        private String jrNumber;
-        private String area;
-        private String checklistname;
-        private String equipmentName;
-        private String requestor;
-        private String date;
+    private void ShowAlert(String title, String msg){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(title);
+        builder1.setMessage(msg);
 
-        public  AvailableJobs(String jrNumber, String area, String checklistname, String equipmentName, String requestor, String date){
-            this.jrNumber = jrNumber;
-            this.area = area;
-            this.checklistname = checklistname;
-            this.equipmentName = equipmentName;
-            this.requestor = requestor;
-            this.date = date;
-        }
+        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
 
-        public String getJrNumber() {
-            return jrNumber;
-        }
-
-        public void setJrNumber(String jrNumber) {
-            this.jrNumber = jrNumber;
-        }
-
-        public String getArea() {
-            return area;
-        }
-
-        public void setArea(String area) {
-            this.area = area;
-        }
-
-        public String getChecklistname() {
-            return checklistname;
-        }
-
-        public void setChecklistname(String checklistname) {
-            this.checklistname = checklistname;
-        }
-
-        public String getEquipmentName() {
-            return equipmentName;
-        }
-
-        public void setEquipmentName(String equipmentName) {
-            this.equipmentName = equipmentName;
-        }
-
-        public String getRequestor() {
-            return requestor;
-        }
-
-        public void setRequestor(String requestor) {
-            this.requestor = requestor;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
+        AlertDialog  alert1 = builder1.create();
+        alert1.show();
     }
+
+    protected void SetJRName(String jr) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("jr", jr);
+        editor.commit();
+    }
+    protected void SetRequestor(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("requestor", name);
+        editor.commit();
+    }
+    protected void SetDevice(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("device", name);
+        editor.commit();
+    }
+    protected void SetEquipmentName(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("equipmentname", name);
+        editor.commit();
+    }
+
+    protected void SetDaily(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("daily", name);
+        editor.commit();
+    }
+
+
 }

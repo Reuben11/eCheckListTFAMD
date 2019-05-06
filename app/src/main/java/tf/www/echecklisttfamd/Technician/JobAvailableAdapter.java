@@ -56,12 +56,12 @@ public class JobAvailableAdapter extends BaseAdapter {
         holder.jrDateTime = convertView.findViewById(R.id.jrDateTime);
         convertView.setTag(holder);
 
-        holder.jrNumber.setText("JR " + jobAvailableList.get(position).getJrNumber());
+        holder.jrNumber.setText("JR " + jobAvailableList.get(position).getJr());
         holder.area.setText(jobAvailableList.get(position).getArea());
         holder.equipment.setText("Equipment : " + jobAvailableList.get(position).getEquipment());
         holder.requestor.setText("Req. By : " + jobAvailableList.get(position).getRequestor());
-        holder.jobType.setText(jobAvailableList.get(position).getJobType());
-        holder.jrDateTime.setText(jobAvailableList.get(position).getJrDateTime());
+        holder.jobType.setText(jobAvailableList.get(position).getChecklist());
+        holder.jrDateTime.setText(jobAvailableList.get(position).getTime());
 
         return convertView;
 
