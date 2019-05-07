@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
-                SetEmp("231231@");
+                SetTech("2312315");
                 startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                 finish();
             }
@@ -96,11 +96,13 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("emp", empid);
         editor.commit();
 
-      /*  String test = prefs.getString("emp",null);
-        if(test!=null){
-
-        }*/
     }
 
+    protected void SetTech(String techid) {
 
+        SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("techid", techid);
+        editor.commit();
+
+    }
 }

@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,7 +29,12 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class MachineSetup extends Fragment {
     private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily;
+    private EditText evEstool, evNoofpins, eveScapno;
     private String device, daily;
+    private Boolean UnicornDevice;
+    private int option,rubberoption;
+    private Button btnSubmit;
+    private RadioGroup rgRubberApollo, rgRubberUnicorn;
     View view;
 
     public static MachineSetup newInstance() {
@@ -44,12 +52,19 @@ public class MachineSetup extends Fragment {
         RelativeLayout dailylayout = view.findViewById(R.id.dailychecklist);
         RelativeLayout unicorn510461045112B = view.findViewById(R.id.unicorn510461045112B);
         RelativeLayout unicorn6101 = view.findViewById(R.id.unicorn6101);
+        RelativeLayout unicorn = view.findViewById(R.id.unicornrubbertip);
+        RelativeLayout apollo = view.findViewById(R.id.apollorubbertip);
         tvEquipment = view.findViewById(R.id.equipmentname);
         tvJR = view.findViewById(R.id.jrnumber);
         tvDatetime = view.findViewById(R.id.nowdatetime);
-        tvTech = view.findViewById(R.id.technicianid);
+        tvTech = view.findViewById(R.id.techemp);
         tvRequestor = view.findViewById(R.id.requestorid);
         tvDaily = view.findViewById(R.id.purposeoption);
+        evEstool = view.findViewById(R.id.estool);
+        evNoofpins = view.findViewById(R.id.noofpins);
+        eveScapno = view.findViewById(R.id.escapno);
+        rgRubberApollo = view.findViewById(R.id.rubberapollo);
+        rgRubberUnicorn = view.findViewById(R.id.rubberunicorn);
         getAll();
 
         Date c = Calendar.getInstance().getTime();
@@ -68,12 +83,38 @@ public class MachineSetup extends Fragment {
 
         if(device.equals("5104")| device.equals("6104") | device.equals("5112B") ){
             unicorn510461045112B.setVisibility(View.VISIBLE);
+            UnicornDevice = true;
+            option =1;
+        }
+        else{
+            if(device.equals("6101") ){
+                unicorn6101.setVisibility(View.VISIBLE);
+                UnicornDevice = true;
+                option=2;
+            }
+            else{
+                UnicornDevice = false;
+                option=0;
+            }
+
         }
 
-        if(device.equals("6101") ){
-            unicorn6101.setVisibility(View.VISIBLE);
+        if(UnicornDevice==true){
+            unicorn.setVisibility(View.VISIBLE);
+            rubberoption=1;
+        }
+        else{
+            apollo.setVisibility(View.VISIBLE);
+            rubberoption=0;
         }
 
+        btnSubmit = view.findViewById(R.id.setupsubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                CreateData();
+            }
+        });
         return view;
     }
 
@@ -82,7 +123,7 @@ public class MachineSetup extends Fragment {
         tvJR.setText(prefs.getString("jr","no data"));
         tvEquipment.setText(prefs.getString("equipmentname","no data"));
         tvRequestor.setText(prefs.getString("requestor","no data"));
-        //tvTech.setText(prefs.getString("techid","no data"));
+        tvTech.setText(prefs.getString("techid","no data"));
         daily = prefs.getString("daily","no data");
         device = prefs.getString("device","no data");
     }
@@ -101,6 +142,33 @@ public class MachineSetup extends Fragment {
 
         AlertDialog  alert1 = builder1.create();
         alert1.show();
+    }
+
+    private void CreateData(){
+        String data, jr, rubbertip;
+        int optionrg, id;
+        jr = tvJR.getText().toString().replace("-","");
+
+
+        if(rubberoption==0){
+            optionrg = rgRubberApollo.indexOfChild(view.findViewById(rgRubberApollo.getCheckedRadioButtonId()));
+        }
+        else{
+            optionrg= rgRubberUnicorn.indexOfChild(view.findViewById(rgRubberUnicorn.getCheckedRadioButtonId())); //rgRubberUnicorn.getCheckedRadioButtonId();
+        }
+
+        rubbertip = String.valueOf(optionrg);
+
+
+
+        data = "{\"jr\":\"" + jr + "\",\"techid\":\""
+                + tvTech.getText().toString() + "\",\"time\":"
+                + tvDatetime.getText().toString() + "\",\"rubber\":"
+                + rubbertip + "\",\"config\":"
+                + evEstool.getText().toString() + "\",\"pins\":\""
+                + evNoofpins.getText().toString() + "\",\"escap\":\""
+                + eveScapno.getText().toString();
+        ShowAlert("Rubbertip", data);
     }
 
 }

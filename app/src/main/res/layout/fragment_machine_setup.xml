@@ -137,14 +137,6 @@
                 android:paddingBottom="20dp"
                 android:textColor="#0003DE" />
             </RelativeLayout>
-            <!-- <View
-               android:id="@+id/view1"
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="10dp"
-               android:background="#919191"
-               android:layout_below="@id/requestorlabel"/>-->
-
             <RelativeLayout
                 android:id="@+id/machinesetuplayout"
                 android:layout_width="match_parent"
@@ -195,16 +187,23 @@
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
                     android:text="2. Rubber Tip Size :" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/apollorubbertip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
                 <TextView
                     android:id="@+id/apollo"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/rubbertipsizelbl"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
                     android:paddingRight="10dp"
                     android:text="Apollo" />
                 <RadioGroup
+                    android:id="@+id/rubberapollo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/apollo"
@@ -237,16 +236,23 @@
                         android:layout_height="20dp"
                         android:text="0.4" />
                 </RadioGroup>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/unicornrubbertip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
                 <TextView
                     android:id="@+id/unicorn"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/apollo"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
                     android:text="Unicorn" />
                 <RadioGroup
+                    android:id="@+id/rubberunicorn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/unicorn"
@@ -266,11 +272,17 @@
                         android:layout_height="20dp"
                         android:text="RR-025" />
                 </RadioGroup>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
                 <TextView
                     android:id="@+id/estoollbl"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/unicorn"
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
                     android:text="3. ES Tool Configuration" />
@@ -507,14 +519,6 @@
                     android:paddingBottom="20dp"
                     android:textColor="#0003DE" />
             </RelativeLayout>
-
-            <!-- <View
-               android:id="@+id/view2"
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="10dp"
-               android:background="#919191"
-               android:layout_below="@id/calibrateESToollbl"/>-->
             <RelativeLayout
                 android:id="@+id/dieejectionlayout"
                 android:layout_width="match_parent"

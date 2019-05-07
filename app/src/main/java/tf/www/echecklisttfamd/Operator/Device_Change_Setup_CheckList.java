@@ -299,7 +299,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
                 @Override
                 public void onFailure(Call<jR> call, Throwable t) {
                     if(t instanceof IOException){
-                        Toast.makeText(getContext(), "this is an actual network failure :( inform the user and possibly retry", Toast.LENGTH_SHORT).show();
+                        ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
                     }
                 }
             });

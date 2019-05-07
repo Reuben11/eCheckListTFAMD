@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import tf.www.echecklisttfamd.Operator.OperatorJobRequestList;
@@ -27,6 +28,7 @@ public class TechnicianScanner extends Fragment {
     private String equipmentname;
     private EditText eBarcode;
     private Boolean clearText;
+
     View view;
 
     TextWatcher textWatcher = new TextWatcher() {
@@ -79,6 +81,7 @@ public class TechnicianScanner extends Fragment {
         eBarcode.addTextChangedListener(textWatcher);
         eBarcode.requestFocus();
         clearText = false;
+
         return view;
     }
 
