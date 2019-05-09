@@ -2,14 +2,10 @@ package tf.www.echecklisttfamd.Operator;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -19,11 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.annotations.Expose;
-
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -31,16 +24,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Retrofit;
-import retrofit2.http.Path;
-import retrofit2.http.Url;
-import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
+import tf.www.echecklisttfamd.allclass;
+
 import static android.content.Context.MODE_PRIVATE;
 
 

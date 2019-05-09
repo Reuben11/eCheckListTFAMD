@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import tf.www.echecklisttfamd.Operator.OperatorJobRequestList;
 import tf.www.echecklisttfamd.R;
@@ -28,6 +29,7 @@ public class TechnicianScanner extends Fragment {
     private String equipmentname;
     private EditText eBarcode;
     private Boolean clearText;
+    private TextView tvEquip;
 
     View view;
 
@@ -75,12 +77,14 @@ public class TechnicianScanner extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_technician_scanner, container, false);
+        tvEquip = view.findViewById(R.id.equipmentid);
         GetEquipmentName();
         eBarcode = view.findViewById(R.id.technicianbarcodescanner);
         eBarcode.setShowSoftInputOnFocus(false);
         eBarcode.addTextChangedListener(textWatcher);
         eBarcode.requestFocus();
         clearText = false;
+        tvEquip.setText(equipmentname);
 
         return view;
     }

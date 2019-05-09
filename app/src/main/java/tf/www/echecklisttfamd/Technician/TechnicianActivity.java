@@ -1,5 +1,6 @@
 package tf.www.echecklisttfamd.Technician;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.Operator.AwaitingList;
+import tf.www.echecklisttfamd.Operator.OperatorActivity;
 import tf.www.echecklisttfamd.Operator.OperatorBuyOffList;
 import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
 import tf.www.echecklisttfamd.Operator.TermOfUseOperator;
@@ -56,6 +59,10 @@ public class TechnicianActivity extends AppCompatActivity {
                                 getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.master_container, JobAvailable.newInstance())
                                         .commit();
+                                break;
+                            case R.id.tlogout:
+                                startActivity(new Intent(TechnicianActivity.this, LoginActivity.class));
+                                finish();
                                 break;
                         }
                         return false;

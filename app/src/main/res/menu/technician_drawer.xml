@@ -11,6 +11,17 @@
 
         </menu>
     </item>
+    <item android:title="User">
+        <menu>
+            <group android:checkableBehavior="none">
+                <item
+                    android:id="@+id/tlogout"
+                    android:title="Log Out"
+                    android:icon="@drawable/logout"/>
+            </group>
+
+        </menu>
+    </item>
     <item android:id="@+id/none"
         android:checkable="false"
         android:visible="false" />

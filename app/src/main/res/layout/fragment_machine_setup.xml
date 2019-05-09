@@ -28,11 +28,12 @@
                 android:visibility="visible">
             <TextView
                 android:id="@+id/jrnumberlable"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:text="JR"
-                android:textColor="#00C600"
-                android:textStyle="bold" />
+                android:text="Job Request ID"
+                android:textStyle="bold"
+                android:paddingRight="20dp"
+                />
 
             <TextView
                 android:id="@+id/jrnumber"
@@ -42,16 +43,18 @@
                 android:layout_toRightOf="@+id/jrnumberlable"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:textColor="#00C600"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/techms"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/jrnumberlable"
                 android:paddingTop="15dp"
-                android:text="Technician Emp#" />
+                android:text="Technician Emp#"
+                android:paddingRight="20dp"/>
 
             <TextView
                 android:id="@+id/techemp"
@@ -65,16 +68,17 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/setupdatetime"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/techms"
                 android:paddingTop="15dp"
                 android:text="DateTime"
-
+                android:paddingRight="20dp"
                 />
 
             <TextView
@@ -89,15 +93,18 @@
                 android:maxLength="30"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textColor="#0003DE" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/equipmentnamelabel"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/setupdatetime"
                 android:paddingTop="15dp"
-                android:text="Equipment Name" />
+                android:text="Equipment Name"
+                android:paddingRight="20dp"/>
 
             <TextView
                 android:id="@+id/equipmentname"
@@ -111,16 +118,19 @@
                 android:maxLength="30"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:textColor="#0003DE" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/requestorlabel"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/equipmentnamelabel"
                 android:paddingTop="15dp"
                 android:paddingBottom="20dp"
-                android:text="Requestor ID" />
+                android:text="Requestor ID"
+                android:paddingRight="20dp"/>
 
             <TextView
                 android:id="@+id/requestorid"
@@ -135,7 +145,9 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="20dp"
-                android:textColor="#0003DE" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/machinesetuplayout"
@@ -178,7 +190,9 @@
                     android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/rubbertipsizelbl"
                     android:layout_width="180dp"
@@ -297,7 +311,9 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/estoolnote"
                     android:layout_width="180dp"
@@ -306,7 +322,7 @@
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
                     android:text="(Xmm x Ymm vs ES Tool handle on left)(State out configuration used)"
-                    android:textColor="#00A508" />
+                    android:textColor="#00A508"  />
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
@@ -329,11 +345,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/noofpinslbl"
                     android:inputType="number"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/escapnolbl"
                     android:layout_width="180dp"
@@ -352,11 +370,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/escapnolbl"
                     android:inputType="number"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/eskitnolbl"
                     android:layout_width="180dp"
@@ -373,11 +393,13 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/eskitnolbl"
                     android:inputType="number"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:singleLine="true"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/estoolnolbl"
                     android:layout_width="180dp"
@@ -394,11 +416,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/estoolnolbl"
                     android:inputType="number"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="#000000"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/checkestoollbl"
                     android:layout_width="180dp"
@@ -415,10 +438,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/checkestoollbl"
                     android:inputType="text"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/checkeslbl"
                     android:layout_width="180dp"
@@ -435,10 +460,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/checkeslbl"
                     android:inputType="text"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/checkesnote"
                     android:layout_width="wrap_content"
@@ -463,10 +490,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/checkneedlelbl"
                     android:inputType="text"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/checkneedlenote"
                     android:layout_width="wrap_content"
@@ -492,10 +521,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/pptoolcenteringlbl"
                     android:inputType="text"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/calibrateESToollbl"
                     android:layout_width="180dp"
@@ -513,11 +544,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_toRightOf="@+id/calibrateESToollbl"
                     android:inputType="text"
-                    android:maxLength="3"
+                    android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:paddingBottom="20dp"
-                    android:textColor="#0003DE" />
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/dieejectionlayout"
@@ -548,6 +580,7 @@
                     android:paddingBottom="0dp"
                     android:text="1. Calibrate ES tool height, XY position and needle zero position" />
                 <RadioGroup
+                    android:id="@+id/cales"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/ejectorlbl"
@@ -584,6 +617,7 @@
                     android:paddingRight="20dp"
                     android:text="2. Machine Auto Calibration" />
                 <RadioGroup
+                    android:id="@+id/macautocal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/machineautocalibrationlbl"
@@ -612,6 +646,7 @@
                     android:paddingRight="20dp"
                     android:text="3. Die ejected higher than die on tape &amp; eject parallely" />
                 <RadioGroup
+                    android:id="@+id/dieeject"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/dieejectlbl"
@@ -648,6 +683,7 @@
                     android:paddingRight="20dp"
                     android:text="4. Can die be picked up on 1st pick?" />
                 <RadioGroup
+                    android:id="@+id/diepickup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/pickupdielbl"
@@ -676,6 +712,7 @@
                     android:paddingRight="20dp"
                     android:text="5. Die properly sitted on waffle pack &amp; not hit pocket's side wall?" />
                 <RadioGroup
+                    android:id="@+id/dieposition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/diepositionlbl"
@@ -705,6 +742,7 @@
                     android:paddingBottom="20dp"
                     android:text="6. Die sticking on rubber tip?" />
                 <RadioGroup
+                    android:id="@+id/diesticky"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/diestickylbl"
@@ -725,13 +763,6 @@
                         android:text="Failed" />
                 </RadioGroup>
             </RelativeLayout>
-            <!--  <View
-               android:id="@+id/view3"
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="10dp"
-               android:background="#919191"
-               android:layout_below="@id/diestickylbl"/>-->
             <RelativeLayout
                 android:id="@+id/unicorn510461045112B"
                 android:layout_width="match_parent"
@@ -763,6 +794,7 @@
                     android:text="1. Needle Type 10mils correct?" />
 
                 <RadioGroup
+                    android:id="@+id/needletype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/needletypelbl"
@@ -793,6 +825,7 @@
                     android:text="2. Needle End Position" />
 
                 <RadioGroup
+                    android:id="@+id/needleposition"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/needlepositionlbl"
@@ -833,6 +866,7 @@
                     android:text="3. Ejector mark at die backside?" />
 
                 <RadioGroup
+                    android:id="@+id/ejectormark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/ejectormark1lbl"
@@ -886,6 +920,7 @@
                     />
 
                 <RadioGroup
+                    android:id="@+id/needletyp6101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/needletype2lbl"
@@ -916,6 +951,7 @@
                     android:text="2. Needle End Position" />
 
                 <RadioGroup
+                    android:id="@+id/needleposition6101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/needleposition2lbl"
@@ -956,6 +992,7 @@
                     android:text="3. Ejector mark at die backside?" />
 
                 <RadioGroup
+                    android:id="@+id/ejectormark6101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/ejectormark2lbl"
@@ -976,19 +1013,12 @@
                         android:text="No" />
                 </RadioGroup>
             </RelativeLayout>
-            <!--   <View
-               android:id="@+id/view4"
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="10dp"
-               android:background="#919191"
-               android:layout_below="@id/unicorn6101"/>-->
         <RelativeLayout
             android:id="@+id/dailychecklist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="invisible">
             <!--android:layout_below="@id/unicorn510461045112B"-->
             <TextView
                 android:id="@+id/dailychecking"
@@ -1014,6 +1044,7 @@
                 android:text="1. Ejector mark center? Need to look at the needle mark 90&#176; angle from the die to sure it centered"
                 />
             <RadioGroup
+                android:id="@+id/ejectmarkcenter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/dailyejectormarklbl"
@@ -1043,6 +1074,7 @@
                 android:text="2. Machine blower heater function?"
                 />
             <RadioGroup
+                android:id="@+id/machineblowerheater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/dailymachineblowerlbl"
@@ -1072,6 +1104,7 @@
                 android:text="3. Machine blower solenid function?"
                 />
             <RadioGroup
+                android:id="@+id/machineblowersolenid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/dailymachinesolenidlbl"

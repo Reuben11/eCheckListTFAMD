@@ -22,11 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
-import tf.www.echecklisttfamd.Operator.OperatorBuyOffCheckList;
-import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
-import tf.www.echecklisttfamd.Operator.allclass;
-import tf.www.echecklisttfamd.Operator.jobrequestequipmentlist;
+import tf.www.echecklisttfamd.allclass;
 import tf.www.echecklisttfamd.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -130,7 +126,7 @@ public class JobAvailable extends Fragment {
                                 });
 
                 } else {
-                    ShowAlert("Server Connection Error Code: SCE0002!", "Invalid Information!");
+                    ShowAlert("Informations", "No Job Request!");
                 }
             }
 

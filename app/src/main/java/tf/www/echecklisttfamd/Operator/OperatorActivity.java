@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import tf.www.echecklisttfamd.LoginActivity;
+import tf.www.echecklisttfamd.MainActivity;
 import tf.www.echecklisttfamd.R;
 
 public class OperatorActivity extends AppCompatActivity {
@@ -69,10 +70,9 @@ public class OperatorActivity extends AppCompatActivity {
                                             .replace(R.id.master_container, OperatorBuyOffList.newInstance())
                                             .commit();
                                     break;
-                            case R.id.awaiting:
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.master_container, AwaitingList.newInstance())
-                                        .commit();
+                            case R.id.logout:
+                                startActivity(new Intent(OperatorActivity.this, LoginActivity.class));
+                                finish();
                                 break;
                         }
                         return false;

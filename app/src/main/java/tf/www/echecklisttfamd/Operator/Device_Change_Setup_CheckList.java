@@ -2,12 +2,9 @@ package tf.www.echecklisttfamd.Operator;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
@@ -33,8 +30,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
+import tf.www.echecklisttfamd.allclass;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -225,33 +222,33 @@ public class Device_Change_Setup_CheckList extends Fragment {
     }
 
     private void CreateData(){
-        boolean alert = false;
+        boolean alert = true;
         String msg = null;
 
         if(!TextUtils.isEmpty(etDevice.getText().toString())){
             if(!TextUtils.isEmpty(etMesLot.getText().toString())){
                 if(!TextUtils.isEmpty(etWaffepart.getText().toString())){
                     if(rgOrientation.getCheckedRadioButtonId() != -1){
-
+                        alert = false;
                     }
                     else{
-                        alert = true;
-                        msg = "Invalid Waffle Pack Orientation!";
-                    }
+
+                        msg = "Invalid Waffle Pack Orientation!";                    }
+                        rgOrientation.requestFocusFromTouch();
                 }
                 else{
-                    alert = true;
                     msg = "Invalid Waffle Pack Part!";
+                    etWaffepart.requestFocus();
                 }
             }
             else{
-                alert = true;
                 msg = "Invalid MES Lot!";
+                etMesLot.requestFocus();
             }
         }
         else{
-            alert = true;
             msg = "Invalid Device!";
+            etDevice.requestFocus();
         }
 
         if(alert == true){
