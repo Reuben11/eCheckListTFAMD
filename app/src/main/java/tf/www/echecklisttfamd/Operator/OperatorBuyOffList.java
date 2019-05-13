@@ -1,6 +1,9 @@
 package tf.www.echecklisttfamd.Operator;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,14 +13,27 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.R;
+import tf.www.echecklisttfamd.Technician.JobAvailable;
+import tf.www.echecklisttfamd.JobAvailableClass;
+import tf.www.echecklisttfamd.allclass;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class OperatorBuyOffList extends Fragment {
+    private ArrayList<JobAvailableClass> data;
     private ListView lv;
     View view;
 
@@ -34,58 +50,108 @@ public class OperatorBuyOffList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_buy_off_list, container, false);
-        ArrayList<OperatorJobRequestNumberList> jobawait = getJrNumber();
-        lv = view.findViewById(R.id.buyofflist);
-        lv.setAdapter(new BuyOffRequestListAdapter(getActivity(), jobawait));
+        GetBuyOffJobs();
         return view;
     }
 
-    @Override
-    public  void onActivityCreated(Bundle savedInstance){
-        super.onActivityCreated(savedInstance);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    private void GetBuyOffJobs(){
+        String requestapilink = "/api/eChecklist?OperatorBuyOff=ok";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Call<JobAvailable.JsonResponse> call = retrofit.create(allclass.GetBuyOffList.class).getJsonBuyOff(requestapilink);
+        call.enqueue(new Callback<JobAvailable.JsonResponse>() {
+            @Override
+            public void onResponse(Call<JobAvailable.JsonResponse> call, Response<JobAvailable.JsonResponse> response) {
+
+                if (response.isSuccessful()) {
+                    JobAvailable.JsonResponse jsonResponse = response.body();
+                    data = new ArrayList<>(Arrays.asList((jsonResponse.getJoblists())));
+
+
+                    lv = view.findViewById(R.id.buyofflist);
+                    lv.setAdapter(new BuyOffRequestListAdapter(getActivity(), data));
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
+                            // Do the onItemClick action
+
+                            SetJRName(data.get(position).getJr());
+                            SetEquipmentName(data.get(position).getEquipment());
+                            SetTimeName(data.get(position).getTime());
+
+
+                            Fragment newFragment = new OperatorScanner();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.master_container, newFragment);
+                            transaction.commit();
+                        }
+                    });
+
+                } else {
+                    ShowAlert("Informations", "No Job Request!");
+                }
+            }
 
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
-                // Do the onItemClick action
-                String name = adapterView.getItemAtPosition(position).toString();
+            public void onFailure(Call<JobAvailable.JsonResponse> call, Throwable t) {
+                if (t instanceof IOException) {
+                    ShowAlert("Error!", t.getMessage());
+                } else {
 
-                switch (position){
-                    case 0:
-                        Fragment newFragment = new OperatorBuyOffCheckList();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.master_container, newFragment);
-                        transaction.commit();
-                        break;
+                    // todo log to some central bug tracking service
                 }
-                /*Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();*/
-
-
-                /*Snackbar snackbar = Snackbar.make(tvTextsnack, name, Snackbar.LENGTH_LONG);
-                snackbar.show();*/
 
             }
         });
     }
 
-    private ArrayList<OperatorJobRequestNumberList> getJrNumber(){
-        ArrayList<OperatorJobRequestNumberList> newJRList = new ArrayList<OperatorJobRequestNumberList>();
+   /* public class JsonResponse{
+        private JobAvailableClass[] buyOfflists;
 
-        OperatorJobRequestNumberList newJR;
-
-        String[] jrnumber = getResources().getStringArray(R.array.jrnumber);
-        String[] equipmentname = getResources().getStringArray(R.array.equipmentname);
-        String[] nowdate = getResources().getStringArray(R.array.date);
-
-        for(int i = 0; i < jrnumber.length; i++){
-            newJR = new OperatorJobRequestNumberList();
-           newJR.setjRNumber(jrnumber[i]);
-            newJR.setEquipmentName(equipmentname[i]);
-            newJR.setNowDateTime(nowdate[i]);
-            newJRList.add(newJR);
+        public JobAvailableClass[] getBuyOfflists(){
+            return buyOfflists;
         }
+    }*/
 
+    private void ShowAlert(String title, String msg){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+        builder1.setTitle(title);
+        builder1.setMessage(msg);
 
-        return newJRList;
+        builder1.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog  alert1 = builder1.create();
+        alert1.show();
     }
+
+    protected void SetJRName(String jr) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("jr", jr);
+        editor.commit();
+    }
+    protected void SetEquipmentName(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("equipmentname", name);
+        editor.commit();
+    }
+
+    protected void SetTimeName(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("time", name);
+        editor.commit();
+    }
+
+
 }

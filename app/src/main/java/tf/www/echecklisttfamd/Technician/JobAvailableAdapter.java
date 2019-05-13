@@ -9,8 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import tf.www.echecklisttfamd.Operator.BuyOffRequestListAdapter;
-import tf.www.echecklisttfamd.Operator.OperatorJobRequestNumberList;
+import tf.www.echecklisttfamd.JobAvailableClass;
 import tf.www.echecklisttfamd.R;
 
 public class JobAvailableAdapter extends BaseAdapter {

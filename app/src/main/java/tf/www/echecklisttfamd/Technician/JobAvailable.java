@@ -22,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tf.www.echecklisttfamd.JobAvailableClass;
 import tf.www.echecklisttfamd.allclass;
 import tf.www.echecklisttfamd.R;
 
@@ -35,9 +36,6 @@ public class JobAvailable extends Fragment {
     private ListView lv;
     View view;
 
- /*   getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.master_container, OperatorEquipmentScanner.newInstance())
-            .commit();*/
 
     public static JobAvailable newInstance() {
         // Required empty public constructor
@@ -51,34 +49,6 @@ public class JobAvailable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
-        /*ArrayList<JobAvailableClass> jobAvailableArr = JsonResponse;
-        lv = view.findViewById(R.id.jobawailablelist);
-        lv.setAdapter(new JobAvailableAdapter(getActivity(), jobAvailableArr));
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
-                // Do the onItemClick action
-                String name = adapterView.getItemAtPosition(position).toString();
-
-                switch (position){
-                    case 0:
-                        Fragment newFragment = new TechnicianScanner();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.master_container, newFragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
-                        break;
-                }
-                /*Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();*/
-
-
-                /*Snackbar snackbar = Snackbar.make(tvTextsnack, name, Snackbar.LENGTH_LONG);
-                snackbar.show();
-
-            }
-        });*/
         GetReqJobs();
         return view;
     }

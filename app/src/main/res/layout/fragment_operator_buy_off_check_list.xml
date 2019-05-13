@@ -10,6 +10,16 @@
         android:layout_height="fill_parent"
         >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".operator.DiePrepPicknPlaceActivity"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,11 +34,11 @@
 
             <TextView
                 android:id="@+id/jrnumberlable"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:text="JR"
-                android:textColor="#00C600"
+                android:text="Job Request ID"
                 android:textStyle="bold"
+                android:paddingRight="20dp"
                 />
             <TextView
                 android:id="@+id/jrnumber"
@@ -36,14 +46,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/jrnumberlable"
                 android:layout_toRightOf="@+id/jrnumberlable"
-                android:textColor="#00C600"
-                android:textStyle="bold"
                 android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="16dp" />
                 />
 
                     <TextView
                         android:id="@+id/buyoffms"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:text="MS Emp#"
                         android:layout_below="@id/jrnumberlable"
@@ -62,10 +74,11 @@
                         android:layout_toRightOf="@+id/buyoffms"
                         android:textColor="#000000"
                         android:textStyle="bold"
+                        android:textSize="14dp"
                         />
                     <TextView
                         android:id="@+id/buyoffdatetime"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:text="DateTime"
                         android:layout_below="@id/buyoffms"
@@ -86,10 +99,11 @@
                         android:layout_toRightOf="@+id/buyoffdatetime"
                         android:textColor="#000000"
                         android:textStyle="bold"
+                        android:textSize="14dp"
                         />
                     <TextView
                         android:id="@+id/equipmentnamelabel"
-                        android:layout_width="wrap_content"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:text="Equipment Name"
                         android:layout_below="@id/buyoffdatetime"
@@ -109,10 +123,11 @@
                         android:layout_toRightOf="@+id/equipmentnamelabel"
                         android:textColor="#000000"
                         android:textStyle="bold"
+                        android:textSize="14dp"
                         />
             <TextView
                 android:id="@+id/technicianlabel"
-                android:layout_width="wrap_content"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="Technician ID"
                 android:layout_below="@id/equipmentnamelabel"
@@ -133,42 +148,53 @@
                 android:layout_toRightOf="@+id/technicianlabel"
                 android:textColor="#000000"
                 android:textStyle="bold"
+                android:textSize="14dp"
                 />
-            <View
-                android:id="@+id/view1"
+
+
+        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/lotinfocontainer"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="10dp"
-                android:background="#919191"
-                android:layout_below="@id/technicianlabel"/>
-            <TextView
-                android:id="@+id/productbuyoff"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PRODUCT BUYOFF"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:paddingTop="20dp"
-                android:layout_below="@id/view1"/>
-            <TextView
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+                <TextView
+                    android:id="@+id/lotinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF9352"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="PRODUCT BUY OFF"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+                <TextView
                 android:id="@+id/uvdone"
                 android:paddingTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UV Done?"
                 android:paddingRight="20dp"
-                android:layout_below="@id/productbuyoff"
                 />
-
-            <RadioGroup
+                <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingTop="18dp"
                 android:paddingLeft="136dp"
-                android:layout_below="@id/productbuyoff"
                 android:layout_toRightOf="@+id/uvdone"
-
                >
 
                 <RadioButton
@@ -186,73 +212,75 @@
                     />
 
             </RadioGroup>
-            <TextView
-                android:id="@+id/wafercarcasseslabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wafer Carcasses Verification"
-                android:layout_below="@id/uvdone"
-                android:paddingTop="20dp"
-                />
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="18dp"
-                android:layout_below="@id/uvdone"
-                android:layout_toRightOf="@+id/wafercarcasseslabel"
-                android:paddingLeft="36dp"
-                >
-
-                <RadioButton
-                    android:id="@+id/waferyes"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="Yes"
+                <TextView
+                    android:id="@+id/wafercarcasseslabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wafer Carcasses Verification"
+                    android:layout_below="@id/uvdone"
+                    android:paddingTop="20dp"
                     />
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="18dp"
+                    android:layout_below="@id/uvdone"
+                    android:layout_toRightOf="@+id/wafercarcasseslabel"
+                    android:paddingLeft="25dp"
+                    >
 
-                <RadioButton
-                    android:id="@+id/waferno"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:text="No"
+                    <RadioButton
+                        android:id="@+id/waferyes"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="Yes"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/waferno"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="No"
+                        />
+
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/wafercarcassesremark"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="(Ensure needle mark is centering, no needle offset, no die debris and etc)"
+                    android:layout_below="@id/wafercarcasseslabel"
+                    android:textColor="#00A508"
                     />
-
-            </RadioGroup>
-            <TextView
-                android:id="@+id/wafercarcassesremark"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="(Ensure needle mark is centering, no needle offset, no die debris and etc)"
-                android:layout_below="@id/wafercarcasseslabel"
-                android:textColor="#00A508"
-                />
-            <TextView
-                android:id="@+id/wafercarcassesidlabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wafer Carcasses verification ID"
-                android:layout_below="@id/wafercarcassesremark"
-                android:paddingTop="20dp"
-                />
-            <EditText
-                android:id="@+id/waferid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:maxLength="30"
-                android:layout_alignBaseline="@+id/wafercarcassesidlabel"
-                android:layout_toRightOf="@+id/wafercarcassesidlabel"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                />
+                <TextView
+                    android:id="@+id/wafercarcassesidlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wafer Carcasses verification ID"
+                    android:layout_below="@id/wafercarcassesremark"
+                    android:paddingTop="20dp"
+                    />
+                <EditText
+                    android:id="@+id/waferid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:layout_alignBaseline="@+id/wafercarcassesidlabel"
+                    android:layout_toRightOf="@+id/wafercarcassesidlabel"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+            </RelativeLayout>
+            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:paddingRight="10dp"
-                android:layout_below="@id/waferid">
+                android:paddingRight="10dp">
 
                 <Button
                     android:id="@+id/buyoffsubmit"
@@ -262,115 +290,7 @@
                     android:layout_alignParentBottom="true"
                     android:text="Submit" />
             </RelativeLayout>
-             <!--
-
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="2">
-
-                    <TableRow>
-
-
-                    </TableRow>
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MES Lot#"
-                            />
-                        <EditText
-                            android:id="@+id/meslot"
-                            android:layout_span="2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="B. PRODUCT SETUP"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:paddingTop="30dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="2"
-                    >
-
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Waffle pack part#"
-                            />
-                        <EditText
-                            android:id="@+id/wpackpart"
-                            android:layout_span="2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:maxLength="30"
-                            />
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TableLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="2"
-                    android:paddingTop="10dp">
-                    <TableRow>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Waffle pack orientation"/>
-                    </TableRow>
-                    <TableRow>
-
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:paddingRight="10dp">
-
-                <Button
-                    android:id="@+id/jrsubmit"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:text="Submit" />
-            </RelativeLayout>
--->
-
-
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

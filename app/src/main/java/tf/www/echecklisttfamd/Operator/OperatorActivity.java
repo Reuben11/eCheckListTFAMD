@@ -60,12 +60,13 @@ public class OperatorActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()){
 
                             case R.id.jr:
+                                SetTypeName("1");
                                getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.master_container, OperatorJobRequestList.newInstance())
-                                       .addToBackStack("jobstacker")
                                         .commit();
                                 break;
                             case R.id.buyoff:
+                                SetTypeName("2");
                                     getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.master_container, OperatorBuyOffList.newInstance())
                                             .commit();
@@ -128,6 +129,13 @@ public class OperatorActivity extends AppCompatActivity {
         }
         ft.replace(R.id.master_container, fragment, tag);
         ft.commitAllowingStateLoss();
+    }
+
+    protected void SetTypeName(String type) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getApplication().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("type", type);
+        editor.commit();
     }
 
 }

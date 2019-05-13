@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import tf.www.echecklisttfamd.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -23,7 +27,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class OperatorBuyOffCheckList extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp, tvEquipmentName;
+    private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime;
     private Button btnSubmit;
     View view;
 
@@ -41,7 +45,19 @@ public class OperatorBuyOffCheckList extends Fragment {
         view = inflater.inflate(R.layout.fragment_operator_buy_off_check_list, container, false);
 
         btnSubmit = view.findViewById(R.id.buyoffsubmit);
-        tvEmp = view.findViewById(R.id.jrnumberlable);
+        tvEmp = view.findViewById(R.id.msemp);
+        tvJR = view.findViewById(R.id.jrnumber);
+        tvEquipmentName = view.findViewById(R.id.equipmentname);
+        tvTechID = view.findViewById(R.id.technicianid);
+        tvDateTime = view.findViewById(R.id.nowdatetime);
+        GetEmp();
+        GetEquipmentName();
+        GetJRName();
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a,  dd MMM yy");
+        String dateStr = df.format(c);
+        tvDateTime.setText(dateStr);
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -99,4 +115,23 @@ public class OperatorBuyOffCheckList extends Fragment {
     }
 
 
+    protected void GetJRName(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvJR.setText(prefs.getString("jr","no data"));
+    }
+
+    protected void GetTechID(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvTechID.setText(prefs.getString("techid","no data"));
+    }
+
+    protected void GetEquipmentName(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvEquipmentName.setText(prefs.getString("equipmentname","no data"));
+    }
+
+    protected void GetEmp(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvEmp.setText(prefs.getString("emp","no data"));
+    }
 }

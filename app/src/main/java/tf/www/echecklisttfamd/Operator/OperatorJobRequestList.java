@@ -1,8 +1,8 @@
 package tf.www.echecklisttfamd.Operator;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import tf.www.echecklisttfamd.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -57,8 +59,7 @@ public class OperatorJobRequestList extends Fragment {
 
                 switch (position){
                     case 0:
-
-                        Fragment newFragment = new OperatorEquipmentScanner();
+                        Fragment newFragment = new OperatorScanner();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.replace(R.id.master_container, newFragment);
                         transaction.commit();
@@ -94,6 +95,5 @@ public class OperatorJobRequestList extends Fragment {
 
         return newBuyOffList;
     }
-
 
 }

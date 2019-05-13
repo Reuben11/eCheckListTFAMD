@@ -10,12 +10,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import tf.www.echecklisttfamd.R;
+import tf.www.echecklisttfamd.JobAvailableClass;
 
 public class BuyOffRequestListAdapter extends BaseAdapter {
-    private static ArrayList<OperatorJobRequestNumberList> listBuyOffList;
+    private static ArrayList<JobAvailableClass> listBuyOffList;
     private LayoutInflater mInflater;
 
-    public BuyOffRequestListAdapter(Context OperatorBuyOffList, ArrayList<OperatorJobRequestNumberList> result) {
+    public BuyOffRequestListAdapter(Context OperatorBuyOffList, ArrayList<JobAvailableClass> result) {
         listBuyOffList = result;
         mInflater = LayoutInflater.from(OperatorBuyOffList);
     }
@@ -40,21 +41,19 @@ public class BuyOffRequestListAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
-        BuyOffRequestListAdapter.Viewholder holder;
+        Viewholder holder;
 
         convertView = mInflater.inflate(R.layout.buyoffrequest_list, null);
-        holder = new BuyOffRequestListAdapter.Viewholder();
 
-        holder = new BuyOffRequestListAdapter.Viewholder();
+        holder = new Viewholder();
         holder.jRNumber = convertView.findViewById(R.id.jrnumber);
         holder.equipmentName = convertView.findViewById(R.id.equipmentname);
         holder.nowDateTime = convertView.findViewById(R.id.buyoffdatetime);
         convertView.setTag(holder);
 
-        holder.jRNumber.setText("JR " +listBuyOffList.get(position).getjRNumber());
-        holder.equipmentName.setText("Equipment : " + listBuyOffList.get(position).getEquipmentName());
-        holder.nowDateTime.setText(listBuyOffList.get(position).getNowDateTime());
-
+        holder.jRNumber.setText("JR " +listBuyOffList.get(position).getJr());
+        holder.equipmentName.setText("Equipment : " + listBuyOffList.get(position).getEquipment());
+        holder.nowDateTime.setText(listBuyOffList.get(position).getTime());
 
         return convertView;
 

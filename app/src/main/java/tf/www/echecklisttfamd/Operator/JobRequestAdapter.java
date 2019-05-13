@@ -43,8 +43,8 @@ public class JobRequestAdapter extends BaseAdapter {
         Viewholder holder;
 
         convertView = mInflater.inflate(R.layout.jobrequest_list, null);
-        holder = new Viewholder();
-
+      /*  holder = new Viewholder();
+*/
         holder = new Viewholder();
         holder.process = convertView.findViewById(R.id.process);
         holder.equipment = convertView.findViewById(R.id.equipment);

@@ -15,11 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import tf.www.echecklisttfamd.LoginActivity;
-import tf.www.echecklisttfamd.Operator.AwaitingList;
-import tf.www.echecklisttfamd.Operator.OperatorActivity;
-import tf.www.echecklisttfamd.Operator.OperatorBuyOffList;
-import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
-import tf.www.echecklisttfamd.Operator.TermOfUseOperator;
 import tf.www.echecklisttfamd.R;
 
 public class TechnicianActivity extends AppCompatActivity {

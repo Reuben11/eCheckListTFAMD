@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Operator.OperatorEquipmentScanner">
+    tools:context=".Operator.OperatorScanner">
+
 
 
     <RelativeLayout
@@ -11,44 +12,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_weight="0.7">
+            <TextView
+                android:id="@+id/equipmentid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
             <ImageView
+                android:id="@+id/barcodejpg"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:paddingTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@id/table"
+                android:layout_gravity="center"
                 android:src="@drawable/qrcode"/>
-
-        <TableLayout
-            android:id="@+id/table"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:stretchColumns="2">
-
-
-            <TableRow>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
                 <TextView
-                    android:id="@+id/barcodelabe1"
+                    android:id="@+id/operatorbarcodelabe1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="Equipment Barcode"/>
+                    android:text="Equipment Barcode"
+                    android:layout_centerInParent="true"/>
+
                 <EditText
-                    android:id="@+id/equipmentbarcode1"
+                    android:id="@+id/operatorbarcodescanner"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_span="2"
+                    android:layout_alignBaseline="@+id/operatorbarcodelabe1"
+                    android:layout_toRightOf="@+id/operatorbarcodelabe1"
                     android:inputType="text"
                     android:maxLength="20"
                     android:paddingLeft="15dp"
+                    android:layout_centerInParent="true"
                     />
-            </TableRow>
-        </TableLayout>
+            </RelativeLayout>
 
+        </LinearLayout>
 
 
     </RelativeLayout>

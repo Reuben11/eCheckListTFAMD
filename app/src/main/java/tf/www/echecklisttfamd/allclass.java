@@ -2,18 +2,16 @@ package tf.www.echecklisttfamd;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.PUT;
 import retrofit2.http.Url;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
-import tf.www.echecklisttfamd.Operator.OperatorEquipmentScanner;
+import tf.www.echecklisttfamd.Operator.OperatorScanner;
 import tf.www.echecklisttfamd.Technician.JobAvailable;
-import tf.www.echecklisttfamd.Technician.MachineSetup;
 
 public class allclass {
 
     public interface CheckJR{
         @GET
-        Call<OperatorEquipmentScanner.GetExist> getJRCheckData(@Url String url);
+        Call<OperatorScanner.GetExist> getJRCheckData(@Url String url);
     }
 
     public  interface CreateJR{
@@ -31,4 +29,10 @@ public class allclass {
         Call<String> getSetup(@Url String url);
 
     }
+
+    public interface GetBuyOffList{
+        @GET
+        Call<JobAvailable.JsonResponse> getJsonBuyOff(@Url String url);
+    }
+
 }
