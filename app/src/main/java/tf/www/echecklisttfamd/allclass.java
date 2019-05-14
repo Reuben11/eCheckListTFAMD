@@ -2,6 +2,7 @@ package tf.www.echecklisttfamd;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Url;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
 import tf.www.echecklisttfamd.Operator.OperatorScanner;
@@ -35,4 +36,13 @@ public class allclass {
         Call<JobAvailable.JsonResponse> getJsonBuyOff(@Url String url);
     }
 
+    public  interface GetBuyOffData{
+        @GET
+        Call<String> getBuyOffInfo(@Url String url);
+    }
+
+    public interface GetValidEmp{
+        @GET
+        Call<OperatorScanner.GetLMSValidCert> getvalid(@Url String url);
+    }
 }

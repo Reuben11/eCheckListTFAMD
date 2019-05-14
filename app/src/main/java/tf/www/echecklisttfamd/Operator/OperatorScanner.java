@@ -29,7 +29,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
-import tf.www.echecklisttfamd.Technician.MachineSetup;
 import tf.www.echecklisttfamd.allclass;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -41,8 +40,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel, tvEquipmentID;
-    private String link, type;
+    private String link, type, empID;
     private Boolean clearText;
+    private Boolean pass = true;
     View view;
 
     TextWatcher textWatcher = new TextWatcher() {
@@ -71,7 +71,7 @@ public class OperatorScanner extends Fragment {
                    break;
                case "2":
                    if(eBarcode.getText().toString().equals(tvEquipmentID.getText().toString())){
-                       Fragment newFragment = new OperatorBuyOffCheckList();
+                       Fragment newFragment = new Buy_Off_Check_List();
                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
                        transaction.replace(R.id.master_container, newFragment);
                        transaction.commit();
@@ -112,13 +112,20 @@ public class OperatorScanner extends Fragment {
                                     if (obj.exist == true) {
                                         ShowAlert("Job Pending Error Code : JRE0001", "This Equipment Still Pending For Previous Job Request!");
                                     } else {
-                                        SetEquipmentName();
-                                        SetDaily(obj.daily);
+                                        ValidateCert();
+                                        if(pass==true){
+                                            SetEquipmentName();
+                                            SetDaily(obj.daily);
 
-                                        Fragment newFragment = new Device_Change_Setup_CheckList();
-                                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                        transaction.replace(R.id.master_container, newFragment);
-                                        transaction.commit();
+                                            Fragment newFragment = new Device_Change_Setup_CheckList();
+                                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                            transaction.replace(R.id.master_container, newFragment);
+                                            transaction.commit();
+                                        }
+                                        else{
+                                            ShowAlert("Alert!", "Employee Not Certified In LMS!");
+                                        }
+
                                     }
                                 } else {
                                     ShowAlert("Server Connection Error Code: SCE0001!", "Invalid Information!");
@@ -144,6 +151,47 @@ public class OperatorScanner extends Fragment {
 
     }
 
+    private void ValidateCert(){
+
+        String newlink = "/api/eChecklist?securitycode={\"scode\":\""
+                + empID + "\",\"equipment\":\""
+                + eBarcode.getText().toString() + "\",\"customer\":\"amd\"}";
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+
+        Call<GetLMSValidCert> call = retrofit.create(allclass.GetValidEmp.class).getvalid(newlink);
+        call.enqueue(new Callback<GetLMSValidCert>() {
+            @Override
+            public void onResponse(Call<GetLMSValidCert> call, Response<GetLMSValidCert> response) {
+
+                if (response.isSuccessful()) {
+                    GetLMSValidCert obj = response.body();
+                        pass = obj.result;
+                    ShowAlert("Yahoo!", pass.toString());
+                } else {
+                    ShowAlert("Server Connection Timeout!", "Can't Communicate With Server Connection");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetLMSValidCert> call, Throwable t) {
+                if (t instanceof IOException) {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                } else {
+
+                    // todo log to some central bug tracking service
+                }
+
+            }
+        });
+
+    }
+
     public static OperatorScanner newInstance() {
         // Required empty public constructor
         OperatorScanner fragment = new OperatorScanner();
@@ -166,6 +214,7 @@ public class OperatorScanner extends Fragment {
         eBarcode.addTextChangedListener(textWatcher);
         eBarcode.requestFocus();
         GetTypeName();
+        GetEmpID();
         if(type.equals("2")){
             GetEquipmentName();
         }
@@ -212,6 +261,18 @@ public class OperatorScanner extends Fragment {
         }
     }
 
+    public class GetLMSValidCert{
+        @Expose
+        protected boolean result;
+
+        public boolean isResult() {
+            return result;
+        }
+
+        public void setResult(boolean result) {
+            this.result = result;
+        }
+    }
 
     protected void SetEquipmentName() {
        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
@@ -227,6 +288,11 @@ public class OperatorScanner extends Fragment {
         editor.commit();
     }
 
+    protected void GetEmpID(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        empID = prefs.getString("emp","no data");
+    }
+
     protected void GetTypeName(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         type = prefs.getString("type","no data");
@@ -236,7 +302,6 @@ public class OperatorScanner extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvEquipmentID.setText(prefs.getString("equipmentname","no data"));
     }
-
 
     private void ShowAlert(String title, String msg){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());

@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -170,31 +171,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         }
     }
 
-   /* private AlertDialog showJobRequestSubmitDialog(){
-        return new AlertDialog.Builder(getActivity())
-            .setTitle("Job Request Submission")
-            .setMessage("Please make sure all informations are correct before submission")
-            .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    showToastMsg("Job Request Submitted!");
 
-                    Fragment newFragment = new TermOfUseOperator();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
-                    *//*transaction.addToBackStack(null);*//*
-                    transaction.commit();
-                }
-            })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                })
-            .setCancelable(false)
-            .create();
-    }*/
 
     private void showToastMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
@@ -228,7 +205,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         if(!TextUtils.isEmpty(etDevice.getText().toString())){
             if(!TextUtils.isEmpty(etMesLot.getText().toString())){
                 if(!TextUtils.isEmpty(etWaffepart.getText().toString())){
-                    if(rgOrientation.getCheckedRadioButtonId() != -1){
+                    if(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())) == 0){
                         alert = false;
                     }
                     else{

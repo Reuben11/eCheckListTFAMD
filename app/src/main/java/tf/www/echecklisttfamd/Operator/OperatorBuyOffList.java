@@ -79,6 +79,7 @@ public class OperatorBuyOffList extends Fragment {
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long rowId) {
                             // Do the onItemClick action
 
+                            SetTechID(data.get(position).getTechid());
                             SetJRName(data.get(position).getJr());
                             SetEquipmentName(data.get(position).getEquipment());
                             SetTimeName(data.get(position).getTime());
@@ -92,7 +93,7 @@ public class OperatorBuyOffList extends Fragment {
                     });
 
                 } else {
-                    ShowAlert("Informations", "No Job Request!");
+                    ShowAlert("Informations", "No Buy Off Job Available!");
                 }
             }
 
@@ -131,6 +132,13 @@ public class OperatorBuyOffList extends Fragment {
 
         AlertDialog  alert1 = builder1.create();
         alert1.show();
+    }
+
+    protected void SetTechID(String techid) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("techid", techid);
+        editor.commit();
     }
 
     protected void SetJRName(String jr) {

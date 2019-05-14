@@ -114,4 +114,18 @@ public class TechnicianActivity extends AppCompatActivity {
         ft.replace(R.id.master_container, fragment, tag);
         ft.commitAllowingStateLoss();
     }
+
+    @Override
+    public void onBackPressed() {
+
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.master_container);
+        if (f instanceof MachineSetup || f instanceof TechnicianScanner) {//the fragment on which you want to handle your back press
+            /*Log.i("BACK PRESSED", "BACK PRESSED");*/
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.master_container, TermOfUseTechnician.newInstance())
+                    .commit();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

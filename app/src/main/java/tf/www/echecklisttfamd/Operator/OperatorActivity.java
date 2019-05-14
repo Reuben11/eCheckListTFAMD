@@ -1,11 +1,8 @@
 package tf.www.echecklisttfamd.Operator;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,16 +10,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
 import tf.www.echecklisttfamd.LoginActivity;
-import tf.www.echecklisttfamd.MainActivity;
 import tf.www.echecklisttfamd.R;
 
 public class OperatorActivity extends AppCompatActivity {
@@ -138,5 +132,19 @@ public class OperatorActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+
+        Fragment f = getSupportFragmentManager().findFragmentById(R.id.master_container);
+        if (f instanceof Device_Change_Setup_CheckList || f instanceof Buy_Off_Check_List || f instanceof OperatorScanner) {//the fragment on which you want to handle your back press
+            /*Log.i("BACK PRESSED", "BACK PRESSED");*/
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.master_container, TermOfUseOperator.newInstance())
+                    .commit();
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
 }
 

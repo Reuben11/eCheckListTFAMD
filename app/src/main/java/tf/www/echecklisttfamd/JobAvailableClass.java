@@ -7,9 +7,12 @@ public class JobAvailableClass {
     private String equipment;
     private String requestor;
     private String time;
-    private String device, daily;
+    private String device;
+    private String daily;
+    private String techid;
 
-    public  JobAvailableClass(String jr, String area, String checklist, String equipment, String requestor, String time, String device){
+
+    public  JobAvailableClass(String jr, String area, String checklist, String equipment, String requestor, String time, String device, String techid){
         this.jr = jr;
         this.area = area;
         this.checklist = checklist;
@@ -18,6 +21,15 @@ public class JobAvailableClass {
         this.time = time;
         this.device = device;
         this.daily = daily;
+        this.daily = techid;
+    }
+
+    public String getTechid() {
+        return techid;
+    }
+
+    public void setTechid(String techid) {
+        this.techid = techid;
     }
 
     public String getJr() {
