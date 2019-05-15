@@ -195,7 +195,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
     protected void GetEmp(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvMsEmp.setText(prefs.getString("emp","no data"));
+        tvMsEmp.setText(prefs.getString("empid","no data"));
     }
 
     private void CreateData(){

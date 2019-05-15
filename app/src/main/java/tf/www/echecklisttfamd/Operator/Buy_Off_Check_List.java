@@ -221,6 +221,6 @@ public class Buy_Off_Check_List extends Fragment {
 
     protected void GetEmp(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvEmp.setText(prefs.getString("emp","no data"));
+        tvEmp.setText(prefs.getString("empid","no data"));
     }
 }

@@ -370,8 +370,8 @@ public class MachineSetup extends Fragment {
 
         if(alert==false) {
             if (daily.equals("True")) {
-                if (rgNeedleType6101.indexOfChild(view.findViewById(rgNeedleType6101.getCheckedRadioButtonId())) == 0) {
-                    if (rgNeedleType6101.indexOfChild(view.findViewById(rgNeedleType6101.getCheckedRadioButtonId())) == 0) {
+                if (rgEjectorMarkCenter.indexOfChild(view.findViewById(rgEjectorMarkCenter.getCheckedRadioButtonId())) == 0) {
+                    if (rgmachineblowerheater.indexOfChild(view.findViewById(rgmachineblowerheater.getCheckedRadioButtonId())) == 0) {
                         if (machineblowersolenid.indexOfChild(view.findViewById(machineblowersolenid.getCheckedRadioButtonId())) == 0) {
 
                         } else {
@@ -495,10 +495,10 @@ public class MachineSetup extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 showToastMsg("Job Request JR " + tvJR.getText().toString() + " Machine Setup Completed!");
 
-                Fragment newFragment = new TermOfUseOperator();
+
+                Fragment newFragment = new TermOfUseTechnician();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
-                /*transaction.addToBackStack(null);*/
+                transaction.replace(R.id.master_container, ((TermOfUseTechnician) newFragment).newInstance());
                 transaction.commit();
             }
         });

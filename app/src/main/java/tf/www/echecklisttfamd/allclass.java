@@ -41,8 +41,13 @@ public class allclass {
         Call<String> getBuyOffInfo(@Url String url);
     }
 
-    public interface GetValidEmp{
+    public interface GetEmpInfo{
         @GET
-        Call<OperatorScanner.GetLMSValidCert> getvalid(@Url String url);
+        Call<LoginActivity.EmpInfo> getEmpData(@Url String url);
     }
+
+ /*   public interface GetValidEmp{
+        @GET
+        Call<OperatorScanner.GetCert> getValid(@Url String url);
+    }*/
 }

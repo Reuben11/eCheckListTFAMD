@@ -95,7 +95,7 @@ public class OperatorScanner extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\"}";
+                    link = "/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"1\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
                     Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData(link);
@@ -105,14 +105,12 @@ public class OperatorScanner extends Fragment {
 
                             if (response.isSuccessful()) {
                                 GetExist obj = response.body();
-                                //try {
-
 
                                 if (obj.equip == true) {
                                     if (obj.exist == true) {
                                         ShowAlert("Job Pending Error Code : JRE0001", "This Equipment Still Pending For Previous Job Request!");
                                     } else {
-                                        ValidateCert();
+                                        /*ValidateCert();*/
                                         if(pass==true){
                                             SetEquipmentName();
                                             SetDaily(obj.daily);
@@ -151,7 +149,7 @@ public class OperatorScanner extends Fragment {
 
     }
 
-    private void ValidateCert(){
+   /* private void ValidateCert(){
 
         String newlink = "/api/eChecklist?securitycode={\"scode\":\""
                 + empID + "\",\"equipment\":\""
@@ -162,16 +160,16 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+        ShowAlert("Error!", newlink);
 
-
-        Call<GetLMSValidCert> call = retrofit.create(allclass.GetValidEmp.class).getvalid(newlink);
-        call.enqueue(new Callback<GetLMSValidCert>() {
+        Call<GetCert> call = retrofit.create(allclass.GetValidEmp.class).getValid(newlink);
+        call.enqueue(new Callback<GetCert>() {
             @Override
-            public void onResponse(Call<GetLMSValidCert> call, Response<GetLMSValidCert> response) {
+            public void onResponse(Call<GetCert> call, Response<GetCert> response) {
 
                 if (response.isSuccessful()) {
-                    GetLMSValidCert obj = response.body();
-                        pass = obj.result;
+                    GetCert obj = response.body();
+                        *//*pass = obj.result;*//*
                     ShowAlert("Yahoo!", pass.toString());
                 } else {
                     ShowAlert("Server Connection Timeout!", "Can't Communicate With Server Connection");
@@ -179,18 +177,18 @@ public class OperatorScanner extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<GetLMSValidCert> call, Throwable t) {
+            public void onFailure(Call<GetCert> call, Throwable t) {
                 if (t instanceof IOException) {
                     ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
                 } else {
-
+                    ShowAlert("Error!", pass.toString());
                     // todo log to some central bug tracking service
                 }
 
             }
         });
 
-    }
+    }*/
 
     public static OperatorScanner newInstance() {
         // Required empty public constructor
@@ -261,7 +259,7 @@ public class OperatorScanner extends Fragment {
         }
     }
 
-    public class GetLMSValidCert{
+ /*   public class GetCert{
         @Expose
         protected boolean result;
 
@@ -272,7 +270,7 @@ public class OperatorScanner extends Fragment {
         public void setResult(boolean result) {
             this.result = result;
         }
-    }
+    }*/
 
     protected void SetEquipmentName() {
        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
