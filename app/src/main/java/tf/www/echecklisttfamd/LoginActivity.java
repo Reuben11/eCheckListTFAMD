@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         ClearInfo();
         etempid = findViewById(R.id.EmpId);
         tvSecurityID = findViewById(R.id.SecurityId);
-        Button technician, operator;
-       /* technician = findViewById(R.id.button2);
+        /*Button technician, operator;
+        technician = findViewById(R.id.button2);
         operator = findViewById(R.id.button1);*/
         clearText = false;
       /*  Timer timer = new Timer();
@@ -83,29 +83,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-      /*  operator.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                *//*SetEmp("995678");*//*
-                startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
-                finish();
-            }
-        });
-
-        technician.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-                *//*SetTech("995678");*//*
-                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
-                finish();
-            }
-        });*/
-
     }
 
     private void triggerJobRequest(){
+        final String[] listitems = new String[]{"Operator","Technician"};
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -125,11 +108,52 @@ public class LoginActivity extends AppCompatActivity {
                             ShowAlert("Alert!!", "Invalid User!");
                         }
                     } else {
-                         SetEmp(obj.employeeid, obj.employeename, obj.jobtitle, etempid.getText().toString());
-                       startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
-                      /*  SetTech(obj.employeeid, obj.employeename, obj.jobtitle, etempid.getText().toString());
-                        startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));*/
-                        finish();
+
+                        if(obj.employeeid.equals("495870") || obj.employeeid.equals("493740") || obj.employeeid.equals("495550") || obj.employeeid.equals("496326") || obj.employeeid.equals("342036")){
+                            final String empid = obj.employeeid;
+                            final String jobtitle = obj.jobtitle;
+                            final String name = obj.employeename;
+
+                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
+                            mBuilder.setTitle("Select Login Type");
+                            mBuilder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(which==0){
+                                        SetEmp(empid, name, jobtitle, etempid.getText().toString());
+                                        startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
+                                        finish();
+                                    }
+                                    else{
+                                           SetTech(empid, name, jobtitle, etempid.getText().toString());
+                                           startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                                        finish();
+                                    }
+                                }
+
+
+                            });
+                            mBuilder.setCancelable(false);
+                            AlertDialog mDialog = mBuilder.create();
+                            mDialog.show();
+                        }
+                        else{
+                            String[] last = obj.jobtitle.split("\\s");
+                            if(last[last.length - 1].matches("[Oo][Pp][Ee][Rr][Aa][Tt][Oo][Rr]")==true){
+                                SetEmp(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
+                                finish();
+                            }
+                            else if(last[last.length - 1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){
+                                SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                                finish();
+                            }
+                            else{
+                                ShowAlert("Alert!!", "Invalid User!");
+                            }
+                        }
                     }
 
                 } else {
@@ -229,4 +253,6 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog  alert1 = builder1.create();
         alert1.show();
     }
+
+
 }

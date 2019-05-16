@@ -205,7 +205,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         if(!TextUtils.isEmpty(etDevice.getText().toString())){
             if(!TextUtils.isEmpty(etMesLot.getText().toString())){
                 if(!TextUtils.isEmpty(etWaffepart.getText().toString())){
-                    if(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())) == 0){
+                    if(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())) != -1){
                         alert = false;
                     }
                     else{

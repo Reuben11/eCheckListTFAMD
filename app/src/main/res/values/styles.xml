@@ -50,4 +50,9 @@
     <style name="AppTheme.PopupOverlaytechnician" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimaryTechnician</item>
     </style>
+
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/lightgreen</item>
+        <item name="colorButtonNormal">@color/greenback</item>
+    </style>
 </resources>

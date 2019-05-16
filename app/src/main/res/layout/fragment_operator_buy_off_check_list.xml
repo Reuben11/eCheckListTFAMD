@@ -290,7 +290,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:text="Submit" />
+                    android:text="Submit"
+                    android:theme="@style/MyButton"/>
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

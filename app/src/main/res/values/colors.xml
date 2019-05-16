@@ -15,4 +15,7 @@
     <color name="colorPrimaryTechnician">#0003DE</color>
     <color name="colorPrimaryDarkTechnician">#3C3EFF</color>
     <color name="colorAccentTechnician">#FF7F31</color>
+
+    <color name="greenback">#a4c639</color>
+    <color name="lightgreen">#adcb36</color>
 </resources>
