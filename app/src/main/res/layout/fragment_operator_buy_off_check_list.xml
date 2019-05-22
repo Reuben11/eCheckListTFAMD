@@ -42,19 +42,22 @@
                 />
             <TextView
                 android:id="@+id/jrnumber"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLength="30"
+                android:editable="false"
                 android:layout_alignBaseline="@+id/jrnumberlable"
                 android:layout_toRightOf="@+id/jrnumberlable"
-                android:paddingLeft="10dp"
-                android:singleLine="true"
                 android:textColor="#000000"
                 android:textStyle="bold"
-                android:textSize="16dp" />
+                android:textSize="14dp"/>
                 />
 
                     <TextView
-                        android:id="@+id/buyoffms"
+                        android:id="@+id/msnamelbl"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:text="MS Emp#"
@@ -70,11 +73,33 @@
                         android:paddingRight="5dp"
                         android:maxLength="30"
                         android:editable="false"
-                        android:layout_alignBaseline="@+id/buyoffms"
-                        android:layout_toRightOf="@+id/buyoffms"
+                        android:layout_alignBaseline="@+id/msnamelbl"
+                        android:layout_toRightOf="@+id/msnamelbl"
                         android:textColor="#000000"
                         android:textStyle="bold"
-                        android:textSize="14dp"
+                        android:textSize="14dp"/>
+            <TextView
+                android:id="@+id/buyoffms"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="MS Name"
+                android:layout_below="@id/msnamelbl"
+                android:paddingTop="15dp"
+                />
+            <TextView
+                android:id="@+id/buyoffmsname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLength="30"
+                android:editable="false"
+                android:layout_alignBaseline="@+id/buyoffms"
+                android:layout_toRightOf="@+id/buyoffms"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14dp"
                         />
                     <TextView
                         android:id="@+id/buyoffdatetime"
@@ -132,7 +157,6 @@
                 android:text="Technician ID"
                 android:layout_below="@id/equipmentnamelabel"
                 android:paddingTop="15dp"
-                android:paddingBottom="20dp"
                 />
             <TextView
                 android:id="@+id/technicianid"
@@ -151,6 +175,31 @@
                 android:textSize="14dp"
                 />
 
+            <TextView
+                android:id="@+id/buytechnamelbl"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Technician Name"
+                android:layout_below="@id/technicianlabel"
+                android:paddingTop="15dp"
+                android:paddingBottom="20dp"
+                />
+            <TextView
+                android:id="@+id/techname"
+                android:layout_span="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:maxLength="30"
+                android:editable="false"
+                android:layout_alignBaseline="@+id/buytechnamelbl"
+                android:layout_toRightOf="@+id/buytechnamelbl"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                />
 
         </RelativeLayout>
             <RelativeLayout

@@ -122,12 +122,33 @@
                     android:textStyle="bold"
                     android:paddingBottom="20dp"
                     />
-
+                <TextView
+                    android:id="@+id/msnamelbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mslbl"
+                    android:paddingTop="20dp"
+                    android:text="MS Name" />
+                <TextView
+                    android:id="@+id/msname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/msnamelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/msnamelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:paddingBottom="20dp"
+                    />
                 <TextView
                     android:id="@+id/timelbl"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/mslbl"
+                    android:layout_below="@id/msnamelbl"
                     android:paddingTop="20dp"
                     android:text="DateTime" />
                 <TextView

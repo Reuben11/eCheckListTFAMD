@@ -83,6 +83,7 @@ public class OperatorBuyOffList extends Fragment {
                             SetJRName(data.get(position).getJr());
                             SetEquipmentName(data.get(position).getEquipment());
                             SetTimeName(data.get(position).getTime());
+                            SetTechScode(data.get(position).getScode());
 
 
                             Fragment newFragment = new OperatorScanner();
@@ -132,6 +133,13 @@ public class OperatorBuyOffList extends Fragment {
 
         AlertDialog  alert1 = builder1.create();
         alert1.show();
+    }
+
+    protected void SetTechScode(String techscode) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("techscode", techscode);
+        editor.commit();
     }
 
     protected void SetTechID(String techid) {

@@ -39,9 +39,9 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class MachineSetup extends Fragment {
-    private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily;
+    private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily, tvRequestorName, tvTechName;
     private EditText evEsconfig, evNoofpins, evEscapno, evEskit, evEsTool, evCheckTool, evCheckEs, evNeedle, evPP, evCal;
-    private String device, daily;
+    private String device, daily, scode;
     private Boolean UnicornDevice;
     private int option,rubberoption;
     private Button btnSubmit;
@@ -71,6 +71,8 @@ public class MachineSetup extends Fragment {
         tvTech = view.findViewById(R.id.techemp);
         tvRequestor = view.findViewById(R.id.requestorid);
         tvDaily = view.findViewById(R.id.purposeoption);
+        tvRequestorName = view.findViewById(R.id.requestorname);
+        tvTechName = view.findViewById(R.id.techname);
         evEsconfig = view.findViewById(R.id.estool);
         evNoofpins = view.findViewById(R.id.noofpins);
         evEscapno = view.findViewById(R.id.escapno);
@@ -101,7 +103,7 @@ public class MachineSetup extends Fragment {
         getAll();
 
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a,  dd MMM yy");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
         String dateStr = df.format(c);
         tvDatetime.setText(dateStr);
 
@@ -146,7 +148,7 @@ public class MachineSetup extends Fragment {
 
             public void onClick(View v){
                 if(checkAnswer()==false){
-                    CreateData();
+                    ShowAlertSubmit("Machine Setup Submission","Please make sure all informations are correct before submission");
                 }
             }
         });
@@ -159,8 +161,11 @@ public class MachineSetup extends Fragment {
         tvEquipment.setText(prefs.getString("equipmentname","no data"));
         tvRequestor.setText(prefs.getString("requestor","no data"));
         tvTech.setText(prefs.getString("techid","no data"));
+        tvRequestorName.setText(prefs.getString("msname", "no data"));
         daily = prefs.getString("daily","no data");
         device = prefs.getString("device","no data");
+        tvTechName.setText(prefs.getString("techname", "no data").toUpperCase());
+        scode = prefs.getString("scode", "no data");
     }
 
     private void ShowAlert(String title, String msg){
@@ -392,8 +397,6 @@ public class MachineSetup extends Fragment {
             }
         }
 
-
-
         if(alert==true){
             ShowAlert("Alert!", msg);
 
@@ -427,11 +430,14 @@ public class MachineSetup extends Fragment {
 
         rubbertip = String.valueOf(optionrg);
 
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
+        String dateStr = df.format(c);
 
 
         data = "api/eChecklist?setupinfo={\"jr\":\"" + jr + "\",\"techid\":\""
                 + tvTech.getText().toString() + "\",\"time\":\""
-                + tvDatetime.getText().toString() + "\",\"rubber\":\""
+                + dateStr + "\",\"rubber\":\""
                 + rubbertip + "\",\"config\":\""
                 + evEsconfig.getText().toString() + "\",\"pins\":\""
                 + evNoofpins.getText().toString() + "\",\"escap\":\""
@@ -442,7 +448,8 @@ public class MachineSetup extends Fragment {
                 + evCheckEs.getText().toString() + "\",\"needle\":\""
                 + evNeedle.getText().toString() + "\",\"pp\":\""
                 + evPP.getText().toString() + "\",\"cal\":\""
-                + evCal.getText().toString() + "\"}";
+                + evCal.getText().toString() + "\",\"scode\":\""
+                + scode + "\"}";
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -456,8 +463,14 @@ public class MachineSetup extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
                     //msg obj = response.body();
+                    showToastMsg("Job Request JR " + tvJR.getText().toString() + " Machine Setup Completed!");
 
-                    ShowAlertSubmit("Machine Setup Submission","Please make sure all informations are correct before submission");
+
+                    Fragment newFragment = new TermOfUseTechnician();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.master_container, ((TermOfUseTechnician) newFragment).newInstance());
+                    transaction.commit();
+
                 }
                 else{
                     ShowAlert("No Response From Server!", "Please check the wireless connection. if problem persist, please contact IT");
@@ -493,13 +506,7 @@ public class MachineSetup extends Fragment {
         builder1.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showToastMsg("Job Request JR " + tvJR.getText().toString() + " Machine Setup Completed!");
-
-
-                Fragment newFragment = new TermOfUseTechnician();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.master_container, ((TermOfUseTechnician) newFragment).newInstance());
-                transaction.commit();
+                CreateData();
             }
         });
 

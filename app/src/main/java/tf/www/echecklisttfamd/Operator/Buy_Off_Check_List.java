@@ -37,10 +37,11 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class Buy_Off_Check_List extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime;
+    private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime, tvTechName, tvEmpName;
     private RadioGroup rgWaferID;
     private EditText etWaferID;
     private Button btnSubmit;
+    private String empscode;
     View view;
 
     public static Buy_Off_Check_List newWInstance() {
@@ -61,15 +62,14 @@ public class Buy_Off_Check_List extends Fragment {
         tvJR = view.findViewById(R.id.jrnumber);
         tvEquipmentName = view.findViewById(R.id.equipmentname);
         tvTechID = view.findViewById(R.id.technicianid);
+        tvTechName = view.findViewById(R.id.techname);
         tvDateTime = view.findViewById(R.id.nowdatetime);
+        tvEmpName = view.findViewById(R.id.buyoffmsname);
         etWaferID = view.findViewById(R.id.waferid);
         rgWaferID = view.findViewById(R.id.wafercarcassesid);
-        GetEmp();
-        GetEquipmentName();
-        GetJRName();
-        GetTechID();
+        GetSharePreferences();
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a,  dd MMM yy");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss,  dd MMM yy");
         String dateStr = df.format(c);
         tvDateTime.setText(dateStr);
 
@@ -81,7 +81,6 @@ public class Buy_Off_Check_List extends Fragment {
                 alertDialog.show();
             }
         });
-
 
 
         return view;
@@ -122,10 +121,11 @@ public class Buy_Off_Check_List extends Fragment {
         else{
             final String textData;
             String jr = tvJR.getText().toString().replace("-","");
-            textData = "/api/eChecklist?buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
+            textData = "/api/eChecklist/eChecklist?buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
                        + tvEmp.getText().toString() + "\",\"waferid\":\""
                        + etWaferID.getText().toString() + "\",\"time\":\""
-                       + tvDateTime.getText().toString() + "\"}";
+                       + tvDateTime.getText().toString() + "\",\"scode\":\""
+                       + empscode + "\"}";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://pngjvfa01")
@@ -204,23 +204,16 @@ public class Buy_Off_Check_List extends Fragment {
     }
 
 
-    protected void GetJRName(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvJR.setText(prefs.getString("jr","no data"));
-    }
-
-    protected void GetTechID(){
+    protected void GetSharePreferences(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvTechID.setText(prefs.getString("techid","no data"));
-    }
-
-    protected void GetEquipmentName(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvTechName.setText(prefs.getString("techname","no data"));
+        tvJR.setText(prefs.getString("jr","no data"));
         tvEquipmentName.setText(prefs.getString("equipmentname","no data"));
+        tvEmpName.setText(prefs.getString("empname", "no data"));
+        tvEmp.setText(prefs.getString("empid","no data"));
+        empscode = prefs.getString("scode","no data");
     }
 
-    protected void GetEmp(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvEmp.setText(prefs.getString("empid","no data"));
-    }
+
 }

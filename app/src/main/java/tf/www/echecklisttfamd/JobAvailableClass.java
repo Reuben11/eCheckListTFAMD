@@ -10,6 +10,7 @@ public class JobAvailableClass {
     private String device;
     private String daily;
     private String techid;
+    private String scode;
 
 
     public  JobAvailableClass(String jr, String area, String checklist, String equipment, String requestor, String time, String device, String techid){
@@ -21,7 +22,16 @@ public class JobAvailableClass {
         this.time = time;
         this.device = device;
         this.daily = daily;
-        this.daily = techid;
+        this.techid = techid;
+        this.scode = scode;
+    }
+
+    public String getScode() {
+        return scode;
+    }
+
+    public void setScode(String scode) {
+        this.scode = scode;
     }
 
     public String getTechid() {

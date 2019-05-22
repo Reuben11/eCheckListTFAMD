@@ -3,6 +3,7 @@ package tf.www.echecklisttfamd.Operator;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +26,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 import retrofit2.Retrofit;
+import tf.www.echecklisttfamd.LoginActivity;
 import tf.www.echecklisttfamd.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tf.www.echecklisttfamd.Technician.MachineSetup;
+import tf.www.echecklisttfamd.Technician.TechnicianActivity;
+import tf.www.echecklisttfamd.Technician.TechnicianScanner;
 import tf.www.echecklisttfamd.allclass;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -40,7 +46,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel, tvEquipmentID;
-    private String link, type, empID;
+    private String link, type, empID, techID, techscode, jr, empscode;
     private Boolean clearText;
     private Boolean pass = true;
     View view;
@@ -71,10 +77,8 @@ public class OperatorScanner extends Fragment {
                    break;
                case "2":
                    if(eBarcode.getText().toString().equals(tvEquipmentID.getText().toString())){
-                       Fragment newFragment = new Buy_Off_Check_List();
-                       FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                       transaction.replace(R.id.master_container, newFragment);
-                       transaction.commit();
+                       triggerTechInfo();
+
                    }
                    else{
                        if(clearText==false){
@@ -89,13 +93,94 @@ public class OperatorScanner extends Fragment {
         }
     };
 
+    private void triggerTechInfo(){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String link = "/api/eChecklist/GetEmployeeInfo?Empcode={\"scode\":\"" + techscode + "\"}";
+
+        Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
+        call.enqueue(new Callback<LoginActivity.EmpInfo>() {
+            @Override
+            public void onResponse(Call<LoginActivity.EmpInfo> call, Response<LoginActivity.EmpInfo> response) {
+
+                if (response.isSuccessful()) {
+                    LoginActivity.EmpInfo obj = response.body();
+                    SetTechName(obj.getEmployeename().toUpperCase());
+                    triggerOperatorHold();
+
+                } else {
+                    ShowAlert("Server Error!", "No Response from Server!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginActivity.EmpInfo> call, Throwable t) {
+                Log.d("MainActivity", t.getMessage());
+                if (t instanceof IOException) {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                } else {
+
+                    ShowAlert("Alert!!", "Application Issue!");
+                }
+
+            }
+        });
+    }
+
+    private void triggerOperatorHold(){
+        jr = jr.replace("-","");
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss,  dd MMM yy");
+        String dateStr = df.format(c);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String link = "/api/eChecklist?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
+
+        Call<TechnicianScanner.resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
+        call.enqueue(new Callback<TechnicianScanner.resultApi>() {
+            @Override
+            public void onResponse(Call<TechnicianScanner.resultApi> call, Response<TechnicianScanner.resultApi> response) {
+
+                if (response.isSuccessful()) {
+                    Fragment newFragment = new Buy_Off_Check_List();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.master_container, newFragment);
+                    transaction.commit();
+
+                } else {
+                    ShowAlert("Server Error!", "No Response from Server!");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TechnicianScanner.resultApi> call, Throwable t) {
+                Log.d("MainActivity", t.getMessage());
+                if (t instanceof IOException) {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                } else {
+
+                    ShowAlert("Alert!!", "Application Issue!");
+                }
+
+            }
+        });
+    }
+
     private void triggerJobRequest(String dateStr){
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://pngjvfa01")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eChecklist?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"1\"}";
+                    link = "/api/eChecklist/GetJR?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"1\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
                     Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData(link);
@@ -149,53 +234,11 @@ public class OperatorScanner extends Fragment {
 
     }
 
-   /* private void ValidateCert(){
-
-        String newlink = "/api/eChecklist?securitycode={\"scode\":\""
-                + empID + "\",\"equipment\":\""
-                + eBarcode.getText().toString() + "\",\"customer\":\"amd\"}";
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://pngjvfa01")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ShowAlert("Error!", newlink);
-
-        Call<GetCert> call = retrofit.create(allclass.GetValidEmp.class).getValid(newlink);
-        call.enqueue(new Callback<GetCert>() {
-            @Override
-            public void onResponse(Call<GetCert> call, Response<GetCert> response) {
-
-                if (response.isSuccessful()) {
-                    GetCert obj = response.body();
-                        *//*pass = obj.result;*//*
-                    ShowAlert("Yahoo!", pass.toString());
-                } else {
-                    ShowAlert("Server Connection Timeout!", "Can't Communicate With Server Connection");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GetCert> call, Throwable t) {
-                if (t instanceof IOException) {
-                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
-                } else {
-                    ShowAlert("Error!", pass.toString());
-                    // todo log to some central bug tracking service
-                }
-
-            }
-        });
-
-    }*/
-
     public static OperatorScanner newInstance() {
         // Required empty public constructor
         OperatorScanner fragment = new OperatorScanner();
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -259,18 +302,11 @@ public class OperatorScanner extends Fragment {
         }
     }
 
- /*   public class GetCert{
-        @Expose
-        protected boolean result;
-
-        public boolean isResult() {
-            return result;
-        }
-
-        public void setResult(boolean result) {
-            this.result = result;
-        }
-    }*/
+    protected void SetTechName(String Name) {
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("techname", Name);
+        editor.commit();
+    }
 
     protected void SetEquipmentName() {
        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
@@ -289,6 +325,9 @@ public class OperatorScanner extends Fragment {
     protected void GetEmpID(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         empID = prefs.getString("emp","no data");
+        empscode = prefs.getString("scode","no data");
+        techID = prefs.getString("techid","na data");
+        techscode = prefs.getString("techscode", "no data");
     }
 
     protected void GetTypeName(){
@@ -299,6 +338,7 @@ public class OperatorScanner extends Fragment {
     protected void GetEquipmentName(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvEquipmentID.setText(prefs.getString("equipmentname","no data"));
+        jr = prefs.getString("jr","no data");
     }
 
     private void ShowAlert(String title, String msg){
@@ -319,6 +359,7 @@ public class OperatorScanner extends Fragment {
         AlertDialog  alert1 = builder1.create();
         alert1.show();
     }
+
 
 
 }

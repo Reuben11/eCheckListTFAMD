@@ -71,11 +71,35 @@
                 android:textStyle="bold"
                 android:textSize="14dp" />
 
+                <TextView
+                    android:id="@+id/technamelbl"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/techms"
+                    android:paddingTop="15dp"
+                    android:text="Technician Name"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/techname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/technamelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/technamelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
             <TextView
                 android:id="@+id/setupdatetime"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/techms"
+                android:layout_below="@id/technamelbl"
                 android:paddingTop="15dp"
                 android:text="DateTime"
                 android:paddingRight="20dp"
@@ -122,32 +146,58 @@
                 android:textStyle="bold"
                 android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/requestorlabel"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/equipmentnamelabel"
-                android:paddingTop="15dp"
-                android:paddingBottom="20dp"
-                android:text="Requestor ID"
-                android:paddingRight="20dp"/>
+                <TextView
+                    android:id="@+id/requestorlabel"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/equipmentnamelabel"
+                    android:paddingTop="15dp"
+                    android:text="Requestor ID"
+                    android:paddingRight="20dp"/>
 
-            <TextView
-                android:id="@+id/requestorid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/requestorlabel"
-                android:layout_marginLeft="5dp"
-                android:layout_span="2"
-                android:layout_toRightOf="@+id/requestorlabel"
-                android:editable="false"
-                android:maxLength="30"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingBottom="20dp"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="14dp" />
+                <TextView
+                    android:id="@+id/requestorid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/requestorlabel"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/requestorlabel"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+
+                <TextView
+                    android:id="@+id/requestornamelbl"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/requestorlabel"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="20dp"
+                    android:text="Requestor Name"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/requestorname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/requestornamelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/requestornamelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/machinesetuplayout"

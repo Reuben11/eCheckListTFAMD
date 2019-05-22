@@ -7,6 +7,7 @@ import retrofit2.http.Url;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
 import tf.www.echecklisttfamd.Operator.OperatorScanner;
 import tf.www.echecklisttfamd.Technician.JobAvailable;
+import tf.www.echecklisttfamd.Technician.TechnicianScanner;
 
 public class allclass {
 
@@ -44,6 +45,11 @@ public class allclass {
     public interface GetEmpInfo{
         @GET
         Call<LoginActivity.EmpInfo> getEmpData(@Url String url);
+    }
+
+    public interface GetST{
+        @GET
+        Call<TechnicianScanner.resultApi> getSTDone(@Url String url);
     }
 
  /*   public interface GetValidEmp{

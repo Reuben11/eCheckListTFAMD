@@ -41,11 +41,13 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class Device_Change_Setup_CheckList extends Fragment {
     private AlertDialog alertDialog;
-    private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp;
+    private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp, tvMsName;
     private Button btnSubmit;
     private EditText etDevice, etMesLot, etWaffepart;
     private RadioGroup rgOrientation;
     private CheckBox cbdailycheck;
+    private String daily = "false";
+    private String Orientation, Scode;
        View view;
 
     TextWatcher textWatcherdevice = new TextWatcher() {
@@ -115,9 +117,10 @@ public class Device_Change_Setup_CheckList extends Fragment {
         tvEquipmentName = view.findViewById(R.id.changeequipmentname);
         tvDateTime = view.findViewById(R.id.nowdatetime);
         cbdailycheck = view.findViewById(R.id.checkBox);
+        tvMsName = view.findViewById(R.id.msname);
 
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("hh:mm:ss a,  dd MMM yy");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
         String dateStr = df.format(c);
         tvDateTime.setText(dateStr);
 
@@ -152,9 +155,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         });
 
         /*if(savedInstanceState != null){*/
-            GetEquipmentName();
-            GetDaily();
-            GetEmp();
+        GetSharePreference();
        /* }*/
 
         return view;
@@ -178,24 +179,18 @@ public class Device_Change_Setup_CheckList extends Fragment {
                 .show();
     }
 
-    protected void GetEquipmentName(){
+    protected void GetSharePreference(){
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvEquipmentName.setText(prefs.getString("equipmentname","no data"));
-    }
-
-    protected void GetDaily(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        tvMsEmp.setText(prefs.getString("empid","no data"));
+        tvMsName.setText(prefs.getString("empname", "no data"));
+        Scode = prefs.getString("scode", "no data");
         if(prefs.getBoolean("daily",false)==true){
             cbdailycheck.setEnabled(false);
         }
         else{
             cbdailycheck.setChecked(true);
         }
-    }
-
-    protected void GetEmp(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
-        tvMsEmp.setText(prefs.getString("empid","no data"));
     }
 
     private void CreateData(){
@@ -232,51 +227,15 @@ public class Device_Change_Setup_CheckList extends Fragment {
             ShowAlert("Alert!", msg);
         }
         else{
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://pngjvfa01")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
 
-            String daily = "false";
-            int orientationoption = rgOrientation.getCheckedRadioButtonId();
+            Orientation = String.valueOf(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())));
 
             if(cbdailycheck.isChecked()){
                 daily = "true";
             }
 
-            String test = "api/eChecklist?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
-                    + "\",\"clid\":\"1\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
-                    +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
-                    + "\"orientation\":\"" + orientationoption + "\"}";
+            ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission");
 
-            /*ShowAlert("Connection Error!", test);*/
-            Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR(test);
-            call.enqueue(new Callback<jR>() {
-                @Override
-                public void onResponse(Call<jR> call, Response<jR> response) {
-                    if(response.isSuccessful()){
-                        jR obj = response.body();
-
-                        /*if(Integer.parseInt(obj.id) == 0){
-                            ShowAlert("Invalid Data!", "Please check your information");
-                        }
-                        else{
-                            ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission", obj.id);
-                        }*/
-                        ShowAlertSubmit("Job Request Submission","Please make sure all informations are correct before submission", obj.id);
-                    }
-                    else{
-                        ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<jR> call, Throwable t) {
-                    if(t instanceof IOException){
-                        ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
-                    }
-                }
-            });
 
         }
     }
@@ -297,7 +256,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         alert1.show();
     }
 
-    private void ShowAlertSubmit(String title, String msg, final String JRnumber) {
+    private void ShowAlertSubmit(String title, String msg) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
         builder1.setTitle(title);
         builder1.setMessage(msg);
@@ -305,13 +264,47 @@ public class Device_Change_Setup_CheckList extends Fragment {
         builder1.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showToastMsg("Job Request JR " + JRnumber + " created!");
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://pngjvfa01")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-                Fragment newFragment = new TermOfUseOperator();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
-                /*transaction.addToBackStack(null);*/
-                transaction.commit();
+
+                String test = "api/eChecklist/GetCreateJR?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                        + "\",\"clid\":\"1\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
+                        +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
+                        + "\"orientation\":\"" + Orientation + "\",\"scode\":\"" + Scode + "\"}";
+
+
+                Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR(test);
+                call.enqueue(new Callback<jR>() {
+                    @Override
+                    public void onResponse(Call<jR> call, Response<jR> response) {
+                        if(response.isSuccessful()){
+                            jR obj = response.body();
+
+                            showToastMsg("Job Request JR " + obj.id + " created!");
+
+                            Fragment newFragment = new TermOfUseOperator();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
+                            /*transaction.addToBackStack(null);*/
+                            transaction.commit();
+                        }
+                        else{
+                            ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<jR> call, Throwable t) {
+                        if(t instanceof IOException){
+                            ShowAlert("Connection Error!", "Please check the wireless connection. if problem persist, please contact IT");
+                        }
+                    }
+                });
+
+
             }
         });
 

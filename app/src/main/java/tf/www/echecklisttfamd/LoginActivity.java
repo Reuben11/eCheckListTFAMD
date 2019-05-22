@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eChecklist?Empcode={\"scode\":\"" + etempid.getText().toString() + "\"}";
+        String link = "/api/eChecklist/GetEmployeeInfo?Empcode={\"scode\":\"" + etempid.getText().toString() + "\"}";
 
         Call<EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<EmpInfo>() {
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else {
 
-                        if(obj.employeeid.equals("495870") || obj.employeeid.equals("493740") || obj.employeeid.equals("495550") || obj.employeeid.equals("496326") || obj.employeeid.equals("342036")){
+                        if(obj.employeeid.equals("495870") || obj.employeeid.equals("493740") || obj.employeeid.equals("495550") || obj.employeeid.equals("496326") || obj.employeeid.equals("342036") || obj.employeeid.equals("1002316")){
                             final String empid = obj.employeeid;
                             final String jobtitle = obj.jobtitle;
                             final String name = obj.employeename;
@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putString("scode", scode);
         editor.putString("empid", empid);
-        editor.putString("empname", empname);
+        editor.putString("empname", empname.toUpperCase());
         editor.putString("empjobtitle", jobtitle);
         editor.commit();
 

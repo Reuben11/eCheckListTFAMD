@@ -54,7 +54,7 @@ public class JobAvailable extends Fragment {
     }
 
     private void GetReqJobs(){
-        String requestapilink = "/api/eChecklist?requestlist=ok";
+        String requestapilink = "/api/eChecklist/GetRequestlist?requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -82,6 +82,7 @@ public class JobAvailable extends Fragment {
                                 SetDevice(data.get(position).getDevice());
                                 SetEquipmentName( data.get(position).getEquipment());
                                 SetDaily(data.get(position).getDaily());
+                                SetScode(data.get(position).getScode());
 
                                 Fragment newFragment = new TechnicianScanner();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -143,6 +144,14 @@ public class JobAvailable extends Fragment {
         editor.putString("jr", jr);
         editor.commit();
     }
+
+    protected void SetScode(String scode) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("empscode", scode);
+        editor.commit();
+    }
+
     protected void SetRequestor(String name) {
         /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
