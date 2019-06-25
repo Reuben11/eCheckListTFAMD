@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +45,8 @@ public class Device_Change_Setup_CheckList extends Fragment {
     private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp, tvMsName;
     private Button btnSubmit;
     private EditText etDevice, etMesLot, etWaffepart;
-    private RadioGroup rgOrientation;
-    private CheckBox cbdailycheck;
+    private RadioGroup rgOrientation, cbdailycheck;
+    private RadioButton rbCon;
     private String daily = "false";
     private String Orientation, Scode;
        View view;
@@ -63,7 +64,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            etMesLot.requestFocus();
+           /* etMesLot.requestFocus();*/
         }
     };
 
@@ -80,7 +81,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            etWaffepart.requestFocus();
+            /*etWaffepart.requestFocus();*/
         }
     };
 
@@ -97,7 +98,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            rgOrientation.requestFocus();
+            /*rgOrientation.requestFocus();*/
         }
     };
 
@@ -116,7 +117,8 @@ public class Device_Change_Setup_CheckList extends Fragment {
         tvMsEmp = view.findViewById(R.id.msemp);
         tvEquipmentName = view.findViewById(R.id.changeequipmentname);
         tvDateTime = view.findViewById(R.id.nowdatetime);
-        cbdailycheck = view.findViewById(R.id.checkBox);
+        cbdailycheck = view.findViewById(R.id.type);
+        rbCon = view.findViewById(R.id.typeD);
         tvMsName = view.findViewById(R.id.msname);
 
         Date c = Calendar.getInstance().getTime();
@@ -126,17 +128,17 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
 
         etDevice = view.findViewById(R.id.device);
-        etDevice.setShowSoftInputOnFocus(false);
+       /* etDevice.setShowSoftInputOnFocus(false);*/
         etDevice.addTextChangedListener(textWatcherdevice);
         etDevice.setLongClickable(false);
 
         etMesLot = view.findViewById(R.id.meslot);
-        etMesLot.setShowSoftInputOnFocus(false);
+    /*    etMesLot.setShowSoftInputOnFocus(false);*/
         etMesLot.addTextChangedListener(textWatchermeslot);
         etMesLot.setLongClickable(false);
 
         etWaffepart = view.findViewById(R.id.wpackpart);
-        etWaffepart.setShowSoftInputOnFocus(false);
+    /*    etWaffepart.setShowSoftInputOnFocus(false);*/
         etWaffepart.addTextChangedListener(textWatcherwpackpart);
         etWaffepart.setLongClickable(false);
 
@@ -186,12 +188,15 @@ public class Device_Change_Setup_CheckList extends Fragment {
         tvMsName.setText(prefs.getString("empname", "no data"));
         Scode = prefs.getString("scode", "no data");
         if(prefs.getBoolean("daily",false)==true){
-            cbdailycheck.setEnabled(false);
+            cbdailycheck.getChildAt(0).setEnabled(false);
+            ((RadioButton)cbdailycheck.getChildAt(1)).setChecked(true);
         }
         else{
-            cbdailycheck.setChecked(true);
+            cbdailycheck.getChildAt(0).setEnabled(true);
+            cbdailycheck.clearCheck();
         }
     }
+
 
     private void CreateData(){
         boolean alert = true;
@@ -201,12 +206,18 @@ public class Device_Change_Setup_CheckList extends Fragment {
             if(!TextUtils.isEmpty(etMesLot.getText().toString())){
                 if(!TextUtils.isEmpty(etWaffepart.getText().toString())){
                     if(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())) != -1){
-                        alert = false;
+                        if(cbdailycheck.indexOfChild(view.findViewById(cbdailycheck.getCheckedRadioButtonId()))  != -1){
+                            alert = false;
+                        }
+                        else{
+                            msg = "Invalid Conversion Type!";
+                            cbdailycheck.requestFocusFromTouch();
+                        }
                     }
-                    else{
-
-                        msg = "Invalid Waffle Pack Orientation!";                    }
+                    else {
+                        msg = "Invalid Waffle Pack Orientation!";
                         rgOrientation.requestFocusFromTouch();
+                    }
                 }
                 else{
                     msg = "Invalid Waffle Pack Part!";
@@ -230,7 +241,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
             Orientation = String.valueOf(rgOrientation.indexOfChild(view.findViewById(rgOrientation.getCheckedRadioButtonId())));
 
-            if(cbdailycheck.isChecked()){
+            if(cbdailycheck.indexOfChild(view.findViewById(cbdailycheck.getCheckedRadioButtonId()))  == 0){
                 daily = "true";
             }
 
@@ -287,7 +298,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
 
                             Fragment newFragment = new TermOfUseOperator();
                             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.master_container, ((TermOfUseOperator) newFragment).newInstance());
+                            transaction.replace(R.id.master_container, TermOfUseOperator.newInstance());
                             /*transaction.addToBackStack(null);*/
                             transaction.commit();
                         }

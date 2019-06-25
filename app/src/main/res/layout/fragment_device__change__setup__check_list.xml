@@ -38,7 +38,7 @@
                     android:gravity="center_horizontal"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="DAILY CHECK"
+                    android:text="CONVERSION TYPE"
                     android:textColor="#FFFFFF"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -55,17 +55,36 @@
                         android:id="@+id/ms"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:text="Daily?"
+                        android:paddingTop="20dp"
                         android:paddingRight="20dp"
-                        android:paddingTop="20dp"/>
-
+                        android:text="Type" />
+<!--
                     <CheckBox
                         android:id="@+id/checkBox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes"
                         android:layout_alignBaseline="@+id/ms"
-                        android:layout_toRightOf="@+id/ms"/>
+                        android:layout_toRightOf="@+id/ms"/>-->
+                    <RadioGroup
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/ms"
+                        android:paddingTop="20dp"
+                        android:orientation="horizontal">
+                        <RadioButton
+                            android:id="@+id/typeD"
+                            android:layout_width="80dp"
+                            android:layout_height="20dp"
+                            android:text="Daily" />
+
+                        <RadioButton
+                            android:id="@+id/typeC"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="Conversion" />
+                    </RadioGroup>
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -129,21 +148,21 @@
                     android:layout_below="@id/mslbl"
                     android:paddingTop="20dp"
                     android:text="MS Name" />
+
                 <TextView
                     android:id="@+id/msname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/msnamelbl"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/msnamelbl"
-                    android:editable="false"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="361dp"
+                    android:layout_toEndOf="@+id/msnamelbl"
                     android:maxLength="30"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#000000"
-                    android:textStyle="bold"
                     android:paddingBottom="20dp"
-                    />
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
                 <TextView
                     android:id="@+id/timelbl"
                     android:layout_width="120dp"
@@ -208,6 +227,7 @@
                     android:textSize="14dp"
                     android:layout_alignBaseline="@+id/devicelbl"
                     android:layout_toRightOf="@+id/devicelbl"
+                    android:singleLine="true"
                     />
                 <TextView
                     android:id="@+id/meslotlbl"
@@ -218,6 +238,7 @@
                     android:layout_below="@id/devicelbl"
                     android:paddingBottom="60dp"
                     />
+
                 <EditText
                     android:id="@+id/meslot"
                     android:layout_width="180dp"
@@ -227,10 +248,11 @@
                     android:paddingRight="5dp"
                     android:maxLength="30"
                     android:layout_alignBaseline="@+id/meslotlbl"
-                    android:layout_toRightOf="@+id/meslotlbl"
+                    android:layout_toEndOf="@+id/msnamelbl"
                     android:textStyle="bold"
                     android:textSize="14dp"
-                    />
+                    android:singleLine="true"
+                    android:inputType="text" />
             </RelativeLayout>
             </RelativeLayout>
             <RelativeLayout
@@ -283,6 +305,7 @@
                     android:layout_toRightOf="@+id/wafflepartlbl"
                     android:textStyle="bold"
                     android:textSize="14dp"
+                    android:singleLine="true"
                     />
                 <TextView
                     android:id="@+id/waffleorientation"

@@ -243,7 +243,7 @@ public class MachineSetup extends Fragment {
                                                             }
                                                             else{
                                                                 alert = true;
-                                                                msg = "Invalid Machine Auto Calibration!";
+                                                                msg = "Invalid Die Ejected Higher!";
                                                                 rgdieeject.requestFocusFromTouch();
                                                             }
                                                         }
@@ -468,7 +468,7 @@ public class MachineSetup extends Fragment {
 
                     Fragment newFragment = new TermOfUseTechnician();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.master_container, ((TermOfUseTechnician) newFragment).newInstance());
+                    transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
                     transaction.commit();
 
                 }
