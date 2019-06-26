@@ -140,15 +140,53 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         else{
                             String[] last = obj.jobtitle.split("\\s");
-                            if(last[last.length - 1].matches("[Oo][Pp][Ee][Rr][Aa][Tt][Oo][Rr]")==true){
-                                SetEmp(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
-                                startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
-                                finish();
+                            Integer CaseNumber = 0;
+                            for(int i = 0; i <= last.length - 1; i++ ){
+                                if(last[i].matches("[Oo][Pp][Ee][Rr][Aa][Tt][Oo][Rr]")==true){
+                                    /*if(obj.jobtitle.matches("^[Oo][Pp][Ee][Rr][Aa][Tt][Oo][Rr]")==true){*/
+                                    CaseNumber =1;
+
+                                    if(last.length > i+1){
+                                        if(last[i+1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){
+                                            CaseNumber =2;
+                                        }
+                                    }
+                                   break;
+                                }
+                                else if(last[i].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){
+                                    /*else if(last[last.length - 1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){*/
+                                    CaseNumber =2;
+                                    break;
+                                }
+                                else if(last[i].matches("[Ee][Qq][Uu][Ii][Pp][Mm][Ee][Nn][Tt]")==true) {
+                                    /*else if(last[last.length - 1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){*/
+                                    CaseNumber =3;
+                                    break;
+                                }
+                                else if(last[i].matches("[Ee][Xx][Pp][Ee][Rr][Tt]")==true) {
+                                    /*else if(last[last.length - 1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){*/
+                                    CaseNumber =3;
+                                    break;
+                                }
                             }
-                            else if(last[last.length - 1].matches("[Tt][Ee][Cc][Hh][Nn][Ii][Cc][Ii][Aa][Nn]")==true){
-                                SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
-                                startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
-                                finish();
+
+
+                            if(CaseNumber > 0){
+                                if(CaseNumber==1){
+                                    SetEmp(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
+                                    finish();
+                                }
+                                else if(CaseNumber==2){
+                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                                    finish();
+                                }
+                                else if(CaseNumber==3){
+                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
+                                    finish();
+                                }
                             }
                             else{
                                 ShowAlert("Alert!!", "Invalid User!");
