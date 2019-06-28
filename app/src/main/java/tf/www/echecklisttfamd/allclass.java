@@ -52,6 +52,11 @@ public class allclass {
         Call<TechnicianScanner.resultApi> getSTDone(@Url String url);
     }
 
+    public interface GetTMS{
+        @GET
+        Call<String> getTMSData(@Url String url);
+    }
+
  /*   public interface GetValidEmp{
         @GET
         Call<OperatorScanner.GetCert> getValid(@Url String url);

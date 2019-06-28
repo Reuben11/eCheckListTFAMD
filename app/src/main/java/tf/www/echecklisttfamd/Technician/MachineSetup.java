@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -18,8 +19,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
 import tf.www.echecklisttfamd.Operator.TermOfUseOperator;
 import tf.www.echecklisttfamd.R;
@@ -101,6 +108,7 @@ public class MachineSetup extends Fragment {
         rgdieposition = view.findViewById(R.id.dieposition);
         rgdiesticky = view.findViewById(R.id.diesticky);
         getAll();
+        GetTMS();
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
@@ -154,6 +162,46 @@ public class MachineSetup extends Fragment {
         });
         return view;
     }
+
+
+    private void GetTMS(){
+        String requestapilink = "/api/eChecklist?equipmentname=" + tvEquipment.getText().toString();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        Call<String> call = retrofit.create(allclass.GetTMS.class).getTMSData(requestapilink);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()){
+                    try{
+                     /*   String teststring = response.body();
+                    ShowAlert("Link", teststring);*/
+                        JSONObject tmsData = new JSONObject(response.body());
+                        evEscapno.setText(tmsData.getString("ec"));
+                        evEskit.setText(tmsData.getString("nh"));
+                        evEsTool.setText(tmsData.getString("es"));
+
+                    }catch(JSONException e){
+                        ShowAlert("Alert!", "No Data Found In TMS!");
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                ShowAlert("Link", "Error");
+            }
+        });
+
+
+    }
+
 
     protected void getAll(){
         SharedPreferences prefs = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
@@ -525,4 +573,6 @@ public class MachineSetup extends Fragment {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
                 .show();
     }
+
+
 }
