@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Operator.Disco_DFD_6361_Machine_Blade_Change">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".operator.Disco_DFD_6361_Machine_Blade_Change"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="vertical">
+
+            <RelativeLayout
+                android:id="@+id/informationscontainer"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/mslbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
+                    android:text="MS Emp#" />
+
+                <TextView
+                    android:id="@+id/msemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/mslbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/mslbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/msnamelbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mslbl"
+                    android:paddingTop="20dp"
+                    android:text="MS Name" />
+
+                <TextView
+                    android:id="@+id/msname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/msnamelbl"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="361dp"
+                    android:layout_toEndOf="@+id/msnamelbl"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/timelbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/msnamelbl"
+                    android:paddingTop="20dp"
+                    android:text="DateTime" />
+
+                <TextView
+                    android:id="@+id/nowdatetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/timelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/timelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="20dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/equipmentlbl"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timelbl"
+                    android:text="Equipment Name"
+                    android:paddingTop="20dp"
+                    />
+                <TextView
+                    android:id="@+id/changeequipmentname"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/equipmentlbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/equipmentlbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:paddingBottom="20dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bladepreparationcontainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/informationscontainer"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/bladepreparation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FF9352"
+                    android:elevation="2dp"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Blade Preparation"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/bladepreparation"
+                    android:layout_marginTop="0dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <TextView
+                        android:id="@+id/bladechangelbl"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:paddingRight="20dp"
+                        android:text="Blade Change"
+                        android:textSize="12dp" />
+
+                    <CheckBox
+                        android:id="@+id/z1"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/bladechangelbl"
+                        android:layout_toRightOf="@+id/bladechangelbl"
+                        android:text="Z1"
+                        android:textStyle="bold"
+                        android:textColor="#000EC5"
+                        android:textSize="12dp" />
+
+                    <CheckBox
+                        android:id="@+id/z2"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/bladechangelbl"
+                        android:layout_toRightOf="@+id/z1"
+                        android:text="Z2"
+                        android:textStyle="bold"
+                        android:textColor="#BA00C5"
+                        android:textSize="12dp" />
+
+                    <!--     <RadioGroup
+                        android:id="@+id/bladetype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/bladechangelbl"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+
+                        <RadioButton
+                            android:id="@+id/z1"
+                            android:layout_width="80dp"
+                            android:layout_height="20dp"
+                            android:text="Z1" />
+
+                        <RadioButton
+                            android:id="@+id/z2"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="Z2" />
+                    </RadioGroup>-->
+
+                    <TextView
+                        android:id="@+id/bladegrouplbl"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bladechangelbl"
+                        android:paddingTop="20dp"
+                        android:text="Blade Group"
+                        android:textSize="12dp" />
+
+                    <RadioGroup
+                        android:id="@+id/cbladegrouptype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bladechangelbl"
+                        android:layout_toRightOf="@+id/bladegrouplbl"
+                        android:orientation="horizontal"
+                        android:paddingLeft="2dp"
+                        android:paddingTop="20dp">
+
+                        <RadioButton
+                            android:id="@+id/bladegroupa"
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:text="A"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/bladegroupb"
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:text="B"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/bladegroupc"
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:text="C"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/bladegroupd"
+                            android:layout_width="40dp"
+                            android:layout_height="20dp"
+                            android:text="D"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/bladeconditionlbl"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bladegrouplbl"
+                        android:paddingTop="33dp"
+                        android:text="Used Blade Condition"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/usedbladeconditionz1lbl"
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bladegrouplbl"
+                        android:layout_toRightOf="@+id/bladeconditionlbl"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="20dp"
+                        android:text="Z1"
+                        android:textColor="#000EC5"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/z1conditiontype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bladegrouplbl"
+                        android:layout_toRightOf="@+id/usedbladeconditionz1lbl"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp"
+
+                        >
+
+                        <RadioButton
+                            android:id="@+id/z1conditiongood"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:text="Good"
+                            android:textColor="#00C523"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/z1conditionbad"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="Abnormal"
+                            android:textColor="#C50000"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/usedbladeconditionz2lbl"
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/usedbladeconditionz1lbl"
+                        android:layout_toRightOf="@+id/bladeconditionlbl"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:text="Z2"
+                        android:textSize="12dp"
+                        android:textColor="#BA00C5"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/z2conditiontype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/usedbladeconditionz1lbl"
+                        android:layout_toRightOf="@+id/usedbladeconditionz1lbl"
+                        android:orientation="horizontal"
+                        android:paddingTop="10dp">
+
+                        <RadioButton
+                            android:id="@+id/z2conditiongood"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:text="Good"
+                            android:textColor="#00C523"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/z2conditionbad"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="Abnormal"
+                            android:textColor="#C50000"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/newbladeconditionlbl"
+                        android:layout_width="135dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/usedbladeconditionz2lbl"
+                        android:paddingTop="33dp"
+                        android:text="New Blade Condition"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/newbladeconditionz1lbl"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/usedbladeconditionz2lbl"
+                        android:layout_toRightOf="@+id/newbladeconditionlbl"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="18dp"
+                        android:text="Z1"
+                        android:textColor="#000EC5"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/usedconditionz1"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/newbladeconditionz1lbl"
+                        android:layout_toRightOf="@+id/newbladeconditionz1lbl"
+                        android:text="Good"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/newbladeconditionz2lbl"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/newbladeconditionz1lbl"
+                        android:layout_toRightOf="@+id/newbladeconditionlbl"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15dp"
+                        android:text="Z2"
+                        android:textColor="#BA00C5"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <CheckBox
+                        android:id="@+id/usedconditionz2"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/newbladeconditionz2lbl"
+                        android:layout_toRightOf="@+id/newbladeconditionz2lbl"
+                        android:text="Good"
+                        android:textSize="12dp" />
+                    <!--
+                    <RadioGroup
+                        android:id="@+id/newbladeconditiontype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/recordlbl"
+                        android:layout_toRightOf="@+id/newbladeconditionlbl"
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+
+                        <RadioButton
+                            android:id="@+id/newbladeconditiongood"
+                            android:layout_width="80dp"
+                            android:layout_height="20dp"
+                            android:text="Good"
+                            android:textColor="#00C523"
+                            android:textStyle="bold"/>
+
+                        <RadioButton
+                            android:id="@+id/newbladeconditionbad"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="Abnormal"
+                            android:textColor="#C50000"
+                            android:textStyle="bold"/>
+                    </RadioGroup>-->
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="20dp">
+
+                <Button
+                    android:id="@+id/jrsubmit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Submit"
+                    android:theme="@style/MyButton"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</FrameLayout>

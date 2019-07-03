@@ -1,6 +1,7 @@
 package tf.www.echecklisttfamd.Operator;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class JobRequestAdapter extends BaseAdapter {
     }
 
     static class Viewholder{
-        TextView process, equipment, revision;
+        TextView process, area, areacolor, equipment, revision;
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
@@ -47,13 +48,28 @@ public class JobRequestAdapter extends BaseAdapter {
 */
         holder = new Viewholder();
         holder.process = convertView.findViewById(R.id.process);
+        holder.area = convertView.findViewById(R.id.area);
         holder.equipment = convertView.findViewById(R.id.equipment);
         holder.revision = convertView.findViewById(R.id.revision);
         convertView.setTag(holder);
 
         holder.process.setText(listjobrequest.get(position).getProcess());
+        holder.area.setText(listjobrequest.get(position).getArea());
         holder.equipment.setText(listjobrequest.get(position).getEquipment());
         holder.revision.setText("Revision : " + listjobrequest.get(position).getRevision());
+
+
+        if (holder.process.getText().toString().equals("Pick And Place")){
+            holder.process.setTextColor(Color.parseColor("#4D50FF"));
+        }
+
+
+        if (holder.area.getText().toString().equals("Pick And Place")){
+            holder.area.setTextColor(Color.parseColor("#C58900"));
+        }
+        else if(holder.area.getText().toString().equals("Saw")){
+            holder.area.setTextColor(Color.parseColor("#10C500"));
+        }
 
         return convertView;
 

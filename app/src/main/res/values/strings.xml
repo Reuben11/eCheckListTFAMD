@@ -7,45 +7,28 @@
     <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
 
     <string-array name="process">
-        <item>Die Prep - Pick And Place </item>
+        <item>Die Prep</item>
+        <item>Die Prep</item>
+    </string-array>
+
+    <string-array name="area">
+        <item>Pick And Place</item>
+        <item>Saw</item>
     </string-array>
 
     <string-array name="equipment">
-        <item>Device Change Setup CheckList</item>
+        <item>Device Change Setup</item>
+        <item>Disco DFD 6361 Machine Blade Change Setup</item>
     </string-array>
 
     <string-array name="revision">
         <item>G</item>
+        <item>N</item>
     </string-array>
 
-    <string-array name="jrnumber">
-        <item>21984398724-9884 </item>
-        <item>21984398724-9763 </item>
-    </string-array>
-
-    <string-array name="equipmentname">
-        <item>DB-01</item>
-        <item>DB-02</item>
-    </string-array>
-
-    <string-array name="date">
-        <item>4:20pm, 26 Feb 19</item>
-        <item>4:42pm, 26 Feb 19</item>
-    </string-array>
-
-    <string-array name="requestor">
-        <item>928137129</item>
-        <item>938432748</item>
-    </string-array>
-
-    <string-array name="area">
-        <item>Die Prep - Pick And Place </item>
-        <item>Die Prep - Pick And Place </item>
-    </string-array>
-
-    <string-array name="jobtype">
-        <item>Device Change Setup CheckList</item>
-        <item>Device Change Setup CheckList</item>
+    <string-array name="areacolor">
+        <item>#C58900</item>
+        <item>#10C500</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

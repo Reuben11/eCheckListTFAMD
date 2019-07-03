@@ -58,13 +58,31 @@ public class OperatorJobRequestList extends Fragment {
                 String name = adapterView.getItemAtPosition(position).toString();
 
                 switch (position){
-                    case 0:
+                   case 0:
+                       SetCheckListType("Device Change Setup");
+                       SetArea("1");
+                        break;
+
+                        case 1:
+                            SetCheckListType("Disco DFD 6361 Machine Blade Change");
+                            SetArea("2");
+                            break;
+                }
+
+
+                Fragment newFragment = new OperatorScanner();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.master_container, newFragment);
+                transaction.commit();
+
+                /* switch (position){
+                   case 0:
                         Fragment newFragment = new OperatorScanner();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.replace(R.id.master_container, newFragment);
                         transaction.commit();
                         break;
-                }
+                }*/
                 /*Toast.makeText(getActivity(), name, Toast.LENGTH_LONG).show();*/
 
 
@@ -81,12 +99,14 @@ public class OperatorJobRequestList extends Fragment {
         jobrequestequipmentlist newBF;
 
         String[] process = getResources().getStringArray(R.array.process);
+        String[] area = getResources().getStringArray(R.array.area);
         String[] equipment = getResources().getStringArray(R.array.equipment);
         String[] revision = getResources().getStringArray(R.array.revision);
 
         for(int i = 0; i < process.length; i++){
             newBF = new jobrequestequipmentlist();
             newBF.setProcess(process[i]);
+            newBF.setArea(area[i]);
             newBF.setEquipment(equipment[i]);
             newBF.setRevision(revision[i]);
             newBuyOffList.add(newBF);
@@ -96,4 +116,15 @@ public class OperatorJobRequestList extends Fragment {
         return newBuyOffList;
     }
 
+    protected void SetCheckListType(String option) {
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("checklist", option);
+        editor.commit();
+    }
+
+    protected void SetArea(String area) {
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("area", area);
+        editor.commit();
+    }
 }

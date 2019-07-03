@@ -195,7 +195,7 @@ public class MachineSetup extends Fragment {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                ShowAlert("Link", "Error");
+                ShowAlert("Alert!", "Can't establish Connection to TMS!");
             }
         });
 

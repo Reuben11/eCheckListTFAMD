@@ -46,7 +46,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel, tvEquipmentID;
-    private String link, type, empID, techID, techscode, jr, empscode;
+    private String link, type, empID, techID, techscode, jr, empscode, checkListType, area;
     private Boolean clearText;
     private Boolean pass = true;
     View view;
@@ -78,7 +78,6 @@ public class OperatorScanner extends Fragment {
                case "2":
                    if(eBarcode.getText().toString().equals(tvEquipmentID.getText().toString())){
                        triggerTechInfo();
-
                    }
                    else{
                        if(clearText==false){
@@ -180,8 +179,9 @@ public class OperatorScanner extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eChecklist/GetJR?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"1\"}";
+                    link = "/api/eChecklist/GetJR?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
+
 
                     Call<GetExist> call = retrofit.create(allclass.CheckJR.class).getJRCheckData(link);
                     call.enqueue(new Callback<GetExist>() {
@@ -196,22 +196,34 @@ public class OperatorScanner extends Fragment {
                                         ShowAlert("Job Pending Error Code : JRE0001", "This Equipment Still Pending For Previous Job Request!");
                                     } else {
                                         /*ValidateCert();*/
-                                        if(pass==true){
-                                            SetEquipmentName();
-                                            SetDaily(obj.daily);
+                                        SetEquipmentName();
+                                        if(checkListType.equals("Device Change Setup")){
+                                            if(pass==true){
+                                                SetDaily(obj.daily);
 
-                                            Fragment newFragment = new Device_Change_Setup_CheckList();
-                                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                                            transaction.replace(R.id.master_container, newFragment);
-                                            transaction.commit();
+                                                Fragment newFragment = new Device_Change_Setup_CheckList();
+                                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                                transaction.replace(R.id.master_container, newFragment);
+                                                transaction.commit();
+                                            }
+                                            else{
+                                                ShowAlert("Alert!", "Employee Not Certified In LMS!");
+                                            }
+                                        }
+                                        else if(checkListType.equals("Disco DFD 6361 Machine Blade Change")){
+                                                Fragment newFragment = new Disco_DFD_6361_Machine_Blade_Change();
+                                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                                transaction.replace(R.id.master_container, newFragment);
+                                                transaction.commit();
                                         }
                                         else{
-                                            ShowAlert("Alert!", "Employee Not Certified In LMS!");
+                                            ShowAlert("Alert!", "CheckList Not Available!");
                                         }
+
 
                                     }
                                 } else {
-                                    ShowAlert("Server Connection Error Code: SCE0001!", "Invalid Information!");
+                                    ShowAlert("Alert!", "Invalid Equipment For This CheckList!");
                                 }
 
                             } else {
@@ -224,7 +236,6 @@ public class OperatorScanner extends Fragment {
                             if (t instanceof IOException) {
                                 ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
                             } else {
-
                                 // todo log to some central bug tracking service
                             }
 
@@ -233,6 +244,7 @@ public class OperatorScanner extends Fragment {
 
 
     }
+
 
     public static OperatorScanner newInstance() {
         // Required empty public constructor
@@ -328,6 +340,8 @@ public class OperatorScanner extends Fragment {
         empscode = prefs.getString("scode","no data");
         techID = prefs.getString("techid","na data");
         techscode = prefs.getString("techscode", "no data");
+        checkListType = prefs.getString("checklist", "no data");
+        area  = prefs.getString("area", "no data");
     }
 
     protected void GetTypeName(){
