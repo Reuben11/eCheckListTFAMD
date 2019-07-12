@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Operator.blade_replacement_buyoff">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".operator.DiePrepPicknPlaceActivity"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".operator.DiePrepPicknPlaceActivity"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:scrollbars="vertical">
+
+
+                <TextView
+                    android:id="@+id/jrnumberlable"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Job Request ID"
+                    android:textStyle="bold"
+                    android:paddingRight="20dp"
+                    />
+                <TextView
+                    android:id="@+id/jrnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/jrnumberlable"
+                    android:layout_toRightOf="@+id/jrnumberlable"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"/>
+                />
+
+                <TextView
+                    android:id="@+id/msnamelbl"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="MS Emp#"
+                    android:layout_below="@id/jrnumberlable"
+                    android:paddingTop="15dp"
+                    />
+                <TextView
+                    android:id="@+id/msemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/msnamelbl"
+                    android:layout_toRightOf="@+id/msnamelbl"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:id="@+id/buyoffms"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="MS Name"
+                    android:layout_below="@id/msnamelbl"
+                    android:paddingTop="15dp"
+                    />
+                <TextView
+                    android:id="@+id/buyoffmsname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/buyoffms"
+                    android:layout_toRightOf="@+id/buyoffms"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/buyoffdatetime"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="DateTime"
+                    android:layout_below="@id/buyoffms"
+                    android:paddingTop="15dp"
+
+                    />
+                <TextView
+                    android:id="@+id/nowdatetime"
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/buyoffdatetime"
+                    android:layout_toRightOf="@+id/buyoffdatetime"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/equipmentnamelabel"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Equipment Name"
+                    android:layout_below="@id/buyoffdatetime"
+                    android:paddingTop="15dp"
+                    />
+                <TextView
+                    android:id="@+id/equipmentname"
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/equipmentnamelabel"
+                    android:layout_toRightOf="@+id/equipmentnamelabel"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+                <TextView
+                    android:id="@+id/technicianlabel"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Technician ID"
+                    android:layout_below="@id/equipmentnamelabel"
+                    android:paddingTop="15dp"
+                    />
+                <TextView
+                    android:id="@+id/technicianid"
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/technicianlabel"
+                    android:layout_toRightOf="@+id/technicianlabel"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/buytechnamelbl"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Technician Name"
+                    android:layout_below="@id/technicianlabel"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="20dp"
+                    />
+                <TextView
+                    android:id="@+id/techname"
+                    android:layout_span="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:editable="false"
+                    android:layout_alignBaseline="@+id/buytechnamelbl"
+                    android:layout_toRightOf="@+id/buytechnamelbl"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/buyoffcontainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+                    <TextView
+                        android:id="@+id/buyoff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FF9352"
+                        android:elevation="2dp"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Blade Change Buy Off"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/topsidelbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Topside sawing quality.  High power scope (min 100x) Freguency : 2 Lines Per channel"
+                        android:layout_below="@id/buyoff"
+                        android:paddingTop="20dp"
+                        />
+                    <RadioGroup
+                        android:id="@+id/topside"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="18dp"
+                        android:layout_below="@id/buyoff"
+                        android:layout_toRightOf="@+id/topsidelbl"
+                        android:paddingLeft="25dp"
+                        >
+
+                        <RadioButton
+                            android:id="@+id/topsidepass"
+                            android:layout_width="60dp"
+                            android:layout_height="20dp"
+                            android:text="Pass"
+                            />
+
+                        <RadioButton
+                            android:id="@+id/topsidefail"
+                            android:layout_width="60dp"
+                            android:layout_height="20dp"
+                            android:text="Fail"
+                            />
+
+                    </RadioGroup>
+
+                        />
+                </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingRight="10dp">
+
+                <Button
+                    android:id="@+id/buyoffsubmit"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="Submit"
+                    android:theme="@style/MyButton"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

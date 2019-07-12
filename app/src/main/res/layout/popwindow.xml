@@ -1,20 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5"
-    android:orientation="vertical">
+    android:scrollbars="horizontal">
 
-    <TextView
-        android:id="@+id/textView"
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TextView" />
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textView1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:scrollbars="horizontal">
+            <!--Any of your code-->
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="18dp"
+                android:text="Reference Table for Sawing Blade"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/sawtable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxHeight="400dp"
+                android:maxWidth="1600dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/sawtable"
+                android:scaleType="fitCenter"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp"/>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+   <!-- <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        >
 
-        android:text="TextView" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="100"
+            android:scrollbars="horizontal"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Referemce Table for Sawing Blade"
+                android:paddingLeft="15dp"/>
+
+
+
+            <Button
+                android:id="@+id/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="OK"/>
+        </LinearLayout>
+
+    </ScrollView>-->
+</RelativeLayout>

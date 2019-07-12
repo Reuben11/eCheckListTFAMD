@@ -54,7 +54,7 @@ public class JobAvailable extends Fragment {
     }
 
     private void GetReqJobs(){
-        String requestapilink = "/api/eChecklist/GetRequestlist?requestlist=ok";
+        String requestapilink = "/api/eCheckListTest?requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -83,6 +83,20 @@ public class JobAvailable extends Fragment {
                                 SetEquipmentName( data.get(position).getEquipment());
                                 SetDaily(data.get(position).getDaily());
                                 SetScode(data.get(position).getScode());
+                                SetArea("1");
+
+                                Fragment newFragment = new TechnicianScanner();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.master_container, newFragment);
+                                transaction.commit();
+                            }
+                            else if(data.get(position).getChecklist().equals("Blade Replacement")){
+                                SetJRName(data.get(position).getJr());
+                                SetRequestor(data.get(position).getRequestor());
+                                SetDevice(data.get(position).getDevice());
+                                SetEquipmentName( data.get(position).getEquipment());
+                                SetScode(data.get(position).getScode());
+                                SetArea("2");
 
                                 Fragment newFragment = new TechnicianScanner();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -92,9 +106,8 @@ public class JobAvailable extends Fragment {
 
 
 
-
-                                    }
-                                });
+                        }
+                    });
 
                 } else {
                     ShowAlert("Informations", "No Job Request!");
@@ -178,5 +191,11 @@ public class JobAvailable extends Fragment {
         editor.commit();
     }
 
+    protected void SetArea(String area) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("area", area);
+        editor.commit();
+    }
 
 }

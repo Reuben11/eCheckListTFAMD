@@ -41,10 +41,11 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class TechnicianScanner extends Fragment {
-    private String equipmentname, jr, msid, techScode,empScode;
+    private String equipmentname, jr, msid, techScode, empScode, area;
     private EditText eBarcode;
     private Boolean clearText;
     private TextView tvEquip;
+
 
 
     View view;
@@ -84,7 +85,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eChecklist/GetEmployeeInfo?Empcode={\"scode\":\"" + empScode + "\"}";
+        String link = "/api/eCheckListTest?Empcode={\"scode\":\"" + empScode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -128,7 +129,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eChecklist?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + techScode + "\"}";
+        String link = "/api/eCheckListTest?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + techScode + "\"}";
 
 
         Call<resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
@@ -137,10 +138,22 @@ public class TechnicianScanner extends Fragment {
             public void onResponse(Call<resultApi> call, Response<resultApi> response) {
 
                 if (response.isSuccessful()) {
-                    Fragment newFragment = new MachineSetup();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.master_container, ((MachineSetup) newFragment).newInstance());
-                    transaction.commit();
+                    if (area=="1"){
+                        Fragment newFragment = new MachineSetup();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.master_container, MachineSetup.newInstance());
+                        transaction.commit();
+                    }
+                    else if(area=="2"){
+                        Fragment newFragment = new saw_blade_replacement();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.master_container, saw_blade_replacement.newInstance());
+                        transaction.commit();
+                    }
+                    else{
+                        ShowAlert("Alert!", "Invalid Equipment For This CheckList!");
+                    }
+
 
                 } else {
                     ShowAlert("Server Error!", "No Response from Server for update!");
@@ -219,6 +232,7 @@ public class TechnicianScanner extends Fragment {
         empScode = prefs.getString("empscode", "no data");
         techScode = prefs.getString("scode","no data");
         msid = prefs.getString("requestor","no data");
+        area = prefs.getString("area","no data");
     }
 
 

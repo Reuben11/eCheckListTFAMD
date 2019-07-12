@@ -281,7 +281,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
                         .build();
 
 
-                String test = "api/eChecklist/GetCreateJR?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                String test = "api/eCheckListTest?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
                         + "\",\"clid\":\"1\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
                         +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
                         + "\"orientation\":\"" + Orientation + "\",\"scode\":\"" + Scode + "\"}";
