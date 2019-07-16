@@ -2068,7 +2068,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/productbuyoff"
                     android:paddingTop="25dp"
-                    android:text="24. Wafer backside to check any chipping/particle \n3x magnifier. \nbFrequency : 5 points/Z pattern"
+                    android:text="24. Wafer backside to check any chipping/particle \n3x magnifier. \nFrequency : 5 points/Z pattern"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
