@@ -282,9 +282,9 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
 
                 String test = "api/eCheckListTest?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
                         + "\",\"clid\":\"2\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"scode\":\"" + Scode + "\","
-                        + "\"z1\":\"" + changez1 + "\"" + ",\"z2\":\"" + changez2 + "\",\"group\":\"" + rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) + "\",\""
-                        + "usedz1\":\"" + usedz1 + "\",\"usdez2\":\"" + usedz2  + "\",\"newz1\":\"" + newz1 + "\",\"newz2\":\"" + newz2 + "\",\""
-                        + "lifez1\":\"" + newz1 + "\",\"lifez2\":\"" + newz2 + "\"}";
+                        + "\"z1\":\"" + cbz1.isChecked() + "\"" + ",\"z2\":\"" + cbz2.isChecked() + "\",\"group\":\"" + rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) + "\",\""
+                        + "usedz1\":\"" + usedz1 + "\",\"usdez2\":\"" + usedz2  + "\",\"newz1\":\"" + cbz1newblade.isChecked() + "\",\"newz2\":\"" + cbz2newblade.isChecked() + "\",\""
+                        + "lifez1\":\"" + lifez1 + "\",\"lifez2\":\"" + lifez2 + "\"}";
 
                 Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR(test);
                 call.enqueue(new Callback<Device_Change_Setup_CheckList.jR>() {

@@ -57,6 +57,11 @@ public class allclass {
         Call<String> getTMSData(@Url String url);
     }
 
+    public interface GetBlade{
+        @GET
+        Call<String> getBladeSelection(@Url String url);
+    }
+
  /*   public interface GetValidEmp{
         @GET
         Call<OperatorScanner.GetCert> getValid(@Url String url);
