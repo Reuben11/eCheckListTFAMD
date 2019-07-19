@@ -50,8 +50,8 @@ public class saw_blade_replacement extends Fragment {
     private CheckBox hairlinez1, hairlinez2, bladeexposurez1, bladeexposurez2, inspection;
     private Spinner magslot;
     private Button submit;
-    private View view;
     private Boolean z1, z2;
+    View view;
 
 
     public static saw_blade_replacement newInstance() {
@@ -160,6 +160,8 @@ public class saw_blade_replacement extends Fragment {
 
         getAll();
         GetBlade();
+
+
 
         return view;
     }
@@ -419,7 +421,7 @@ public class saw_blade_replacement extends Fragment {
                                                         if(bladedressingz2.indexOfChild(view.findViewById(bladedressingz2.getCheckedRadioButtonId())) != -1){
                                                             if(!TextUtils.isEmpty(receipez2.getText().toString())){
                                                                 if(!TextUtils.isEmpty(precutz2.getText().toString())){
-                                                                    if(hairlinez1.isChecked()){
+                                                                    if(hairlinez2.isChecked()){
                                                                         if(!TextUtils.isEmpty(bladencsz2.getText().toString())){
                                                                             if(bladeexposurez2.isChecked()){
                                                                                 if(bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId())) != -1){
@@ -506,8 +508,33 @@ public class saw_blade_replacement extends Fragment {
             blade2 = 1;
         }
 
-        if(blade1==1 && blade2==2){
-
+        if(blade1==1 && blade2==1){
+            if(inspection.isChecked()){
+                if(magslot.getSelectedItemPosition() != 0){
+                    if(!TextUtils.isEmpty(verifykerf.getText().toString())) {
+                        if(!TextUtils.isEmpty(buyoffkerf.getText().toString())) {
+                            if (waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId())) != -1) {
+                                CreateData();
+                            }else{
+                                waferbackside.requestFocusFromTouch();
+                                ShowAlert("Alert!", "Invalid Wafer Backside Check!");
+                            }
+                        }else{
+                            buyoffkerf.requestFocusFromTouch();
+                            ShowAlert("Alert!", "Invalid BuyOff Correction!");
+                        }
+                    }else {
+                        verifykerf.requestFocusFromTouch();
+                        ShowAlert("Alert!", "Invalid 1st Kerf Check!");
+                    }
+                }else{
+                    magslot.requestFocusFromTouch();
+                    ShowAlert("Alert!", "Invalid Magslot Selection!");
+                }
+            }else{
+                inspection.requestFocusFromTouch();
+                ShowAlert("Alert!", "Invalid Inspection Button Selection!");
+            }
         }
     }
 
@@ -522,56 +549,57 @@ public class saw_blade_replacement extends Fragment {
         String dateStr = df.format(c);
 
 
-        data = "api/eCheckListTest?setupinfo={\"jr\":\"" + jr
+        data = "/api/eCheckListTest?BladeChangeInfo={\"jr\":\"" + jr
                 + "\",\"techid\":\"" + tvTech.getText().toString()
                 + "\",\"time\":\"" + dateStr
                 + "\",\"scode\":\"" + scode
-                + "\",\"hubmountz1\":" + hubmountz1.indexOfChild(view.findViewById(hubmountz1.getCheckedRadioButtonId()))
-                + "\",\"hubmountz2\":" + hubmountz2.indexOfChild(view.findViewById(hubmountz2.getCheckedRadioButtonId()))
-                + "\",\"coolerz1\":" + coolerbarz1.indexOfChild(view.findViewById(coolerbarz1.getCheckedRadioButtonId()))
-                + "\",\"coolerz2\":" + coolerbarz2.indexOfChild(view.findViewById(coolerbarz2.getCheckedRadioButtonId()))
-                + "\",\"verifybladez1\":" + verifybladez1.indexOfChild(view.findViewById(verifybladez1.getCheckedRadioButtonId()))
-                + "\",\"verifybladez2\":" + verifybladez2.indexOfChild(view.findViewById(verifybladez2.getCheckedRadioButtonId()))
-                + "\",\"bladetypez1\":" + bladetypez1.indexOfChild(view.findViewById(verifybladez1.getCheckedRadioButtonId()))
-                + "\",\"bladetypez2\":" + bladetypez2.indexOfChild(view.findViewById(bladetypez2.getCheckedRadioButtonId()))
-                + "\",\"bladelifez1\":" + bladelifelinez1.getText().toString()
-                + "\",\"bladelifez2\":" + bladelifelinez2.getText().toString()
-                + "\",\"bbdopenz1\":" + bbdopenz1.getText().toString()
-                + "\",\"bbdopenz2\":" + bbdopenz2.getText().toString()
-                + "\",\"bbdclosez1\":" + bbdclosez1.getText().toString()
-                + "\",\"bbdclosez2\":" + bbdclosez2.getText().toString()
-                + "\",\"ncsvaluez1\":" + ncsvaluez1.getText().toString()
-                + "\",\"ncsvaluez2\":" + ncsvaluez2.getText().toString()
-                + "\",\"ncsprismz1\":" + ncsprismz1.indexOfChild(view.findViewById(ncsprismz1.getCheckedRadioButtonId()))
-                + "\",\"ncsprismz2\":" + ncsprismz2.indexOfChild(view.findViewById(ncsprismz2.getCheckedRadioButtonId()))
-                + "\",\"bladesetupz1\":" + bladesetupz1.indexOfChild(view.findViewById(bladesetupz1.getCheckedRadioButtonId()))
-                + "\",\"bladesetupz2\":" + bladesetupz2.indexOfChild(view.findViewById(bladesetupz2.getCheckedRadioButtonId()))
-                + "\",\"ncsexpoz1\":" + ncsexpoz1.getText().toString()
-                + "\",\"ncsexpoz2\":" + ncsexpoz2.getText().toString()
-                + "\",\"bladedressingz1\":" + bladedressingz1.indexOfChild(view.findViewById(bladedressingz1.getCheckedRadioButtonId()))
-                + "\",\"bladedressingz2\":" + bladedressingz2.indexOfChild(view.findViewById(bladedressingz2.getCheckedRadioButtonId()))
-                + "\",\"receipez1\":" + receipez1.getText().toString()
-                + "\",\"receipez2\":" + receipez2.getText().toString()
-                + "\",\"precutz1\":" + precutz1.getText().toString()
-                + "\",\"precutz2\":" + precutz2.getText().toString()
-                + "\",\"hairlinez1\":" + hairlinez1.isChecked()
-                + "\",\"hairlinez2\":" + hairlinez2.isChecked()
-                + "\",\"bladencsz1\":" + bladencsz1.getText().toString()
-                + "\",\"bladencsz2\":" + bladencsz2.getText().toString()
-                + "\",\"bladeexposurez1\":" + bladeexposurez1.isChecked()
-                + "\",\"bladeexposurez2\":" + bladeexposurez2.isChecked()
-                + "\",\"bladebbdsetupz1\":" + bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId()))
-                + "\",\"bladebbdsetupz2\":" + bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId()))
-                + "\",\"tapez1\":" + tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId()))
-                + "\",\"tapez2\":" + tapez2.indexOfChild(view.findViewById(tapez2.getCheckedRadioButtonId()))
-                + "\",\"inspection\":" + inspection.isChecked()
-                + "\",\"magslot\":" + magslot.getSelectedItem().toString()
-                + "\",\"verifykerf\":" + verifykerf.getText().toString()
-                + "\",\"buyoffkerf\":" + buyoffkerf.getText().toString()
-                + "\",\"waferbackside\":" + waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId()))
+                + "\",\"hubmountz1\":\"" + hubmountz1.indexOfChild(view.findViewById(hubmountz1.getCheckedRadioButtonId()))
+                + "\",\"hubmountz2\":\"" + hubmountz2.indexOfChild(view.findViewById(hubmountz2.getCheckedRadioButtonId()))
+                + "\",\"coolerz1\":\"" + coolerbarz1.indexOfChild(view.findViewById(coolerbarz1.getCheckedRadioButtonId()))
+                + "\",\"coolerz2\":\"" + coolerbarz2.indexOfChild(view.findViewById(coolerbarz2.getCheckedRadioButtonId()))
+                + "\",\"verifybladez1\":\"" + verifybladez1.indexOfChild(view.findViewById(verifybladez1.getCheckedRadioButtonId()))
+                + "\",\"verifybladez2\":\"" + verifybladez2.indexOfChild(view.findViewById(verifybladez2.getCheckedRadioButtonId()))
+                + "\",\"bladetypez1\":\"" + bladetypez1.indexOfChild(view.findViewById(verifybladez1.getCheckedRadioButtonId()))
+                + "\",\"bladetypez2\":\"" + bladetypez2.indexOfChild(view.findViewById(bladetypez2.getCheckedRadioButtonId()))
+                + "\",\"bladelifez1\":\"" + bladelifelinez1.getText().toString()
+                + "\",\"bladelifez2\":\"" + bladelifelinez2.getText().toString()
+                + "\",\"bbdopenz1\":\"" + bbdopenz1.getText().toString()
+                + "\",\"bbdopenz2\":\"" + bbdopenz2.getText().toString()
+                + "\",\"bbdclosez1\":\"" + bbdclosez1.getText().toString()
+                + "\",\"bbdclosez2\":\"" + bbdclosez2.getText().toString()
+                + "\",\"ncsvaluez1\":\"" + ncsvaluez1.getText().toString()
+                + "\",\"ncsvaluez2\":\"" + ncsvaluez2.getText().toString()
+                + "\",\"ncsprismz1\":\"" + ncsprismz1.indexOfChild(view.findViewById(ncsprismz1.getCheckedRadioButtonId()))
+                + "\",\"ncsprismz2\":\"" + ncsprismz2.indexOfChild(view.findViewById(ncsprismz2.getCheckedRadioButtonId()))
+                + "\",\"bladesetupz1\":\"" + bladesetupz1.indexOfChild(view.findViewById(bladesetupz1.getCheckedRadioButtonId()))
+                + "\",\"bladesetupz2\":\"" + bladesetupz2.indexOfChild(view.findViewById(bladesetupz2.getCheckedRadioButtonId()))
+                + "\",\"ncsexpoz1\":\"" + ncsexpoz1.getText().toString()
+                + "\",\"ncsexpoz2\":\"" + ncsexpoz2.getText().toString()
+                + "\",\"bladedressingz1\":\"" + bladedressingz1.indexOfChild(view.findViewById(bladedressingz1.getCheckedRadioButtonId()))
+                + "\",\"bladedressingz2\":\"" + bladedressingz2.indexOfChild(view.findViewById(bladedressingz2.getCheckedRadioButtonId()))
+                + "\",\"receipez1\":\"" + receipez1.getText().toString()
+                + "\",\"receipez2\":\"" + receipez2.getText().toString()
+                + "\",\"precutz1\":\"" + precutz1.getText().toString()
+                + "\",\"precutz2\":\"" + precutz2.getText().toString()
+                + "\",\"hairlinez1\":\"" + hairlinez1.isChecked()
+                + "\",\"hairlinez2\":\"" + hairlinez2.isChecked()
+                + "\",\"bladencsz1\":\"" + bladencsz1.getText().toString()
+                + "\",\"bladencsz2\":\"" + bladencsz2.getText().toString()
+                + "\",\"bladeexposurez1\":\"" + bladeexposurez1.isChecked()
+                + "\",\"bladeexposurez2\":\"" + bladeexposurez2.isChecked()
+                + "\",\"bladebbdsetupz1\":\"" + bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId()))
+                + "\",\"bladebbdsetupz2\":\"" + bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId()))
+                + "\",\"tapez1\":\"" + tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId()))
+                + "\",\"tapez2\":\"" + tapez2.indexOfChild(view.findViewById(tapez2.getCheckedRadioButtonId()))
+                + "\",\"inspection\":\"" + inspection.isChecked()
+                + "\",\"magslot\":\"" + magslot.getSelectedItem().toString()
+                + "\",\"verifykerf\":\"" + verifykerf.getText().toString()
+                + "\",\"buyoffkerf\":\"" + buyoffkerf.getText().toString()
+                + "\",\"waferbackside\":\"" + waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId()))
                 + "\"}";
 
 
+        ShowAlert("Test", data);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())

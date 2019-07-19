@@ -34,6 +34,7 @@
     <string name="magslot">Choose Magslot</string>
 
     <string-array name="magslot_arrays">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
