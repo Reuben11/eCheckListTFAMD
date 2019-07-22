@@ -32,12 +32,12 @@
             android:theme="@style/AppThemeActionBarLogin" />
         <activity
             android:name=".Operator.OperatorActivity"
-            android:label="(Demo) Operator eCheckList"
+            android:label="Operator eCheckList"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBarOperator" />
         <activity
             android:name=".Technician.TechnicianActivity"
-            android:label="(Demo) Technician eCheckList"
+            android:label="Technician eCheckList"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBarTechnician" />
     </application>

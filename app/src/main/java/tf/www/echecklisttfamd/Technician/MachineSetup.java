@@ -53,6 +53,7 @@ public class MachineSetup extends Fragment {
     private int option,rubberoption;
     private Button btnSubmit;
     private RadioGroup rgdiesticky, rgdieposition, rgdiepickup, rgdieeject, rgmacautocal, rgRubberApollo, rgRubberUnicorn, rgCalEs, rgNeedleType,rgNeedlePosition, rgEjectorMark,rgNeedleType6101,rgNeedlePosition6101, rgEjectorMark6101, rgEjectorMarkCenter, rgmachineblowerheater, machineblowersolenid;
+    private RelativeLayout dailylayout, unicorn510461045112B, unicorn6101, unicorn,apollo, machinesetup, machinesetup2, dieejection;
     View view;
 
     public static MachineSetup newInstance() {
@@ -67,11 +68,14 @@ public class MachineSetup extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_machine_setup, container, false);
-        RelativeLayout dailylayout = view.findViewById(R.id.dailychecklist);
-        RelativeLayout unicorn510461045112B = view.findViewById(R.id.unicorn510461045112B);
-        RelativeLayout unicorn6101 = view.findViewById(R.id.unicorn6101);
-        RelativeLayout unicorn = view.findViewById(R.id.unicornrubbertip);
-        RelativeLayout apollo = view.findViewById(R.id.apollorubbertip);
+        machinesetup = view.findViewById(R.id.machinesetuplayout);
+        machinesetup2 = view.findViewById(R.id.machinesetuppart2);
+        dieejection = view.findViewById(R.id.dieejectionlayout);
+        dailylayout = view.findViewById(R.id.dailychecklist);
+        unicorn510461045112B = view.findViewById(R.id.unicorn510461045112B);
+        unicorn6101 = view.findViewById(R.id.unicorn6101);
+        unicorn = view.findViewById(R.id.unicornrubbertip);
+        apollo = view.findViewById(R.id.apollorubbertip);
         tvEquipment = view.findViewById(R.id.equipmentname);
         tvJR = view.findViewById(R.id.jrnumber);
         tvDatetime = view.findViewById(R.id.nowdatetime);
@@ -116,40 +120,49 @@ public class MachineSetup extends Fragment {
         tvDatetime.setText(dateStr);
 
         if(daily.equals("True")){
-            tvDaily.setText("DAILY");
+            tvDaily.setText("Daily Check D");
+            machinesetup.setVisibility(View.GONE);
+            machinesetup2.setVisibility(View.GONE);
+            unicorn510461045112B.setVisibility(View.GONE);
+            unicorn6101.setVisibility(View.GONE);
+            unicorn6101.setVisibility(View.GONE);
+            apollo.setVisibility(View.GONE);
+            dieejection.setVisibility(View.GONE);
             dailylayout.setVisibility(View.VISIBLE);
         }
         else{
-            tvDaily.setText("NORMAL");
+            tvDaily.setText("Conversion, C");
             dailylayout.setVisibility(View.GONE);
-        }
 
-        if(device.equals("5104")| device.equals("6104") | device.equals("5112B") ){
-            unicorn510461045112B.setVisibility(View.VISIBLE);
-            UnicornDevice = true;
-            option =1;
-        }
-        else{
-            if(device.equals("6101") ){
-                unicorn6101.setVisibility(View.VISIBLE);
+            if(device.equals("5104")| device.equals("6104") | device.equals("5112B") ){
+                unicorn510461045112B.setVisibility(View.VISIBLE);
                 UnicornDevice = true;
-                option=2;
+                option =1;
             }
             else{
-                UnicornDevice = false;
-                option=0;
+                if(device.equals("6101") ){
+                    unicorn6101.setVisibility(View.VISIBLE);
+                    UnicornDevice = true;
+                    option=2;
+                }
+                else{
+                    UnicornDevice = false;
+                    option=0;
+                }
+
             }
 
+            if(UnicornDevice==true){
+                unicorn.setVisibility(View.VISIBLE);
+                rubberoption=1;
+            }
+            else{
+                apollo.setVisibility(View.VISIBLE);
+                rubberoption=0;
+            }
         }
 
-        if(UnicornDevice==true){
-            unicorn.setVisibility(View.VISIBLE);
-            rubberoption=1;
-        }
-        else{
-            apollo.setVisibility(View.VISIBLE);
-            rubberoption=0;
-        }
+
 
         btnSubmit = view.findViewById(R.id.setupsubmit);
         btnSubmit.setOnClickListener(new View.OnClickListener(){
@@ -237,227 +250,199 @@ public class MachineSetup extends Fragment {
         Boolean alert = false;
         String msg = null;
 
-        if(rubberoption==0){
-            if(rgRubberApollo.getCheckedRadioButtonId() == -1){
-                rubber = true;
-                alert = true;
-                msg = "Invalid Rubber Tip Size!";
-            }
-        }
-        else{
-            if(rgRubberUnicorn.getCheckedRadioButtonId() == -1){
-                rubber = true;
-                alert = true;
-                msg = "Invalid Rubber Tip Size!";
-            }
-        }
-
-        if(alert==false){
-            if(!TextUtils.isEmpty(evEsconfig.getText().toString())){
-                if(!TextUtils.isEmpty(evNoofpins.getText().toString())){
-                    if(!TextUtils.isEmpty(evEscapno.getText().toString())){
-                        if(!TextUtils.isEmpty(evEskit.getText().toString())){
-                            if(!TextUtils.isEmpty(evEsTool.getText().toString())){
-                                if(!TextUtils.isEmpty(evCheckTool.getText().toString())){
-                                    if(!TextUtils.isEmpty(evCheckEs.getText().toString())){
-                                        if(!TextUtils.isEmpty(evNeedle.getText().toString())){
-                                            if(!TextUtils.isEmpty(evPP.getText().toString())){
-                                                if(!TextUtils.isEmpty(evCal.getText().toString())){
-                                                    if(rgCalEs.indexOfChild(view.findViewById(rgCalEs.getCheckedRadioButtonId())) == 0){
-                                                        if(rgmacautocal.indexOfChild(view.findViewById(rgmacautocal.getCheckedRadioButtonId())) == 0){
-                                                            if(rgdieeject.indexOfChild(view.findViewById(rgdieeject.getCheckedRadioButtonId())) == 0){
-                                                                if(rgdiepickup.indexOfChild(view.findViewById(rgdiepickup.getCheckedRadioButtonId())) == 0){
-                                                                    if(rgdieposition.indexOfChild(view.findViewById(rgdieposition.getCheckedRadioButtonId())) == 0){
-                                                                        if(rgdiesticky.indexOfChild(view.findViewById(rgdiesticky.getCheckedRadioButtonId()))  == 0){
-
-                                                                        }
-                                                                        else{
-                                                                            alert = true;
-                                                                            msg = "Invalid Die Sticking On Rubber!";
-                                                                            rgdiesticky.requestFocusFromTouch();
-                                                                        }
-                                                                    }
-                                                                    else{
-                                                                        alert = true;
-                                                                        msg = "Invalid Die Position!";
-                                                                        rgdieposition.requestFocusFromTouch();
-                                                                    }
-                                                                }
-                                                                else{
-                                                                    alert = true;
-                                                                    msg = "Invalid Die Pick Up!";
-                                                                    rgdiepickup.requestFocusFromTouch();
-                                                                }
-                                                            }
-                                                            else{
-                                                                alert = true;
-                                                                msg = "Invalid Die Ejected Higher!";
-                                                                rgdieeject.requestFocusFromTouch();
-                                                            }
-                                                        }
-                                                        else{
-                                                            alert = true;
-                                                            msg = "Invalid Machine Auto Calibration!";
-                                                            rgmacautocal.requestFocusFromTouch();
-                                                        }
-                                                    }
-                                                    else{
-                                                        alert = true;
-                                                        msg = "Invalid Calibration Es Tool!";
-                                                        rgCalEs.requestFocusFromTouch();
-                                                    }
-                                                }
-                                                else{
-                                                    alert = true;
-                                                    msg = "Invalid Es Tool Height, XY and needle position!";
-                                                    evCal.requestFocusFromTouch();
-                                                }
-                                            }
-                                            else{
-                                                alert = true;
-                                                msg = "Invalid PP Tool Centering!";
-                                                evPP.requestFocusFromTouch();
-                                            }
-                                        }
-                                        else{
-                                            alert = true;
-                                            msg = "Invalid Needle Leveling!";
-                                            evNeedle.requestFocusFromTouch();
-                                        }
-                                    }
-                                    else{
-                                        alert = true;
-                                        msg = "Invalid Es Tool Configuration!";
-                                        evCheckEs.requestFocusFromTouch();
-                                    }
-                                }
-                                else{
-                                    alert = true;
-                                    msg = "Invalid Check ES tool!";
-                                    evCheckTool.requestFocusFromTouch();
-                                }
-                            }
-                            else{
-                                alert = true;
-                                msg = "Invalid Es Tool#!";
-                                evEsTool.requestFocusFromTouch();
-                            }
-                        }
-                        else{
-                            alert = true;
-                            msg = "Invalid Es Kit#!";
-                            evEskit.requestFocusFromTouch();
-                        }
-                    }
-                    else{
-                        alert = true;
-                        msg = "Invalid Es Cap#!";
-                        evEscapno.requestFocusFromTouch();
-                    }
-                }
-                else{
+        if(daily.equals("False")) {
+            if (rubberoption == 0) {
+                if (rgRubberApollo.getCheckedRadioButtonId() == -1) {
+                    rubber = true;
                     alert = true;
-                    msg = "Invalid Number of Pins!";
-                    evNoofpins.requestFocusFromTouch();
+                    msg = "Invalid Rubber Tip Size!";
+                }
+            } else {
+                if (rgRubberUnicorn.getCheckedRadioButtonId() == -1) {
+                    rubber = true;
+                    alert = true;
+                    msg = "Invalid Rubber Tip Size!";
                 }
             }
-            else{
-                alert = true;
-                msg = "Invalid Es Tool Configuration!";
-                evEsconfig.requestFocusFromTouch();
-            }
-        }
 
-        if(alert==false){
-            if(UnicornDevice==true){
-                if(option==1){
-                    if(rgNeedleType.indexOfChild(view.findViewById(rgNeedleType.getCheckedRadioButtonId()))  == 0){
-                        if(rgNeedlePosition.indexOfChild(view.findViewById(rgNeedlePosition.getCheckedRadioButtonId()))  == 0){
-                            if(rgEjectorMark.indexOfChild(view.findViewById(rgEjectorMark.getCheckedRadioButtonId()))  == 0){
+            if (alert == false) {
+                if (!TextUtils.isEmpty(evEsconfig.getText().toString())) {
+                    if (!TextUtils.isEmpty(evNoofpins.getText().toString())) {
+                        if (!TextUtils.isEmpty(evEscapno.getText().toString())) {
+                            if (!TextUtils.isEmpty(evEskit.getText().toString())) {
+                                if (!TextUtils.isEmpty(evEsTool.getText().toString())) {
+                                    if (!TextUtils.isEmpty(evCheckTool.getText().toString())) {
+                                        if (!TextUtils.isEmpty(evCheckEs.getText().toString())) {
+                                            if (!TextUtils.isEmpty(evNeedle.getText().toString())) {
+                                                if (!TextUtils.isEmpty(evPP.getText().toString())) {
+                                                    if (!TextUtils.isEmpty(evCal.getText().toString())) {
+                                                        if (rgCalEs.indexOfChild(view.findViewById(rgCalEs.getCheckedRadioButtonId())) == 0) {
+                                                            if (rgmacautocal.indexOfChild(view.findViewById(rgmacautocal.getCheckedRadioButtonId())) == 0) {
+                                                                if (rgdieeject.indexOfChild(view.findViewById(rgdieeject.getCheckedRadioButtonId())) == 0) {
+                                                                    if (rgdiepickup.indexOfChild(view.findViewById(rgdiepickup.getCheckedRadioButtonId())) == 0) {
+                                                                        if (rgdieposition.indexOfChild(view.findViewById(rgdieposition.getCheckedRadioButtonId())) == 0) {
+                                                                            if (rgdiesticky.indexOfChild(view.findViewById(rgdiesticky.getCheckedRadioButtonId())) != -1) {
 
-                            }
-                            else{
+                                                                            } else {
+                                                                                alert = true;
+                                                                                msg = "Invalid Die Sticking On Rubber!";
+                                                                                rgdiesticky.requestFocusFromTouch();
+                                                                            }
+                                                                        } else {
+                                                                            alert = true;
+                                                                            msg = "Invalid Die Position!";
+                                                                            rgdieposition.requestFocusFromTouch();
+                                                                        }
+                                                                    } else {
+                                                                        alert = true;
+                                                                        msg = "Invalid Die Pick Up!";
+                                                                        rgdiepickup.requestFocusFromTouch();
+                                                                    }
+                                                                } else {
+                                                                    alert = true;
+                                                                    msg = "Invalid Die Ejected Higher!";
+                                                                    rgdieeject.requestFocusFromTouch();
+                                                                }
+                                                            } else {
+                                                                alert = true;
+                                                                msg = "Invalid Machine Auto Calibration!";
+                                                                rgmacautocal.requestFocusFromTouch();
+                                                            }
+                                                        } else {
+                                                            alert = true;
+                                                            msg = "Invalid Calibration Es Tool!";
+                                                            rgCalEs.requestFocusFromTouch();
+                                                        }
+                                                    } else {
+                                                        alert = true;
+                                                        msg = "Invalid Es Tool Height, XY and needle position!";
+                                                        evCal.requestFocusFromTouch();
+                                                    }
+                                                } else {
+                                                    alert = true;
+                                                    msg = "Invalid PP Tool Centering!";
+                                                    evPP.requestFocusFromTouch();
+                                                }
+                                            } else {
+                                                alert = true;
+                                                msg = "Invalid Needle Leveling!";
+                                                evNeedle.requestFocusFromTouch();
+                                            }
+                                        } else {
+                                            alert = true;
+                                            msg = "Invalid Es Tool Configuration!";
+                                            evCheckEs.requestFocusFromTouch();
+                                        }
+                                    } else {
+                                        alert = true;
+                                        msg = "Invalid Check ES tool!";
+                                        evCheckTool.requestFocusFromTouch();
+                                    }
+                                } else {
+                                    alert = true;
+                                    msg = "Invalid Es Tool#!";
+                                    evEsTool.requestFocusFromTouch();
+                                }
+                            } else {
                                 alert = true;
-                                msg = "Invalid Ejector Mark!";
-                                rgEjectorMark.requestFocusFromTouch();
+                                msg = "Invalid Es Kit#!";
+                                evEskit.requestFocusFromTouch();
                             }
-                        }
-                        else {
-                            alert = true;
-                            msg = "Invalid Needle Position!";
-                            rgNeedlePosition.requestFocusFromTouch();
-                        }
-                    }
-                    else{
-                        alert = true;
-                        msg = "Invalid Needle Type1!";
-                        rgNeedleType.requestFocusFromTouch();
-                    }
-                }
-                else{
-                    if(rgNeedleType6101.indexOfChild(view.findViewById(rgNeedleType6101.getCheckedRadioButtonId()))  == 0){
-                        if(rgNeedlePosition6101.indexOfChild(view.findViewById(rgNeedlePosition6101.getCheckedRadioButtonId()))  == 0){
-                            if(rgEjectorMark6101.indexOfChild(view.findViewById(rgEjectorMark6101.getCheckedRadioButtonId()))  == 0){
-
-                            }
-                            else{
-                                alert = true;
-                                msg = "Invalid Needle Position!";
-                                rgEjectorMark6101.requestFocusFromTouch();
-                            }
-                        }
-                        else{
-                            alert = true;
-                            msg = "Invalid Needle Position!";
-                            rgNeedlePosition6101.requestFocusFromTouch();
-                        }
-                    }
-                    else{
-                        alert = true;
-                        msg = "Invalid Needle Type!";
-                        rgNeedleType6101.requestFocusFromTouch();
-                    }
-                }
-            }
-        }
-
-        if(alert==false) {
-            if (daily.equals("True")) {
-                if (rgEjectorMarkCenter.indexOfChild(view.findViewById(rgEjectorMarkCenter.getCheckedRadioButtonId())) == 0) {
-                    if (rgmachineblowerheater.indexOfChild(view.findViewById(rgmachineblowerheater.getCheckedRadioButtonId())) == 0) {
-                        if (machineblowersolenid.indexOfChild(view.findViewById(machineblowersolenid.getCheckedRadioButtonId())) == 0) {
-
                         } else {
                             alert = true;
-                            msg = "Invalid Machine Blower Solenind!";
-                            machineblowersolenid.requestFocusFromTouch();
+                            msg = "Invalid Es Cap#!";
+                            evEscapno.requestFocusFromTouch();
                         }
                     } else {
                         alert = true;
-                        msg = "Invalid Machine Blower Heater!";
-                        rgmachineblowerheater.requestFocusFromTouch();
+                        msg = "Invalid Number of Pins!";
+                        evNoofpins.requestFocusFromTouch();
                     }
                 } else {
                     alert = true;
-                    msg = "Invalid Ejector Mark Center!";
-                    rgEjectorMarkCenter.requestFocusFromTouch();
+                    msg = "Invalid Es Tool Configuration!";
+                    evEsconfig.requestFocusFromTouch();
                 }
             }
-        }
 
-        if(alert==true){
-            ShowAlert("Alert!", msg);
+            if (alert == false) {
+                if (UnicornDevice == true) {
+                    if (option == 1) {
+                        if (rgNeedleType.indexOfChild(view.findViewById(rgNeedleType.getCheckedRadioButtonId())) == 0) {
+                            if (rgNeedlePosition.indexOfChild(view.findViewById(rgNeedlePosition.getCheckedRadioButtonId())) == 0) {
+                                if (rgEjectorMark.indexOfChild(view.findViewById(rgEjectorMark.getCheckedRadioButtonId())) == 0) {
 
-            if(rubber==true){
-                if(rubberoption==0){
-                    rgRubberApollo.requestFocusFromTouch();
-                }
-                else{
-                    rgRubberUnicorn.requestFocusFromTouch();
+                                } else {
+                                    alert = true;
+                                    msg = "Invalid Ejector Mark!";
+                                    rgEjectorMark.requestFocusFromTouch();
+                                }
+                            } else {
+                                alert = true;
+                                msg = "Invalid Needle Position!";
+                                rgNeedlePosition.requestFocusFromTouch();
+                            }
+                        } else {
+                            alert = true;
+                            msg = "Invalid Needle Type1!";
+                            rgNeedleType.requestFocusFromTouch();
+                        }
+                    } else {
+                        if (rgNeedleType6101.indexOfChild(view.findViewById(rgNeedleType6101.getCheckedRadioButtonId())) == 0) {
+                            if (rgNeedlePosition6101.indexOfChild(view.findViewById(rgNeedlePosition6101.getCheckedRadioButtonId())) == 0) {
+                                if (rgEjectorMark6101.indexOfChild(view.findViewById(rgEjectorMark6101.getCheckedRadioButtonId())) == 0) {
+
+                                } else {
+                                    alert = true;
+                                    msg = "Invalid Needle Position!";
+                                    rgEjectorMark6101.requestFocusFromTouch();
+                                }
+                            } else {
+                                alert = true;
+                                msg = "Invalid Needle Position!";
+                                rgNeedlePosition6101.requestFocusFromTouch();
+                            }
+                        } else {
+                            alert = true;
+                            msg = "Invalid Needle Type!";
+                            rgNeedleType6101.requestFocusFromTouch();
+                        }
+                    }
                 }
             }
-        }
 
+            if (alert == true) {
+                ShowAlert("Alert!", msg);
+
+                if (rubber == true) {
+                    if (rubberoption == 0) {
+                        rgRubberApollo.requestFocusFromTouch();
+                    } else {
+                        rgRubberUnicorn.requestFocusFromTouch();
+                    }
+                }
+            }
+        }else{
+            if (rgEjectorMarkCenter.indexOfChild(view.findViewById(rgEjectorMarkCenter.getCheckedRadioButtonId())) == 0) {
+                if (rgmachineblowerheater.indexOfChild(view.findViewById(rgmachineblowerheater.getCheckedRadioButtonId())) == 0) {
+                    if (machineblowersolenid.indexOfChild(view.findViewById(machineblowersolenid.getCheckedRadioButtonId())) == 0) {
+
+                    } else {
+                        alert = true;
+                        msg = "Invalid Machine Blower Solenind!";
+                        machineblowersolenid.requestFocusFromTouch();
+                    }
+                } else {
+                    alert = true;
+                    msg = "Invalid Machine Blower Heater!";
+                    rgmachineblowerheater.requestFocusFromTouch();
+                }
+            } else {
+                alert = true;
+                msg = "Invalid Ejector Mark Center!";
+                rgEjectorMarkCenter.requestFocusFromTouch();
+            }
+        }
         return  alert;
     }
 
@@ -496,7 +481,8 @@ public class MachineSetup extends Fragment {
                 + evCheckEs.getText().toString() + "\",\"needle\":\""
                 + evNeedle.getText().toString() + "\",\"pp\":\""
                 + evPP.getText().toString() + "\",\"cal\":\""
-                + evCal.getText().toString() + "\",\"scode\":\""
+                + evCal.getText().toString() + "\",\"sticky\":\""
+                + rgdiesticky.indexOfChild(view.findViewById(rgdiesticky.getCheckedRadioButtonId())) + "\",\"scode\":\""
                 + scode + "\"}";
 
 

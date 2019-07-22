@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">eCheckList (Demo)</string>
+    <string name="app_name">eCheckList</string>
     <string name="title_activity_login">Sign in</string>
 
 
@@ -8,27 +8,27 @@
 
     <string-array name="process">
         <item>Die Prep</item>
-        <item>Die Prep</item>
+       <!-- <item>Die Prep</item>-->
     </string-array>
 
     <string-array name="area">
         <item>Pick And Place</item>
-        <item>Saw</item>
+       <!-- <item>Saw</item>-->
     </string-array>
 
     <string-array name="equipment">
         <item>Device Change Setup</item>
-        <item>Blade Replacement</item>
+       <!-- <item>Blade Replacement</item>-->
     </string-array>
 
     <string-array name="revision">
         <item>G</item>
-        <item>O</item>
+      <!--  <item>O</item>-->
     </string-array>
 
     <string-array name="areacolor">
         <item>#C58900</item>
-        <item>#10C500</item>
+<!--        <item>#10C500</item>-->
     </string-array>
 
     <string name="magslot">Choose Magslot</string>

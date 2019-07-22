@@ -338,6 +338,7 @@
                 </RadioGroup>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/machinesetuppart2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -625,10 +626,10 @@
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/buyoff"
-                    android:paddingTop="20dp"
+                    android:paddingTop="35dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="0dp"
-                    android:text="1. Calibrate ES tool height, XY position and needle zero position" />
+                    android:text="1. Ejector mark center?" />
                 <RadioGroup
                     android:id="@+id/cales"
                     android:layout_width="wrap_content"
@@ -655,7 +656,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ejectorlbl"
-                    android:paddingTop="0dp"
+                    android:paddingTop="10dp"
                     android:text="@string/ejectornote"
                     android:textColor="#00A508" />
                 <TextView
@@ -745,13 +746,13 @@
                         android:id="@+id/pickupdieyes"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Pass" />
+                        android:text="Yes" />
 
                     <RadioButton
                         android:id="@+id/pickupdieno"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Failed" />
+                        android:text="No" />
                 </RadioGroup>
                 <TextView
                     android:id="@+id/diepositionlbl"
@@ -774,13 +775,13 @@
                         android:id="@+id/diepositionyes"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Pass" />
+                        android:text="Yes" />
 
                     <RadioButton
                         android:id="@+id/diepositionno"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Failed" />
+                        android:text="No" />
                 </RadioGroup>
                 <TextView
                     android:id="@+id/diestickylbl"
@@ -804,13 +805,13 @@
                         android:id="@+id/diestickyyes"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Pass" />
+                        android:text="Yes" />
 
                     <RadioButton
                         android:id="@+id/diestickyno"
                         android:layout_width="80dp"
                         android:layout_height="20dp"
-                        android:text="Failed" />
+                        android:text="No" />
                 </RadioGroup>
             </RelativeLayout>
             <RelativeLayout
