@@ -84,12 +84,21 @@ public class OperatorBuyOffList extends Fragment {
                             SetEquipmentName(data.get(position).getEquipment());
                             SetTimeName(data.get(position).getTime());
                             SetTechScode(data.get(position).getScode());
+                            SetChecklist(data.get(position).getChecklist());
 
 
-                            Fragment newFragment = new OperatorScanner();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.master_container, newFragment);
-                            transaction.commit();
+
+                            if(data.get(position).getChecklist().equals("Device Change Setup Checklist")) {
+                                Fragment newFragment = new OperatorScanner();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.master_container, newFragment);
+                                transaction.commit();
+                            }else if(data.get(position).getChecklist().equals("Blade Replacement")){
+                                Fragment newFragment = new OperatorScanner();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.master_container, newFragment);
+                                transaction.commit();
+                            }
                         }
                     });
 
@@ -159,6 +168,12 @@ public class OperatorBuyOffList extends Fragment {
         /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putString("equipmentname", name);
+        editor.commit();
+    }
+
+    protected void SetChecklist(String name) {
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
+        editor.putString("checklistname", name);
         editor.commit();
     }
 

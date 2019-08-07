@@ -46,7 +46,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorScanner extends Fragment {
     private EditText eBarcode;
     private TextView tvBarcodeLabel, tvEquipmentID;
-    private String link, type, empID, techID, techscode, jr, empscode, checkListType, area;
+    private String link, type, empID, techID, techscode, jr, empscode, checkListType, area, checklist;
     private Boolean clearText;
     private Boolean pass = true;
     View view;
@@ -149,13 +149,20 @@ public class OperatorScanner extends Fragment {
             public void onResponse(Call<TechnicianScanner.resultApi> call, Response<TechnicianScanner.resultApi> response) {
 
                 if (response.isSuccessful()) {
-                    Fragment newFragment = new Buy_Off_Check_List();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.master_container, newFragment);
-                    transaction.commit();
-
-                } else {
-                    ShowAlert("Server Error!", "No Response from Server!");
+                  if(checklist.equals("Device Change Setup Checklist")) {
+                      Fragment newFragment = new Buy_Off_Check_List();
+                      FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                      transaction.replace(R.id.master_container, newFragment);
+                      transaction.commit();
+                  }
+                     else if(checklist.equals("Blade Replacement")) {
+                      Fragment newFragment = new blade_replacement_buyoff();
+                      FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                      transaction.replace(R.id.master_container, newFragment);
+                      transaction.commit();
+                  }else {
+                      ShowAlert("Alert!", "Invalid Checklist!");
+                  }
                 }
             }
 
@@ -268,6 +275,7 @@ public class OperatorScanner extends Fragment {
         eBarcode.requestFocus();
         GetTypeName();
         GetEmpID();
+        GetChecklist();
         if(type.equals("2")){
             GetEquipmentName();
         }
@@ -342,6 +350,7 @@ public class OperatorScanner extends Fragment {
         techscode = prefs.getString("techscode", "no data");
         checkListType = prefs.getString("checklist", "no data");
         area  = prefs.getString("area", "no data");
+
     }
 
     protected void GetTypeName(){
@@ -353,6 +362,11 @@ public class OperatorScanner extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvEquipmentID.setText(prefs.getString("equipmentname","no data"));
         jr = prefs.getString("jr","no data");
+    }
+
+    protected void GetChecklist(){
+        SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
+        checklist = prefs.getString("checklistname", "no data");
     }
 
     private void ShowAlert(String title, String msg){

@@ -68,7 +68,7 @@ public class JobRequestAdapter extends BaseAdapter {
             holder.area.setTextColor(Color.parseColor("#C58900"));
         }
         else if(holder.area.getText().toString().equals("Saw")){
-            holder.area.setTextColor(Color.parseColor("#10C500"));
+            holder.area.setTextColor(Color.parseColor("#1E8449"));
         }
 
         return convertView;

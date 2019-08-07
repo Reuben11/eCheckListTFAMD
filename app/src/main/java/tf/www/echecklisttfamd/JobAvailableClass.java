@@ -2,6 +2,7 @@ package tf.www.echecklisttfamd;
 
 public class JobAvailableClass {
     private String jr;
+    private String process;
     private String area;
     private String checklist;
     private String equipment;
@@ -13,8 +14,9 @@ public class JobAvailableClass {
     private String scode;
 
 
-    public  JobAvailableClass(String jr, String area, String checklist, String equipment, String requestor, String time, String device, String techid){
+    public  JobAvailableClass(String jr, String process, String area, String checklist, String equipment, String requestor, String time, String device, String techid, String daily, String scode){
         this.jr = jr;
+        this.process = process;
         this.area = area;
         this.checklist = checklist;
         this.equipment = equipment;
@@ -24,6 +26,14 @@ public class JobAvailableClass {
         this.daily = daily;
         this.techid = techid;
         this.scode = scode;
+    }
+
+    public String getProcess() {
+        return process;
+    }
+
+    public void setProcess(String process) {
+        this.process = process;
     }
 
     public String getScode() {

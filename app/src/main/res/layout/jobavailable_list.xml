@@ -48,7 +48,7 @@
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:text="Item 1"
-                android:textColor="#00C600"
+                android:textColor="#1E8449"
                 android:paddingTop="10dp"/>
 
             <TextView

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import tf.www.echecklisttfamd.BuildConfig;
 import tf.www.echecklisttfamd.R;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -18,7 +19,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class TermOfUseOperator extends Fragment {
-    private TextView tvName, tvJob;
+    private TextView tvName, tvJob, tvVersion;
     View view;
 
     public static TermOfUseOperator newInstance() {
@@ -35,8 +36,14 @@ public class TermOfUseOperator extends Fragment {
          view = inflater.inflate(R.layout.fragment_term_of_use_operator, container, false);
          tvName = view.findViewById(R.id.name);
          tvJob = view.findViewById(R.id.jobtitle);
+         tvVersion = view.findViewById(R.id.versiontosOps);
+        displayVersionName();
         GetEmpData();
         return view;
+    }
+
+    private void displayVersionName() {
+        tvVersion.setText("Version : " + BuildConfig.VERSION_NAME);
     }
 
     @Override

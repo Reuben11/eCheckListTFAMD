@@ -57,8 +57,7 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
     private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp, tvMsName;
     private String  Scode;
     private CheckBox cbz1, cbz2, cbz1newblade, cbz2newblade;
-    private RadioGroup rgbladegroup, rgz1bladecondition, rgz2bladecondition;
-    private EditText z1bladeline, z2bladeline;
+    private RadioGroup rgbladegroup, rgz1bladecondition, rgz2bladecondition, z1bladeline, z2bladeline;
     private Button bnsubmit;
     private String changez1, changez2, usedz1, usedz2, lifez1, lifez2, newz1, newz2;
 
@@ -170,12 +169,10 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
 
         if(cbz1.isChecked()){
             changez1 = "1";
-            lifez1 = z1bladeline.getText().toString();
         }
 
         if(cbz2.isChecked()){
             changez2 = "1";
-            lifez2 = z2bladeline.getText().toString();
         }
 
         usedz1 = Integer.toString(rgz1bladecondition.indexOfChild(view.findViewById(rgz1bladecondition.getCheckedRadioButtonId())));
@@ -193,7 +190,7 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
             if(rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) != -1){
                 if(changez1.equals("1")){
                     if(rgz1bladecondition.indexOfChild(view.findViewById(rgz1bladecondition.getCheckedRadioButtonId())) != -1){
-                        if(!TextUtils.isEmpty(z1bladeline.getText().toString())){
+                        if(z1bladeline.indexOfChild(view.findViewById(z1bladeline.getCheckedRadioButtonId())) != -1){
                             if(newz1.equals("1")){
                                 z1 = true;
                             }else{
@@ -214,7 +211,7 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
 
                 if(changez2.equals("1")){
                     if(rgz2bladecondition.indexOfChild(view.findViewById(rgz2bladecondition.getCheckedRadioButtonId())) != -1){
-                        if(!TextUtils.isEmpty(z2bladeline.getText().toString())){
+                        if(z2bladeline.indexOfChild(view.findViewById(z2bladeline.getCheckedRadioButtonId())) != -1){
                             if(newz2.equals("1")){
                                 z2 = true;
                             }else{
@@ -283,8 +280,8 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
                 String test = "api/eCheckListTest?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
                         + "\",\"clid\":\"2\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"scode\":\"" + Scode + "\","
                         + "\"z1\":\"" + cbz1.isChecked() + "\"" + ",\"z2\":\"" + cbz2.isChecked() + "\",\"group\":\"" + rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) + "\",\""
-                        + "usedz1\":\"" + usedz1 + "\",\"usdez2\":\"" + usedz2  + "\",\"newz1\":\"" + cbz1newblade.isChecked() + "\",\"newz2\":\"" + cbz2newblade.isChecked() + "\",\""
-                        + "lifez1\":\"" + lifez1 + "\",\"lifez2\":\"" + lifez2 + "\"}";
+                        + "usedz1\":\"" + usedz1 + "\",\"usedz2\":\"" + usedz2  + "\",\"newz1\":\"" + cbz1newblade.isChecked() + "\",\"newz2\":\"" + cbz2newblade.isChecked() + "\",\""
+                        + "lifez1\":\"" + z1bladeline.indexOfChild(view.findViewById(z1bladeline.getCheckedRadioButtonId())) + "\",\"lifez2\":\"" + z2bladeline.indexOfChild(view.findViewById(z2bladeline.getCheckedRadioButtonId())) + "\"}";
 
                 Call<Device_Change_Setup_CheckList.jR> call = retrofit.create(allclass.CreateJR.class).getCreateJR(test);
                 call.enqueue(new Callback<Device_Change_Setup_CheckList.jR>() {
@@ -361,14 +358,16 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
     private void z1bladecondition(Boolean option){
         rgz1bladecondition.getChildAt(0).setEnabled(option);
         rgz1bladecondition.getChildAt(1).setEnabled(option);
-        z1bladeline.setEnabled(option);
+        z1bladeline.getChildAt(0).setEnabled(option);
+        z1bladeline.getChildAt(1).setEnabled(option);
         cbz1newblade.setEnabled(option);
     }
 
     private void z2bladecondition(Boolean option){
         rgz2bladecondition.getChildAt(0).setEnabled(option);
         rgz2bladecondition.getChildAt(1).setEnabled(option);
-        z2bladeline.setEnabled(option);
+        z2bladeline.getChildAt(0).setEnabled(option);
+        z2bladeline.getChildAt(1).setEnabled(option);
         cbz2newblade.setEnabled(option);
     }
 }

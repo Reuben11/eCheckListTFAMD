@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,45 +11,44 @@
     android:paddingTop="@dimen/vertical_margin"
     android:orientation="vertical">
 
-    <TableLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="80dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:stretchColumns="2">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp">
 
-        <TableRow>
-            <TextView
-                android:id="@+id/SecurityId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Security ID"/>
-            <EditText
-                android:id="@+id/EmpId"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:inputType="number"
-                android:maxLength="20"
-                android:paddingLeft="15dp"
-                />
-        </TableRow>
-      <!--  <TableRow>
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Operator" />
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Technician" />
-        </TableRow>-->
-    </TableLayout>
+                    <TextView
+                        android:id="@+id/SecurityId"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Security ID"
+                        android:paddingLeft="70dp"/>
+                    <EditText
+                        android:id="@+id/EmpId"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:paddingLeft="10dp"
+                        android:layout_alignBaseline="@+id/SecurityId"
+                        android:layout_toRightOf="@+id/SecurityId"
+                        />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
 
-
-</RelativeLayout>
+        <TextView
+            android:id="@+id/versionname"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Security ID"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+</LinearLayout>

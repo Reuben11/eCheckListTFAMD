@@ -45,9 +45,9 @@ import static android.content.Context.MODE_PRIVATE;
 public class saw_blade_replacement extends Fragment {
     private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily, tvRequestorName, tvTechName;
     private String scode;
-    private RadioGroup hubmountz1, hubmountz2, coolerbarz1, coolerbarz2, verifybladez1, verifybladez2, bladetypez1, bladetypez2, ncsprismz1, ncsprismz2, bladesetupz1, bladesetupz2, bladedressingz1, bladedressingz2, bladebbdsetupz1, bladebbdsetupz2, tapez1, tapez2, waferbackside;
+    private RadioGroup hubmountz1, hubmountz2, coolerbarz1, coolerbarz2, verifybladez1, verifybladez2, bladetypez1, bladetypez2, ncsprismz1, ncsprismz2, bladesetupz1, bladesetupz2, bladedressingz1, bladedressingz2, bladebbdsetupz1, bladebbdsetupz2, tapez1, tapez2, waferbackside, bumpcheck,bladeexposurez1, bladeexposurez2;
     private EditText bladelifelinez1, bladelifelinez2, bladencsz1, bladencsz2, bbdopenz1, bbdopenz2, bbdclosez1, bbdclosez2, ncsvaluez1, ncsvaluez2, ncsexpoz1, ncsexpoz2, receipez1, receipez2, precutz1, precutz2, verifykerf, buyoffkerf;
-    private CheckBox hairlinez1, hairlinez2, bladeexposurez1, bladeexposurez2, inspection;
+    private CheckBox hairlinez1, hairlinez2,  inspection;
     private Spinner magslot;
     private Button submit;
     private Boolean z1, z2;
@@ -129,8 +129,8 @@ public class saw_blade_replacement extends Fragment {
         bladencsz1 = view.findViewById(R.id.kerfz1);
         bladencsz2 = view.findViewById(R.id.kerfz2);
 
-        bladeexposurez1 = view.findViewById(R.id.z1checkncsyes);
-        bladeexposurez2 = view.findViewById(R.id.z2checkncsyes);
+        bladeexposurez1 = view.findViewById(R.id.z1checkncs);
+        bladeexposurez2 = view.findViewById(R.id.z2checkncs);
 
         bladebbdsetupz1 = view.findViewById(R.id.z1bbdbladesetup);
         bladebbdsetupz2 = view.findViewById(R.id.z2bbdbladesetup);
@@ -147,7 +147,11 @@ public class saw_blade_replacement extends Fragment {
 
         buyoffkerf = view.findViewById(R.id.buyoffkerf);
 
+        bumpcheck = view.findViewById(R.id.bumpcheck);
+
         waferbackside = view.findViewById(R.id.waferbackside);
+
+
 
         submit = view.findViewById(R.id.setupsubmit);
 
@@ -233,7 +237,9 @@ public class saw_blade_replacement extends Fragment {
             precutz1.setEnabled(false);
             hairlinez1.setEnabled(false);
             bladencsz1.setEnabled(false);
-            bladeexposurez1.setEnabled(false);
+
+            bladeexposurez1.getChildAt(0).setEnabled(false);
+            bladeexposurez1.getChildAt(1).setEnabled(false);
 
             bladebbdsetupz1.getChildAt(0).setEnabled(false);
             bladebbdsetupz1.getChildAt(1).setEnabled(false);
@@ -274,7 +280,10 @@ public class saw_blade_replacement extends Fragment {
             precutz2.setEnabled(false);
             hairlinez2.setEnabled(false);
             bladencsz2.setEnabled(false);
-            bladeexposurez2.setEnabled(false);
+
+            bladeexposurez2.getChildAt(0).setEnabled(false);
+            bladeexposurez2.getChildAt(1).setEnabled(false);
+
 
             bladebbdsetupz2.getChildAt(0).setEnabled(false);
             bladebbdsetupz2.getChildAt(1).setEnabled(false);
@@ -309,7 +318,7 @@ public class saw_blade_replacement extends Fragment {
                                                                             if (!TextUtils.isEmpty(precutz1.getText().toString())) {
                                                                                 if (hairlinez1.isChecked()) {
                                                                                     if (!TextUtils.isEmpty(bladencsz1.getText().toString())) {
-                                                                                        if (bladeexposurez1.isChecked()) {
+                                                                                        if (bladeexposurez1.indexOfChild(view.findViewById(bladeexposurez1.getCheckedRadioButtonId())) != -1) {
                                                                                             if (bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId())) != -1) {
                                                                                                 if (tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId())) != -1) {
                                                                                                     blade1 = 1;
@@ -423,7 +432,7 @@ public class saw_blade_replacement extends Fragment {
                                                                 if(!TextUtils.isEmpty(precutz2.getText().toString())){
                                                                     if(hairlinez2.isChecked()){
                                                                         if(!TextUtils.isEmpty(bladencsz2.getText().toString())){
-                                                                            if(bladeexposurez2.isChecked()){
+                                                                            if(bladeexposurez2.indexOfChild(view.findViewById(bladeexposurez2.getCheckedRadioButtonId())) != -1){
                                                                                 if(bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId())) != -1){
                                                                                     if(tapez2.indexOfChild(view.findViewById(tapez2.getCheckedRadioButtonId())) != -1){
                                                                                         blade2 = 1;
@@ -513,11 +522,16 @@ public class saw_blade_replacement extends Fragment {
                 if(magslot.getSelectedItemPosition() != 0){
                     if(!TextUtils.isEmpty(verifykerf.getText().toString())) {
                         if(!TextUtils.isEmpty(buyoffkerf.getText().toString())) {
-                            if (waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId())) != -1) {
-                                CreateData();
+                            if (bumpcheck.indexOfChild(view.findViewById(bumpcheck.getCheckedRadioButtonId())) != -1) {
+                                if (waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId())) != -1) {
+                                    CreateData();
+                                } else {
+                                    waferbackside.requestFocusFromTouch();
+                                    ShowAlert("Alert!", "Invalid Wafer Backside Check!");
+                                }
                             }else{
-                                waferbackside.requestFocusFromTouch();
-                                ShowAlert("Alert!", "Invalid Wafer Backside Check!");
+                                bumpcheck.requestFocusFromTouch();
+                                ShowAlert("Alert!", "Invalid Bump Check!");
                             }
                         }else{
                             buyoffkerf.requestFocusFromTouch();
@@ -585,8 +599,8 @@ public class saw_blade_replacement extends Fragment {
                 + "\",\"hairlinez2\":\"" + hairlinez2.isChecked()
                 + "\",\"bladencsz1\":\"" + bladencsz1.getText().toString()
                 + "\",\"bladencsz2\":\"" + bladencsz2.getText().toString()
-                + "\",\"bladeexposurez1\":\"" + bladeexposurez1.isChecked()
-                + "\",\"bladeexposurez2\":\"" + bladeexposurez2.isChecked()
+                + "\",\"bladeexposurez1\":\"" + bladeexposurez1.indexOfChild(view.findViewById(bladeexposurez1.getCheckedRadioButtonId()))
+                + "\",\"bladeexposurez2\":\"" + bladeexposurez2.indexOfChild(view.findViewById(bladeexposurez2.getCheckedRadioButtonId()))
                 + "\",\"bladebbdsetupz1\":\"" + bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId()))
                 + "\",\"bladebbdsetupz2\":\"" + bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId()))
                 + "\",\"tapez1\":\"" + tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId()))
@@ -595,11 +609,11 @@ public class saw_blade_replacement extends Fragment {
                 + "\",\"magslot\":\"" + magslot.getSelectedItem().toString()
                 + "\",\"verifykerf\":\"" + verifykerf.getText().toString()
                 + "\",\"buyoffkerf\":\"" + buyoffkerf.getText().toString()
+                + "\",\"bumpcheck\":\"" + bumpcheck.indexOfChild(view.findViewById(bumpcheck.getCheckedRadioButtonId()))
                 + "\",\"waferbackside\":\"" + waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId()))
                 + "\"}";
 
 
-        ShowAlert("Test", data);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())

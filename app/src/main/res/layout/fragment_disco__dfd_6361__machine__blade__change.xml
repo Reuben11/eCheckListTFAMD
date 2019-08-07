@@ -344,7 +344,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/usedbladeconditionz2lbl"
                         android:paddingTop="30dp"
-                        android:text="Blade life Line on blade cover for used blade"
+                        android:text="Z1 or Z2 and blade life line on blade cover for the used blade"
                         android:textSize="12dp" />
 
                     <TextView
@@ -354,33 +354,46 @@
                         android:layout_below="@id/usedbladeconditionz2lbl"
                         android:layout_toRightOf="@+id/bladelifelbl"
                         android:paddingLeft="10dp"
-                        android:paddingTop="18dp"
+                        android:paddingTop="22dp"
                         android:text="Z1"
                         android:textColor="#000EC5"
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <RadioGroup
                         android:id="@+id/bladelifez1"
-                        android:layout_width="180dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:maxLength="30"
-                        android:textStyle="bold"
-                        android:textSize="12dp"
-                        android:layout_alignBaseline="@+id/bladelifez1lbl"
+                        android:layout_below="@id/usedbladeconditionz2lbl"
                         android:layout_toRightOf="@+id/bladelifez1lbl"
-                        android:singleLine="true"
-                        />
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+
+                        <RadioButton
+                            android:id="@+id/bladelifez1tick"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:text="✔"
+                            android:textColor="#00C523"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/bladelifez1na"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="NA"
+                            android:textColor="#C50000"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </RadioGroup>
 
                     <TextView
                         android:id="@+id/bladelifez2lbl"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/bladelifez1lbl"
                         android:layout_toRightOf="@+id/bladelifelbl"
+                        android:layout_below="@id/bladelifez1lbl"
                         android:paddingLeft="10dp"
                         android:paddingTop="20dp"
                         android:text="Z2"
@@ -388,19 +401,33 @@
                         android:textSize="12dp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <RadioGroup
                         android:id="@+id/bladelifez2"
-                        android:layout_width="180dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:maxLength="30"
-                        android:textStyle="bold"
-                        android:textSize="12dp"
-                        android:layout_alignBaseline="@+id/bladelifez2lbl"
+                        android:layout_below="@id/bladelifez1"
                         android:layout_toRightOf="@+id/bladelifez2lbl"
-                        android:singleLine="true" />
+                        android:orientation="horizontal"
+                        android:paddingTop="20dp">
+
+                        <RadioButton
+                            android:id="@+id/bladelifez2tick"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:text="✔"
+                            android:textColor="#00C523"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/bladelifez2na"
+                            android:layout_width="110dp"
+                            android:layout_height="20dp"
+                            android:text="NA"
+                            android:textColor="#C50000"
+                            android:textSize="12dp"
+                            android:textStyle="bold" />
+                    </RadioGroup>
 
                     <TextView
                         android:id="@+id/newbladeconditionlbl"

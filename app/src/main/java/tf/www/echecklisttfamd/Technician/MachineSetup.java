@@ -178,7 +178,7 @@ public class MachineSetup extends Fragment {
 
 
     private void GetTMS(){
-        String requestapilink = "/api/eCheckListTest?equipmentname=" + tvEquipment.getText().toString();
+        String requestapilink = "/api/eCheckList?equipmentname=" + tvEquipment.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -468,7 +468,7 @@ public class MachineSetup extends Fragment {
         String dateStr = df.format(c);
 
 
-        data = "api/eCheckListTest?setupinfo={\"jr\":\"" + jr + "\",\"techid\":\""
+        data = "api/eCheckList?setupinfo={\"jr\":\"" + jr + "\",\"techid\":\""
                 + tvTech.getText().toString() + "\",\"time\":\""
                 + dateStr + "\",\"rubber\":\""
                 + rubbertip + "\",\"config\":\""

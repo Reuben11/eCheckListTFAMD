@@ -444,7 +444,7 @@
                         android:id="@+id/z1verifynormal"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="Pass"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -453,7 +453,7 @@
                         android:id="@+id/z1verifyabnormal"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="Fail"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -486,7 +486,7 @@
                         android:id="@+id/z2verifynormal"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="Pass"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -495,7 +495,7 @@
                         android:id="@+id/z2verifyabnormal"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="Fail"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -539,7 +539,7 @@
                         android:id="@+id/z1bladetypenormal"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="Pass"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -548,7 +548,7 @@
                         android:id="@+id/z1bladetypeabnormal"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="Fail"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -581,7 +581,7 @@
                         android:id="@+id/z2bladetypenormal"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="Pass"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -590,7 +590,7 @@
                         android:id="@+id/z2bladetypeabnormal"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="Fail"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -1286,7 +1286,7 @@
                         android:id="@+id/z1bladedressingyes"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="✔"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -1295,7 +1295,7 @@
                         android:id="@+id/z1bladedressingno"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="NA"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -1327,7 +1327,7 @@
                         android:id="@+id/z2bladedressingyes"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="✔"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -1336,7 +1336,7 @@
                         android:id="@+id/z2bladedressingno"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="NA"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -1658,13 +1658,34 @@
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
-                <CheckBox
-                    android:id="@+id/z1checkncsyes"
+                <RadioGroup
+                    android:id="@+id/z1checkncs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/kerfz2"
                     android:layout_toRightOf="@+id/checkncsz1lbl"
-                    android:layout_alignBaseline="@+id/checkncsz1lbl"
-                    android:text="Yes"/>
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/z1checkncscompleted"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:text="Completed"
+                        android:textColor="#00C523"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/z1checkncsna"
+                        android:layout_width="110dp"
+                        android:layout_height="25dp"
+                        android:text="NA"
+                        android:textColor="#C50000"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/checkncsz2lbl"
@@ -1678,13 +1699,35 @@
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
-                <CheckBox
-                    android:id="@+id/z2checkncsyes"
+                <RadioGroup
+                    android:id="@+id/z2checkncs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/z1checkncs"
                     android:layout_toRightOf="@+id/checkncsz2lbl"
-                    android:layout_alignBaseline="@+id/checkncsz2lbl"
-                    android:text="Yes"/>
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/z2checkncscompleted"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:text="Completed"
+                        android:textColor="#00C523"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/z2checkncsna"
+                        android:layout_width="110dp"
+                        android:layout_height="20dp"
+                        android:text="NA"
+                        android:textColor="#C50000"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -1956,7 +1999,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectionlbl"
                     android:paddingTop="20dp"
-                    android:text="21. Magslot"
+                    android:text="21. Check and fill in the wafer magazine slot number for first production wafer after changed blade."
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1964,7 +2007,7 @@
                 <Spinner
                     android:id="@+id/checkmagno"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
                     android:layout_toRightOf="@+id/checkmaglbl"
                     android:layout_below="@+id/inspection"
                     android:entries="@array/magslot_arrays"
@@ -2004,7 +2047,7 @@
                     android:layout_toRightOf="@+id/hairlinecorrectionlbl"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:paddingTop="20dp"
+                    android:paddingTop="60dp"
                     android:gravity="center_horizontal"
                     />
 
@@ -2034,9 +2077,49 @@
                     android:layout_toRightOf="@+id/buyoffkerflbl"
                     android:singleLine="true"
                     android:inputType="number"
-                    android:paddingTop="65dp"
+                    android:paddingTop="60dp"
                     android:gravity="center_horizontal"
                     />
+
+                <!--bumpcheck-->
+
+                <TextView
+                    android:id="@+id/bumpchecklbl"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buyoffkerflbl"
+                    android:paddingTop="16dp"
+                    android:text="24. Bump checking"
+                    android:textStyle="bold"
+                    android:textSize="12dp" />
+
+                <RadioGroup
+                    android:id="@+id/bumpcheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/buyoffkerflbl"
+                    android:layout_toRightOf="@+id/bumpchecklbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <RadioButton
+                        android:id="@+id/bumpcheckgood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:text="Good"
+                        android:textColor="#00C523"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/bumpcheckabnormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="Abnormal"
+                        android:textColor="#C50000"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
 
             </RelativeLayout>
 
@@ -2068,7 +2151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/productbuyoff"
                     android:paddingTop="25dp"
-                    android:text="24. Wafer backside to check any chipping/particle \n3x magnifier. \nFrequency : 5 points/Z pattern"
+                    android:text="26. Wafer backside to check any chipping/particle \n3x magnifier. \nFrequency : 5 points/Z pattern"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -2086,7 +2169,7 @@
                         android:id="@+id/waferbacksidepass"
                         android:layout_width="70dp"
                         android:layout_height="20dp"
-                        android:text="Good"
+                        android:text="Pass"
                         android:textColor="#00C523"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -2095,7 +2178,7 @@
                         android:id="@+id/waferbacksidefail"
                         android:layout_width="110dp"
                         android:layout_height="20dp"
-                        android:text="Abnormal"
+                        android:text="Fail"
                         android:textColor="#C50000"
                         android:textSize="12dp"
                         android:textStyle="bold" />

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ import tf.www.echecklisttfamd.Technician.TechnicianActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etempid;
-    private TextView tvSecurityID;
+    private TextView tvSecurityID, tvVersionName;
     private Boolean clearText;
 
     private long delay = 1000;
@@ -54,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         ClearInfo();
         etempid = findViewById(R.id.EmpId);
         tvSecurityID = findViewById(R.id.SecurityId);
+        tvVersionName = findViewById(R.id.versionname);
+        displayVersionName();
         /*Button technician, operator;
         technician = findViewById(R.id.button2);
         operator = findViewById(R.id.button1);*/
@@ -83,6 +86,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void displayVersionName() {
+        tvVersionName.setText("Version : " + BuildConfig.VERSION_NAME);
     }
 
     private void triggerJobRequest(){
