@@ -54,7 +54,7 @@ public class JobAvailable extends Fragment {
     }
 
     private void GetReqJobs(){
-        String requestapilink = "/api/eCheckListTest?requestlist=ok";
+        String requestapilink = "/api/eCheckList?requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
