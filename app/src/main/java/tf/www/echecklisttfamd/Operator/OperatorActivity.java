@@ -56,12 +56,14 @@ public class OperatorActivity extends AppCompatActivity {
                             case R.id.jr:
                                 SetTypeName("1");
                                getSupportFragmentManager().beginTransaction()
+                                       .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                                         .replace(R.id.master_container, OperatorJobRequestList.newInstance())
                                         .commit();
                                 break;
                             case R.id.buyoff:
                                 SetTypeName("2");
                                     getSupportFragmentManager().beginTransaction()
+                                            .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                                             .replace(R.id.master_container, OperatorBuyOffList.newInstance())
                                             .commit();
                                     break;
@@ -100,6 +102,7 @@ public class OperatorActivity extends AppCompatActivity {
         );
 
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .replace(R.id.master_container, TermOfUseOperator.newInstance())
                 .commit();
     }

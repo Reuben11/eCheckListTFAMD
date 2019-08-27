@@ -5,7 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".MainActivity">
+
+
+
+    <ImageView
+        android:id="@+id/androidhead"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/android10head"
+        android:layout_above="@+id/logo"
+        />
 
     <ImageView
         android:id="@+id/logo"
@@ -13,5 +25,6 @@
         android:layout_height="50dp"
         android:layout_centerInParent="true"
         android:src="@drawable/logotfamd"
+
         />
 </RelativeLayout>

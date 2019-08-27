@@ -11,6 +11,17 @@
 
        </menu>
    </item>
+    <item android:title="Job Cancellation">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/canceljr"
+                    android:title="Cancel Job"
+                    android:icon="@drawable/ic_cancel"/>
+            </group>
+
+        </menu>
+    </item>
     <item android:title="Equipment Buy Off">
         <menu>
             <group android:checkableBehavior="none">

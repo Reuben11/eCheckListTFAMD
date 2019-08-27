@@ -55,7 +55,7 @@ public class OperatorBuyOffList extends Fragment {
     }
 
     private void GetBuyOffJobs(){
-        String requestapilink = "/api/eCheckList?OperatorBuyOff=";
+        String requestapilink = "/api/eCheckListTest?OperatorBuyOff=";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -91,11 +91,13 @@ public class OperatorBuyOffList extends Fragment {
                             if(data.get(position).getChecklist().equals("Device Change Setup Checklist")) {
                                 Fragment newFragment = new OperatorScanner();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
                                 transaction.replace(R.id.master_container, newFragment);
                                 transaction.commit();
                             }else if(data.get(position).getChecklist().equals("Blade Replacement")){
                                 Fragment newFragment = new OperatorScanner();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
                                 transaction.replace(R.id.master_container, newFragment);
                                 transaction.commit();
                             }

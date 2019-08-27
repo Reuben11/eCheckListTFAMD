@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                             final String empid = obj.employeeid;
                             final String jobtitle = obj.jobtitle;
                             final String name = obj.employeename;
+                            final String shift = obj.shift;
 
                             AlertDialog.Builder mBuilder = new AlertDialog.Builder(LoginActivity.this);
                             mBuilder.setTitle("Select Login Type");
@@ -128,12 +129,12 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if(which==0){
-                                        SetEmp(empid, name, jobtitle, etempid.getText().toString());
+                                        SetEmp(empid, name, jobtitle, etempid.getText().toString(), shift);
                                         startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
                                         finish();
                                     }
                                     else{
-                                           SetTech(empid, name, jobtitle, etempid.getText().toString());
+                                           SetTech(empid, name, jobtitle, etempid.getText().toString(), shift);
                                            startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                                         finish();
                                     }
@@ -180,17 +181,17 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(CaseNumber > 0){
                                 if(CaseNumber==1){
-                                    SetEmp(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    SetEmp(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString(), obj.shift);
                                     startActivity(new Intent(LoginActivity.this, OperatorActivity.class));
                                     finish();
                                 }
                                 else if(CaseNumber==2){
-                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString(), obj.shift);
                                     startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                                     finish();
                                 }
                                 else if(CaseNumber==3){
-                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString());
+                                    SetTech(obj.employeeid, obj.employeename, obj.getJobtitle(), etempid.getText().toString(), obj.shift);
                                     startActivity(new Intent(LoginActivity.this, TechnicianActivity.class));
                                     finish();
                                 }
@@ -227,24 +228,26 @@ public class LoginActivity extends AppCompatActivity {
         prefs.edit().clear().commit();
     }
 
-    protected void SetEmp(String empid,String empname, String jobtitle, String scode) {
+    protected void SetEmp(String empid,String empname, String jobtitle, String scode, String shift) {
         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE).edit();
         editor.putString("scode", scode);
         editor.putString("empid", empid);
         editor.putString("empname", empname.toUpperCase());
         editor.putString("empjobtitle", jobtitle);
+        editor.putString("shift", shift);
         editor.commit();
 
     }
 
 
-    protected void SetTech(String techid,String empname, String jobtitle, String scode) {
+    protected void SetTech(String techid,String empname, String jobtitle, String scode, String shift) {
 
         SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
         editor.putString("scode", scode);
         editor.putString("techid", techid);
         editor.putString("techname", empname);
         editor.putString("techjobtitle", jobtitle);
+        editor.putString("shift", shift.toUpperCase());
         editor.commit();
 
     }
@@ -253,6 +256,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String employeeid;
         protected String employeename;
         protected String jobtitle;
+        protected String shift;
 
         public String getEmployeeid() {
             return employeeid;
@@ -276,6 +280,14 @@ public class LoginActivity extends AppCompatActivity {
 
         public void setJobtitle(String jobtitle) {
             this.jobtitle = jobtitle;
+        }
+
+        public String getShift() {
+            return shift;
+        }
+
+        public void setShift(String shift) {
+            this.shift = shift;
         }
     }
 

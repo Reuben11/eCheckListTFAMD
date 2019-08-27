@@ -1,6 +1,7 @@
 package tf.www.echecklisttfamd.Technician;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -52,12 +53,22 @@ public class TechnicianActivity extends AppCompatActivity {
 
                             case R.id.technicianjr:
                                 getSupportFragmentManager().beginTransaction()
+                                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                                         .replace(R.id.master_container, JobAvailable.newInstance())
                                         .commit();
                                 break;
                             case R.id.tlogout:
                                 startActivity(new Intent(TechnicianActivity.this, LoginActivity.class));
                                 finish();
+                                break;
+                            case R.id.diesawCleaningjr:
+                                SetArea("0");
+
+                                getSupportFragmentManager().beginTransaction()
+//                                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                                        .replace(R.id.master_container, TechnicianScanner.newInstance())
+                                        .commit();
                                 break;
                         }
                         return false;
@@ -90,6 +101,7 @@ public class TechnicianActivity extends AppCompatActivity {
         );
 
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
                 .replace(R.id.master_container, TermOfUseTechnician.newInstance())
                 .commit();
     }
@@ -127,5 +139,12 @@ public class TechnicianActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    protected void SetArea(String area) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getApplication().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("area", area);
+        editor.commit();
     }
 }

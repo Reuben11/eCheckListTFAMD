@@ -277,7 +277,7 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
 
 
 
-                String test = "api/eCheckList?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                String test = "api/eCheckListTest?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
                         + "\",\"clid\":\"2\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"scode\":\"" + Scode + "\","
                         + "\"z1\":\"" + cbz1.isChecked() + "\"" + ",\"z2\":\"" + cbz2.isChecked() + "\",\"group\":\"" + rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) + "\",\""
                         + "usedz1\":\"" + usedz1 + "\",\"usedz2\":\"" + usedz2  + "\",\"newz1\":\"" + cbz1newblade.isChecked() + "\",\"newz2\":\"" + cbz2newblade.isChecked() + "\",\""

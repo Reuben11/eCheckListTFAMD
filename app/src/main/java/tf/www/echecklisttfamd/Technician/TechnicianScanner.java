@@ -18,6 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.annotations.Expose;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -30,8 +36,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.LoginActivity;
+import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
+import tf.www.echecklisttfamd.Operator.Disco_DFD_6361_Machine_Blade_Change;
 import tf.www.echecklisttfamd.Operator.OperatorActivity;
 import tf.www.echecklisttfamd.Operator.OperatorJobRequestList;
+import tf.www.echecklisttfamd.Operator.OperatorScanner;
 import tf.www.echecklisttfamd.R;
 import tf.www.echecklisttfamd.allclass;
 
@@ -45,8 +54,6 @@ public class TechnicianScanner extends Fragment {
     private EditText eBarcode;
     private Boolean clearText;
     private TextView tvEquip;
-
-
 
     View view;
 
@@ -64,17 +71,24 @@ public class TechnicianScanner extends Fragment {
         @Override
         public void afterTextChanged(Editable s) {
 
+            if (eBarcode.getText().toString().equals("")){
 
-          if(eBarcode.getText().toString().equals(equipmentname)){
-              triggerMSInfo();
-          }
-          else{
-                if(clearText==false){
-                    ShowAlert("Scanner Bar Code Error Code : SBC0001", eBarcode.getText().toString() + "  Invalid Equipment Barcode!");
+            }else{
+            if(area.equals("0")){
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss , dd-MMM-yy");
+                String dateStr = df.format(c);
+                GetValidation(dateStr);
+            }else {
+                if (eBarcode.getText().toString().equals(equipmentname)) {
+                    triggerMSInfo();
+                } else {
+                    if (clearText == false) {
+                        ShowAlert("Scanner Bar Code Error Code : SBC0001", eBarcode.getText().toString() + "  Invalid Equipment Barcode!");
+                    }
                 }
-          }
-
-
+            }
+            }
         }
     };
 
@@ -85,7 +99,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?Empcode={\"scode\":\"" + empScode + "\"}";
+        String link = "/api/eCheckListTest?Empcode={\"scode\":\"" + techScode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -129,30 +143,52 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + techScode + "\"}";
+        String link = "/api/eCheckListTest?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empScode + "\"}";
 
 
         Call<resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
         call.enqueue(new Callback<resultApi>() {
             @Override
             public void onResponse(Call<resultApi> call, Response<resultApi> response) {
-
+                Fragment newFragment;
+                FragmentTransaction transaction;
                 if (response.isSuccessful()) {
-                    if (area=="1"){
-                        Fragment newFragment = new MachineSetup();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.master_container, MachineSetup.newInstance());
-                        transaction.commit();
+                    switch (area) {
+                        case "1":
+                            newFragment = new MachineSetup();
+                            transaction = getFragmentManager().beginTransaction();
+//                            transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                            transaction.replace(R.id.master_container, MachineSetup.newInstance());
+                            transaction.commit();
+                            break;
+                        case "2":
+                            newFragment = new saw_blade_replacement();
+                            transaction = getFragmentManager().beginTransaction();
+//                            transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                            transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                            transaction.replace(R.id.master_container, saw_blade_replacement.newInstance());
+                            transaction.commit();
                     }
-                    else if(area=="2"){
-                        Fragment newFragment = new saw_blade_replacement();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.master_container, saw_blade_replacement.newInstance());
-                        transaction.commit();
-                    }
-                    else{
-                        ShowAlert("Alert!", "Invalid Equipment For This CheckList!");
-                    }
+
+//                    if (area=="1"){
+//                        Fragment newFragment = new MachineSetup();
+//                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                        transaction.replace(R.id.master_container, MachineSetup.newInstance());
+//                        transaction.commit();
+//                    }
+//                    else if(area=="2"){
+//                        Fragment newFragment = new saw_blade_replacement();
+//                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                        transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                        transaction.replace(R.id.master_container, saw_blade_replacement.newInstance());
+//                        transaction.commit();
+//                    }
+//
+//                    else{
+//                        ShowAlert("Alert!", "Invalid Equipment For This CheckList!");
+//                    }
 
 
                 } else {
@@ -173,6 +209,65 @@ public class TechnicianScanner extends Fragment {
             }
         });
     }
+
+
+    private void GetValidation(String dateStr){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://pngjvfa01")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        String link = "/api/eChecklist?cleanequipment=" + eBarcode.getText().toString();
+
+        /*Toast.makeText(getContext(), link, Toast.LENGTH_SHORT).show();*/
+
+        Call<String> call = retrofit.create(allclass.CheckJRT.class).getCheckData(link);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful()) {//
+                    try {
+                        JSONObject obj = new JSONObject(response.body());
+                        if (obj.getBoolean("equip")==true) {
+                            if(obj.getBoolean("exist")==false){
+                                SetEquipmentName(eBarcode.getText().toString());
+                                Fragment newFragment = new MachineSetup();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                                transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
+                                transaction.replace(R.id.master_container, Fragment_Saw_Cleaning.newInstance());
+                                transaction.commit();
+                            }else{
+                                ShowAlert("Alert!", "Equipment Already Done Cleaning!");
+                            }
+                    } else {
+                        ShowAlert("Alert!", "Invalid Equipment For This CheckList!");
+                    }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                } else {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                if (t instanceof IOException) {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                } else {
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                    // todo log to some central bug tracking service
+                }
+            }
+        });
+
+    }
+
 
     public class resultApi{
         protected String result;
@@ -205,12 +300,16 @@ public class TechnicianScanner extends Fragment {
         eBarcode.addTextChangedListener(textWatcher);
         eBarcode.requestFocus();
         clearText = false;
-        tvEquip.setText(equipmentname);
+
+        if(area.equals("0")){
+
+        }else{
+            tvEquip.setText(equipmentname);
+        }
+
 
         return view;
     }
-
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
@@ -225,6 +324,13 @@ public class TechnicianScanner extends Fragment {
         editor.commit();
     }
 
+    protected void SetEquipmentName(String name) {
+        /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
+        editor.putString("equipmentname", name);
+        editor.commit();
+    }
+
     protected void GetSharesPreferences(){
         SharedPreferences prefs = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
         equipmentname = prefs.getString("equipmentname","no data");
@@ -234,7 +340,6 @@ public class TechnicianScanner extends Fragment {
         msid = prefs.getString("requestor","no data");
         area = prefs.getString("area","no data");
     }
-
 
     private void ShowAlert(String title, String msg){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());

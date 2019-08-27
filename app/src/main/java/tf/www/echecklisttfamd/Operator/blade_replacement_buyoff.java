@@ -140,7 +140,7 @@ public class blade_replacement_buyoff extends Fragment {
         else{
             final String textData;
             String jr = tvJR.getText().toString().replace("-","");
-            textData = "api/eCheckList?bladebuyoff={\"jr\":\"" + jr + "\",\"opid\":\""
+            textData = "api/eCheckListTest?bladebuyoff={\"jr\":\"" + jr + "\",\"opid\":\""
                     + tvEmp.getText().toString() + "\",\"topside\":\""
                     + topside.indexOfChild(view.findViewById(topside.getCheckedRadioButtonId())) + "\",\"time\":\""
                     + tvDateTime.getText().toString() + "\",\"scode\":\""

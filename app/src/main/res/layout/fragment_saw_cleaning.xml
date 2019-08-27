@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Technician.saw_cleaning">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="vertical"
+            tools:context=".technician.saw_cleaning">
+
+
+            <RelativeLayout
+                android:id="@+id/informations"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/techms"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:text="Technician Emp#"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/techemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/techms"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/techms"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/technamelbl"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/techms"
+                    android:paddingTop="15dp"
+                    android:text="Technician Name"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/techname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/technamelbl"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/technamelbl"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/setupdatetime"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/technamelbl"
+                    android:paddingTop="15dp"
+                    android:text="DateTime"
+                    android:paddingRight="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/nowdatetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/setupdatetime"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/setupdatetime"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/equipmentnamelabel"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/setupdatetime"
+                    android:paddingTop="15dp"
+                    android:text="Equipment Name"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/equipmentname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/equipmentnamelabel"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/equipmentnamelabel"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/shiftlabel"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/equipmentnamelabel"
+                    android:paddingTop="15dp"
+                    android:text="Shift"
+                    android:paddingBottom="20dp"
+                    android:paddingRight="20dp"/>
+
+                <TextView
+                    android:id="@+id/shift"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/shiftlabel"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:layout_toRightOf="@+id/shiftlabel"
+                    android:editable="false"
+                    android:maxLength="30"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="14dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/machinesetuplayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+            <TextView
+                android:id="@+id/cleaning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#5153FF"
+                android:elevation="2dp"
+                android:gravity="center_horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="CLEANING"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <!-- Chuck -->
+            <TextView
+                android:id="@+id/chucktable"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cleaning"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:text="1. Chuck Table" />
+
+                <RadioGroup
+                    android:id="@+id/chuck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/chucktable"
+                    android:layout_toRightOf="@+id/chucktable"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="18dp">
+
+                    <RadioButton
+                        android:id="@+id/chuckyes"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:text="√"
+                        android:textColor="#1D8348"
+                        android:textStyle="bold"/>
+
+                    <RadioButton
+                        android:id="@+id/chuckno"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:textColor="#E70000"
+                        android:textStyle="bold"
+                        android:text="X" />
+                </RadioGroup>
+
+                <!-- Spinner -->
+                <TextView
+                    android:id="@+id/spinnertable"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/chucktable"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="2. Spinner Table" />
+
+                <RadioGroup
+                    android:id="@+id/spinnert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/spinnertable"
+                    android:layout_toRightOf="@+id/spinnertable"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="18dp">
+
+                    <RadioButton
+                        android:id="@+id/spinneryes"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:textColor="#1D8348"
+                        android:textStyle="bold"
+                        android:text="√" />
+
+                    <RadioButton
+                        android:id="@+id/spinnerno"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:textColor="#E70000"
+                        android:textStyle="bold"
+                        android:text="X" />
+                </RadioGroup>
+
+                <!-- Transport Arms -->
+                <TextView
+                    android:id="@+id/transportarms"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/spinnertable"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="3. Transport Arms" />
+
+                <RadioGroup
+                    android:id="@+id/transport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/transportarms"
+                    android:layout_toRightOf="@+id/transportarms"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp"
+                    android:paddingTop="18dp">
+
+                    <RadioButton
+                        android:id="@+id/transportyes"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:textColor="#1D8348"
+                        android:textStyle="bold"
+                        android:text="√" />
+
+                    <RadioButton
+                        android:id="@+id/transportno"
+                        android:layout_width="60dp"
+                        android:layout_height="20dp"
+                        android:textColor="#E70000"
+                        android:textStyle="bold"
+                        android:text="X" />
+                </RadioGroup>
+
+                <!-- Note -->
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="2000dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/transportarms"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20dp"
+                    android:text="4. Remarks (Any abnormality?)" />
+                <EditText
+                    android:id="@+id/remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/note"/>
+            </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:paddingRight="10dp">
+
+            <Button
+                android:id="@+id/setupsubmit"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:text="Submit"
+                android:background="@drawable/round_btn"
+                android:elevation="0dp"
+               />
+        </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

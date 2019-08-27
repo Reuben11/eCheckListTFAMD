@@ -2,7 +2,6 @@ package tf.www.echecklisttfamd;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.PUT;
 import retrofit2.http.Url;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
 import tf.www.echecklisttfamd.Operator.OperatorScanner;
@@ -14,6 +13,21 @@ public class allclass {
     public interface CheckJR{
         @GET
         Call<OperatorScanner.GetExist> getJRCheckData(@Url String url);
+    }
+
+    public interface CheckJRT{
+        @GET
+        Call<String> getCheckData(@Url String url);
+    }
+
+    public interface GetCleaning{
+        @GET
+        Call<String> getData(@Url String url);
+    }
+
+    public interface CreateCleaning{
+        @GET
+        Call<String>CreateData(@Url String url);
     }
 
     public  interface CreateJR{

@@ -37,6 +37,7 @@ import tf.www.echecklisttfamd.Technician.TechnicianActivity;
 import tf.www.echecklisttfamd.Technician.TechnicianScanner;
 import tf.www.echecklisttfamd.allclass;
 
+
 import static android.content.Context.MODE_PRIVATE;
 
 
@@ -99,7 +100,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?Empcode={\"scode\":\"" + techscode + "\"}";
+        String link = "/api/eCheckListTest?Empcode={\"scode\":\"" + techscode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -141,7 +142,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
+        String link = "/api/eCheckListTest?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
 
         Call<TechnicianScanner.resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
         call.enqueue(new Callback<TechnicianScanner.resultApi>() {
@@ -152,12 +153,14 @@ public class OperatorScanner extends Fragment {
                   if(checklist.equals("Device Change Setup Checklist")) {
                       Fragment newFragment = new Buy_Off_Check_List();
                       FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                      transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                       transaction.replace(R.id.master_container, newFragment);
                       transaction.commit();
                   }
                      else if(checklist.equals("Blade Replacement")) {
                       Fragment newFragment = new blade_replacement_buyoff();
                       FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                      transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                       transaction.replace(R.id.master_container, newFragment);
                       transaction.commit();
                   }else {
@@ -186,7 +189,7 @@ public class OperatorScanner extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eCheckList?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
+                    link = "/api/eCheckListTest?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
 
@@ -210,6 +213,7 @@ public class OperatorScanner extends Fragment {
 
                                                 Fragment newFragment = new Device_Change_Setup_CheckList();
                                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
                                                 transaction.replace(R.id.master_container, newFragment);
                                                 transaction.commit();
                                             }
@@ -220,6 +224,7 @@ public class OperatorScanner extends Fragment {
                                         else if(checkListType.equals("Disco DFD 6361 Machine Blade Change")){
                                                 Fragment newFragment = new Disco_DFD_6361_Machine_Blade_Change();
                                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                                transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out);
                                                 transaction.replace(R.id.master_container, newFragment);
                                                 transaction.commit();
                                         }
@@ -295,7 +300,7 @@ public class OperatorScanner extends Fragment {
         @Expose
         protected boolean exist;
         protected boolean daily;
-        protected boolean equip;
+        public boolean equip;
 
         public boolean isEquip() {
             return equip;

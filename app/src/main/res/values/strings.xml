@@ -6,6 +6,18 @@
     <string name="operatortermofuse">Terms Of Use</string>
     <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
 
+    <string name="magslot">Choose Magslot</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ejectornote">(Tech verification 1st 5 dies step mode, ensure needle mark is center &amp; not touch on sawn line/die edge after picked up. Need to look at the needle mark 90&#176; angle from the die to make sure it centered) </string>
+
+    <string name="diejectnote">(Minimum 1 die thickness)</string>
+
+    <string name="needlepositionnote">(Min : 0.2mm to Max : 0.5mm)</string>
+
+    <string name="needlepositionnote2">(Min : 0.1mm to Max : 0.3mm)</string>
+
     <string-array name="process">
         <item>Die Prep</item>
         <item>Die Prep</item>
@@ -15,24 +27,18 @@
         <item>Pick And Place</item>
         <item>Saw</item>
     </string-array>
-
     <string-array name="equipment">
         <item>Device Change Setup</item>
         <item>Blade Replacement</item>
     </string-array>
-
     <string-array name="revision">
         <item>G</item>
         <item>O</item>
     </string-array>
-
     <string-array name="areacolor">
         <item>#C58900</item>
         <item>#10C500</item>
     </string-array>
-
-    <string name="magslot">Choose Magslot</string>
-
     <string-array name="magslot_arrays">
         <item>0</item>
         <item>1</item>
@@ -49,11 +55,5 @@
         <item>12</item>
         <item>13</item>
     </string-array>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ejectornote">(Tech verification 1st 5 dies step mode, ensure needle mark is center &amp; not touch on sawn line/die edge after picked up. Need to look at the needle mark 90&#176; angle from the die to make sure it centered) </string>
-    <string name="diejectnote">(Minimum 1 die thickness)</string>
-    <string name="needlepositionnote">(Min : 0.2mm to Max : 0.5mm)</string>
-    <string name="needlepositionnote2">(Min : 0.1mm to Max : 0.3mm)</string>
 
 </resources>

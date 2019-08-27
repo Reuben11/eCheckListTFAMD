@@ -9,6 +9,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowTransition</item>
     </style>
 
     <style name="AppThemeActionBarLogin" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -16,6 +17,7 @@
         <item name="colorPrimary">@color/colorPrimaryLogin</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkLogin</item>
         <item name="colorAccent">@color/colorAccentLogin</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowTransition</item>
     </style>
 
     <style name="AppThemeActionBarOperator" parent="Theme.AppCompat.Light.NoActionBar">
@@ -23,7 +25,7 @@
         <item name="colorPrimary">@color/colorPrimaryOperator</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkOperator</item>
         <item name="colorAccent">@color/colorAccentOperator</item>
-
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowTransition</item>
     </style>
 
     <style name="AppThemeActionBarTechnician" parent="Theme.AppCompat.Light.NoActionBar">
@@ -31,9 +33,14 @@
         <item name="colorPrimary">@color/colorPrimaryTechnician</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkTechnician</item>
         <item name="colorAccent">@color/colorAccentTechnician</item>
-
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowTransition</item>
     </style>
 
+
+    <style name="AppTheme.WindowTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 
     <!-- Toolbar -->
     <style name="ToolBarStyle" parent="Widget.AppCompat.ActionBar">

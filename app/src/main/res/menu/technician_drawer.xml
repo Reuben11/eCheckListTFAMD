@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Checklists">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/diesawCleaningjr"
+                    android:title="Die Saw Cleaning"
+                    android:icon="@drawable/ic_list"/>
+            </group>
+
+        </menu>
+    </item>
     <item android:title="Job Request">
         <menu>
             <group android:checkableBehavior="single">

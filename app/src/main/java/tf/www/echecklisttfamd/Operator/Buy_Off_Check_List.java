@@ -121,7 +121,7 @@ public class Buy_Off_Check_List extends Fragment {
         else{
             final String textData;
             String jr = tvJR.getText().toString().replace("-","");
-            textData = "api/eChecklist?buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
+            textData = "api/eChecklistTest?buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
                        + tvEmp.getText().toString() + "\",\"waferid\":\""
                        + etWaferID.getText().toString() + "\",\"time\":\""
                        + tvDateTime.getText().toString() + "\",\"scode\":\""

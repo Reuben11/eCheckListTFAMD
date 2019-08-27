@@ -18,7 +18,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class TermOfUseTechnician extends Fragment {
-    private TextView tvName, tvJob,tvVersion;
+    private TextView tvName, tvJob,tvVersion, tvshift;
     View view;
 
     public static TermOfUseTechnician newInstance() {
@@ -36,6 +36,7 @@ public class TermOfUseTechnician extends Fragment {
         tvName = view.findViewById(R.id.techname);
         tvJob = view.findViewById(R.id.techjobtitle);
         tvVersion = view.findViewById(R.id.versiontostech);
+        tvshift = view.findViewById(R.id.techshift);
         displayVersionName();
         GetEmpData();
         return view;
@@ -49,5 +50,6 @@ public class TermOfUseTechnician extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
         tvName.setText(prefs.getString("techname","no data").toUpperCase());
         tvJob.setText(prefs.getString("techjobtitle", "no data").toUpperCase());
+        tvshift.setText("Shift : " + prefs.getString("shift", "no data").toUpperCase());
     }
 }
