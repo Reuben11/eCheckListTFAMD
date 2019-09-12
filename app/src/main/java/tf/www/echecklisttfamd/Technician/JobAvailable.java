@@ -16,6 +16,8 @@ import android.widget.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +36,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class JobAvailable extends Fragment {
     private ArrayList<JobAvailableClass> data;
     private ListView lv;
+    private Boolean datamsg;
+    private  Timer timer;
     View view;
 
 
@@ -49,8 +53,23 @@ public class JobAvailable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
+        datamsg = false;
         GetReqJobs();
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                GetReqJobs();
+            }
+        },0, 10000);
+
         return view;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        timer.cancel();
     }
 
     private void GetReqJobs(){
@@ -105,12 +124,14 @@ public class JobAvailable extends Fragment {
                             }
 
 
-
                         }
                     });
 
                 } else {
-                    ShowAlert("Informations", "No Job Request!");
+                    if(datamsg==false){
+                        ShowAlert("Informations", "No Job Request!");
+                        datamsg=true;
+                    }
                 }
             }
 

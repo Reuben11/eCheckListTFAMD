@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ClearInfo();
         etempid = findViewById(R.id.EmpId);
-        tvSecurityID = findViewById(R.id.SecurityId);
+        /*tvSecurityID = findViewById(R.id.SecurityId);*/
         tvVersionName = findViewById(R.id.versionname);
         displayVersionName();
         /*Button technician, operator;
@@ -234,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("empid", empid);
         editor.putString("empname", empname.toUpperCase());
         editor.putString("empjobtitle", jobtitle);
-        editor.putString("shift", shift);
+        editor.putString("shift", shift.toUpperCase());
         editor.commit();
 
     }

@@ -19,7 +19,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class TermOfUseOperator extends Fragment {
-    private TextView tvName, tvJob, tvVersion;
+    private TextView tvName, tvJob, tvVersion, tvEmpShift;
     View view;
 
     public static TermOfUseOperator newInstance() {
@@ -37,6 +37,7 @@ public class TermOfUseOperator extends Fragment {
          tvName = view.findViewById(R.id.name);
          tvJob = view.findViewById(R.id.jobtitle);
          tvVersion = view.findViewById(R.id.versiontosOps);
+         tvEmpShift = view.findViewById(R.id.empshift);
         displayVersionName();
         GetEmpData();
         return view;
@@ -55,6 +56,7 @@ public class TermOfUseOperator extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);
         tvName.setText(prefs.getString("empname","no data").toUpperCase());
         tvJob.setText(prefs.getString("empjobtitle", "no data").toUpperCase());
+        tvEmpShift.setText("Shift : " + prefs.getString("shift", "no data"));
     }
 
 

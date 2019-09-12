@@ -13,7 +13,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView androidhead;
-    private long delay = 2000;
+    private long delay = 1800;
 
     private TimerTask task = new TimerTask(){
         @Override

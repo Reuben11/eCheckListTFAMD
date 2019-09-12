@@ -601,8 +601,8 @@
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/z2bladetype"
-                    android:paddingTop="30dp"
-                    android:text="5. Blade life Line on blade cover for used blade"
+                    android:paddingTop="40dp"
+                    android:text="5. Blade Lifespan Setting"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 

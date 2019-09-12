@@ -36,7 +36,7 @@ public class JobAvailableAdapter extends BaseAdapter {
         return position;
     }
 
-    static class Viewholder{
+    public static class Viewholder{
         TextView jrNumber, requestor, jrDateTime, jobType, equipment, area;
     }
 

@@ -60,6 +60,14 @@ public class OperatorActivity extends AppCompatActivity {
                                         .replace(R.id.master_container, OperatorJobRequestList.newInstance())
                                         .commit();
                                 break;
+
+                            case  R.id.canceljr:
+                                getSupportFragmentManager().beginTransaction()
+                                        .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                                        .replace(R.id.master_container, Job_Cancellation.newInstance())
+                                        .commit();
+                                break;
+
                             case R.id.buyoff:
                                 SetTypeName("2");
                                     getSupportFragmentManager().beginTransaction()

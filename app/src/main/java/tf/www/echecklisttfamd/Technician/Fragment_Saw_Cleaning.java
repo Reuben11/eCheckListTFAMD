@@ -142,42 +142,46 @@ public class Fragment_Saw_Cleaning extends Fragment {
                 + "transport\":\"" + rgtransport.indexOfChild(view.findViewById(rgtransport.getCheckedRadioButtonId())) + "\",\""
                 + "remarks\":\"" + etRemarks.getText().toString() + "\"}";
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://pngjvfa01")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        try {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://pngjvfa01")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
-        Call<String> call = retrofit.create(allclass.CreateCleaning.class).CreateData(url);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()) {
-                    showToastMsg("Cleaning Record Updated!");
+            Call<String> call = retrofit.create(allclass.CreateCleaning.class).CreateData(url);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful()) {
+                        showToastMsg("Cleaning Record Updated!");
 
-                    Fragment newFragment = new TermOfUseTechnician();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
-                    transaction.commit();
+                        Fragment newFragment = new TermOfUseTechnician();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
+                        transaction.commit();
 
-                }else{
-                    ShowAlert("No Response From Server!", "Please check the wireless connection. if problem persist, please contact IT");
+                    } else {
+                        ShowAlert("No Response From Server!", "Please check the wireless connection. if problem persist, please contact IT");
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                if(t instanceof IOException){
-                    ShowAlert("Connection Error!", "Server Error!");
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    if (t instanceof IOException) {
+                        ShowAlert("Connection Error!", "Server Error!");
+                    }
                 }
-            }
-        });
+            });
 
-        showToastMsg("Cleaning Record Updated!");
+            showToastMsg("Cleaning Record Updated!");
 
-        Fragment newFragment = new TermOfUseTechnician();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
-        transaction.commit();
+            Fragment newFragment = new TermOfUseTechnician();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
+            transaction.commit();
+        }catch (Exception e){
+
+        }
 
     }
 

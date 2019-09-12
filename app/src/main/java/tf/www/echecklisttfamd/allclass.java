@@ -4,6 +4,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 import tf.www.echecklisttfamd.Operator.Device_Change_Setup_CheckList;
+import tf.www.echecklisttfamd.Operator.Job_Cancellation;
 import tf.www.echecklisttfamd.Operator.OperatorScanner;
 import tf.www.echecklisttfamd.Technician.JobAvailable;
 import tf.www.echecklisttfamd.Technician.TechnicianScanner;
@@ -35,9 +36,19 @@ public class allclass {
         Call<Device_Change_Setup_CheckList.jR> getCreateJR (@Url String url);
     }
 
+    public interface CancelJR{
+        @GET
+        Call<Job_Cancellation.Success> CancelJob(@Url String url);
+    }
+
     public interface GetJobRequest{
         @GET
         Call<JobAvailable.JsonResponse> getJson(@Url String url);
+    }
+
+    public interface GetJobCancellation{
+        @GET
+        Call<Job_Cancellation.JsonResponse> getJson(@Url String url);
     }
 
     public interface GetSetup{

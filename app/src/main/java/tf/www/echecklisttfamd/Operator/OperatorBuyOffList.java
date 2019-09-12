@@ -16,6 +16,8 @@ import android.widget.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +37,8 @@ import static android.content.Context.MODE_PRIVATE;
 public class OperatorBuyOffList extends Fragment {
     private ArrayList<JobAvailableClass> data;
     private ListView lv;
+    private Timer timer;
+    private Boolean datamsg;
     View view;
 
 
@@ -50,8 +54,19 @@ public class OperatorBuyOffList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_buy_off_list, container, false);
+        datamsg = false;
         GetBuyOffJobs();
+
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                GetBuyOffJobs();
+            }
+        },0, 10000);
+
         return view;
+
     }
 
     private void GetBuyOffJobs(){
@@ -105,7 +120,11 @@ public class OperatorBuyOffList extends Fragment {
                     });
 
                 } else {
-                    ShowAlert("Informations", "No Buy Off Job Available!");
+                    if(datamsg==false){
+                        ShowAlert("Informations", "No Buy Off Job Available!");
+                        datamsg=true;
+                    }
+
                 }
             }
 
@@ -120,6 +139,12 @@ public class OperatorBuyOffList extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        timer.cancel();
     }
 
    /* public class JsonResponse{
