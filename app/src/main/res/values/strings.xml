@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">(Developer) eCheckList</string>
+    <string name="app_name">eCheckList</string>
     <string name="title_activity_login">Sign in</string>
 
 
@@ -33,7 +33,7 @@
     </string-array>
     <string-array name="revision">
         <item>G</item>
-        <item>O</item>
+        <item>0</item>
     </string-array>
     <string-array name="areacolor">
         <item>#C58900</item>

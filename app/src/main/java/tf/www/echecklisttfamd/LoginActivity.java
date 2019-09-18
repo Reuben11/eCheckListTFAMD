@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     EmpInfo obj = response.body();
                     if (obj.employeeid.equals("na")) {
                         if(clearText==false) {
-                            ShowAlert("Alert!!", "Invalid User!");
+                            ShowAlert("Alert!!", "Invalid User In LMS!");
                         }
                     } else {
 
@@ -203,7 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    ShowAlert("Server Error!", "No Response from Server!");
+                    ShowAlert("Server Error!", "No Response from LMS Server!");
                 }
             }
 
@@ -211,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<EmpInfo> call, Throwable t) {
                 Log.d("MainActivity", t.getMessage());
                 if (t instanceof IOException) {
-                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With Server Connection");
+                    ShowAlert("Server Connection Error Code: SCE0002!", "Can't Communicate With eChecklist Server Connection");
                 } else {
 
                     ShowAlert("Alert!!", "Application Issue!");
@@ -257,6 +257,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String employeename;
         protected String jobtitle;
         protected String shift;
+
 
         public String getEmployeeid() {
             return employeeid;

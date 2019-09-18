@@ -100,7 +100,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckListTest?Empcode={\"scode\":\"" + techscode + "\"}";
+        String link = "/api/eCheckList?Empcode={\"scode\":\"" + techscode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -142,7 +142,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckListTest?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
+        String link = "/api/eCheckList?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
 
         Call<TechnicianScanner.resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
         call.enqueue(new Callback<TechnicianScanner.resultApi>() {
@@ -189,7 +189,7 @@ public class OperatorScanner extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eCheckListTest?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
+                    link = "/api/eCheckList?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
 

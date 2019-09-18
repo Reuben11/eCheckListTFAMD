@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.io.IOException;
@@ -54,7 +56,7 @@ public class JobAvailable extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
         datamsg = false;
-        GetReqJobs();
+//        GetReqJobs();
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -73,7 +75,8 @@ public class JobAvailable extends Fragment {
     }
 
     private void GetReqJobs(){
-        String requestapilink = "/api/eCheckListTest?requestlist=ok";
+
+        String requestapilink = "/api/eCheckList?requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -192,12 +195,14 @@ public class JobAvailable extends Fragment {
         editor.putString("requestor", name);
         editor.commit();
     }
+
     protected void SetDevice(String name) {
         /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();
         editor.putString("device", name);
         editor.commit();
     }
+
     protected void SetEquipmentName(String name) {
         /* SharedPreferences prefs = getContext().getSharedPreferences("Operator_Apps", MODE_PRIVATE);*/
         SharedPreferences.Editor editor = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE).edit();

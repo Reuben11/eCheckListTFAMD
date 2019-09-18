@@ -70,7 +70,7 @@ public class OperatorBuyOffList extends Fragment {
     }
 
     private void GetBuyOffJobs(){
-        String requestapilink = "/api/eCheckListTest?OperatorBuyOff=";
+        String requestapilink = "/api/eCheckList?OperatorBuyOff=";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())

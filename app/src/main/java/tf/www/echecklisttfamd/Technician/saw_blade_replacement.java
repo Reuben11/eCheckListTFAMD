@@ -172,7 +172,7 @@ public class saw_blade_replacement extends Fragment {
 
     private void GetBlade(){
 
-        String data = "/api/eCheckListTest?BladeJR=" + tvJR.getText().toString().replace("-","");
+        String data = "/api/eCheckList?BladeJR=" + tvJR.getText().toString().replace("-","");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")

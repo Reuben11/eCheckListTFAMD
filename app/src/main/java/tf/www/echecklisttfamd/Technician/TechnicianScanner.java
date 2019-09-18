@@ -99,7 +99,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckListTest?Empcode={\"scode\":\"" + techScode + "\"}";
+        String link = "/api/eCheckList?Empcode={\"scode\":\"" + techScode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -143,7 +143,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckListTest?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empScode + "\"}";
+        String link = "/api/eCheckList?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empScode + "\"}";
 
 
         Call<resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);

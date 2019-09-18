@@ -86,7 +86,7 @@ public class Job_Cancellation extends Fragment {
 
     private void GetReqJobs(){
 
-        String requestapilink = "/api/eCheckListTest?requestlist=ok";
+        String requestapilink = "/api/eCheckList?requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -145,7 +145,7 @@ public class Job_Cancellation extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String url = "api/eCheckListTest?JR={\"jr\":\""
+        String url = "api/eCheckList?JR={\"jr\":\""
                         + JR.replace("-","") + "\",\"empid\":\""
                         + empid + "\",\"scode\":\""
                         + scode + "\"}";
