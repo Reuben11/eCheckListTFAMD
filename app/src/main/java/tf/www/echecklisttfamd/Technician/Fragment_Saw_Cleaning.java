@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -29,12 +30,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.R;
 import tf.www.echecklisttfamd.allclass;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
+import static android.support.v4.content.ContextCompat.getSystemService;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Fragment_Saw_Cleaning extends Fragment {
+    private String apilink;
     private TextView tvEquipment, tvDatetime, tvTech, tvTechName, tvShift;
     private EditText etRemarks;
     private String scode, shift;
@@ -54,7 +58,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_saw_cleaning, container, false);
-
+        apilink = getString(R.string.api);
         tvTech = view.findViewById(R.id.techemp);
         tvTechName = view.findViewById(R.id.techname);
         tvDatetime = view.findViewById(R.id.nowdatetime);
@@ -132,7 +136,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
 
     private void CreateData(){
         String url;
-        url = "/api/eChecklist?CreateSawCleaning={\""
+        url = apilink + "CreateSawCleaning={\""
                 + "equipment\":\"" + tvEquipment.getText().toString() + "\",\""
                 + "techid\":\"" + tvTech.getText().toString() + "\",\""
                 + "techscode\":\"" + scode + "\",\""
@@ -153,6 +157,10 @@ public class Fragment_Saw_Cleaning extends Fragment {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful()) {
+
+                        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                         showToastMsg("Cleaning Record Updated!");
 
                         Fragment newFragment = new TermOfUseTechnician();
@@ -173,6 +181,9 @@ public class Fragment_Saw_Cleaning extends Fragment {
                 }
             });
 
+            InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
             showToastMsg("Cleaning Record Updated!");
 
             Fragment newFragment = new TermOfUseTechnician();
@@ -184,6 +195,11 @@ public class Fragment_Saw_Cleaning extends Fragment {
         }
 
     }
+
+//    private void hideKeybaord(View v) {
+//        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+//    }
 
     private void showToastMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)

@@ -36,6 +36,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class JobAvailable extends Fragment {
+    private String apilink;
     private ArrayList<JobAvailableClass> data;
     private ListView lv;
     private Boolean datamsg;
@@ -55,6 +56,7 @@ public class JobAvailable extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_job_available, container, false);
+        apilink = getString(R.string.api);
         datamsg = false;
 //        GetReqJobs();
         timer = new Timer();
@@ -76,7 +78,8 @@ public class JobAvailable extends Fragment {
 
     private void GetReqJobs(){
 
-        String requestapilink = "/api/eCheckList?requestlist=ok";
+        // test
+        String requestapilink = apilink + "requestlist=ok";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())

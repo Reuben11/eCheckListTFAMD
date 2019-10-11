@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -36,6 +37,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class Buy_Off_Check_List extends Fragment {
+    private String apilink;
     private AlertDialog alertDialog;
     private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime, tvTechName, tvEmpName;
     private RadioGroup rgWaferID;
@@ -67,6 +69,8 @@ public class Buy_Off_Check_List extends Fragment {
         tvEmpName = view.findViewById(R.id.buyoffmsname);
         etWaferID = view.findViewById(R.id.waferid);
         rgWaferID = view.findViewById(R.id.wafercarcassesid);
+        apilink = getString(R.string.api);
+
         GetSharePreferences();
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss,  dd MMM yy");
@@ -121,7 +125,7 @@ public class Buy_Off_Check_List extends Fragment {
         else{
             final String textData;
             String jr = tvJR.getText().toString().replace("-","");
-            textData = "api/eChecklistTest?buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
+            textData = apilink + "buyoffoperator={\"jr\":\"" + jr + "\",\"opid\":\""
                        + tvEmp.getText().toString() + "\",\"waferid\":\""
                        + etWaferID.getText().toString() + "\",\"time\":\""
                        + tvDateTime.getText().toString() + "\",\"scode\":\""
@@ -137,6 +141,10 @@ public class Buy_Off_Check_List extends Fragment {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if(response.isSuccessful()){
+
+                        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
 
                         showToastMsg("Buy Off Submitted!");
 

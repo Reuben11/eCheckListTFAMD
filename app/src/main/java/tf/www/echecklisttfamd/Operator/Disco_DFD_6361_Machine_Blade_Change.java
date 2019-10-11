@@ -54,6 +54,7 @@ import static android.content.Context.MODE_PRIVATE;
  * create an instance of this fragment.
  */
 public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
+    private String apilink;
     private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp, tvMsName;
     private String  Scode;
     private CheckBox cbz1, cbz2, cbz1newblade, cbz2newblade;
@@ -95,6 +96,7 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
         cbz1newblade = view.findViewById(R.id.newconditionz1);
         cbz2newblade = view.findViewById(R.id.newconditionz2);
         bnsubmit = view.findViewById(R.id.jrsubmit);
+        apilink = getString(R.string.api);
 
         z1bladecondition(false);
         z2bladecondition(false);
@@ -277,8 +279,8 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
 
 
 
-                String test = "api/eCheckList?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
-                        + "\",\"clid\":\"2\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"scode\":\"" + Scode + "\","
+                String test = apilink + "datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                        + "\",\"clid\":\"4\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"scode\":\"" + Scode + "\","
                         + "\"z1\":\"" + cbz1.isChecked() + "\"" + ",\"z2\":\"" + cbz2.isChecked() + "\",\"group\":\"" + rgbladegroup.indexOfChild(view.findViewById(rgbladegroup.getCheckedRadioButtonId())) + "\",\""
                         + "usedz1\":\"" + usedz1 + "\",\"usedz2\":\"" + usedz2  + "\",\"newz1\":\"" + cbz1newblade.isChecked() + "\",\"newz2\":\"" + cbz2newblade.isChecked() + "\",\""
                         + "lifez1\":\"" + z1bladeline.indexOfChild(view.findViewById(z1bladeline.getCheckedRadioButtonId())) + "\",\"lifez2\":\"" + z2bladeline.indexOfChild(view.findViewById(z2bladeline.getCheckedRadioButtonId())) + "\"}";

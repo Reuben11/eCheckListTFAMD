@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,6 +42,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class Device_Change_Setup_CheckList extends Fragment {
+    private String apilink;
     private AlertDialog alertDialog;
     private TextView tvEmp, tvEquipmentName, tvDateTime, tvMsEmp, tvMsName;
     private Button btnSubmit;
@@ -120,6 +122,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
         cbdailycheck = view.findViewById(R.id.type);
         rbCon = view.findViewById(R.id.typeD);
         tvMsName = view.findViewById(R.id.msname);
+        apilink = getString(R.string.api);
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
@@ -281,7 +284,7 @@ public class Device_Change_Setup_CheckList extends Fragment {
                         .build();
 
 
-                String test = "api/eCheckList?datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
+                String test = apilink + "datalist={\"equipment\":\"" + tvEquipmentName.getText().toString()
                         + "\",\"clid\":\"1\",\"time\":\"" + tvDateTime.getText().toString() + "\",\"daily\":\"" + daily + "\",\"emp\":\"" + tvMsEmp.getText().toString() + "\",\"device\":\""
                         +  etDevice.getText().toString() + "\",\"mes\":\"" + etMesLot.getText().toString() + "\",\"part\":\"" + etWaffepart.getText().toString() + "\","
                         + "\"orientation\":\"" + Orientation + "\",\"scode\":\"" + Scode + "\"}";
@@ -293,6 +296,9 @@ public class Device_Change_Setup_CheckList extends Fragment {
                     public void onResponse(Call<jR> call, Response<jR> response) {
                         if(response.isSuccessful()){
                             jR obj = response.body();
+
+                            InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                             showToastMsg("Job Request JR " + obj.id + " created!");
 

@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class MachineSetup extends Fragment {
+    private String apilink;
     private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily, tvRequestorName, tvTechName;
     private EditText evEsconfig, evNoofpins, evEscapno, evEskit, evEsTool, evCheckTool, evCheckEs, evNeedle, evPP, evCal;
     private String device, daily, scode;
@@ -68,6 +70,7 @@ public class MachineSetup extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_machine_setup, container, false);
+        apilink = getString(R.string.api);
         machinesetup = view.findViewById(R.id.machinesetuplayout);
         machinesetup2 = view.findViewById(R.id.machinesetuppart2);
         dieejection = view.findViewById(R.id.dieejectionlayout);
@@ -178,7 +181,7 @@ public class MachineSetup extends Fragment {
 
 
     private void GetTMS(){
-        String requestapilink = "/api/eCheckList?equipmentname=" + tvEquipment.getText().toString();
+        String requestapilink = apilink + "equipmentname=" + tvEquipment.getText().toString();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -468,7 +471,7 @@ public class MachineSetup extends Fragment {
         String dateStr = df.format(c);
 
 
-        data = "api/eCheckList?setupinfo={\"jr\":\"" + jr + "\",\"techid\":\""
+        data = apilink + "setupinfo={\"jr\":\"" + jr + "\",\"techid\":\""
                 + tvTech.getText().toString() + "\",\"time\":\""
                 + dateStr + "\",\"rubber\":\""
                 + rubbertip + "\",\"config\":\""
@@ -497,6 +500,10 @@ public class MachineSetup extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
                     //msg obj = response.body();
+
+                    InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                     showToastMsg("Job Request JR " + tvJR.getText().toString() + " Machine Setup Completed!");
 
 

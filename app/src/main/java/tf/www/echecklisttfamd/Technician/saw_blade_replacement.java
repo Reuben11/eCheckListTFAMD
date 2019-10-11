@@ -43,10 +43,11 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class saw_blade_replacement extends Fragment {
+    private String apilink;
     private TextView tvEquipment, tvJR, tvDatetime, tvTech, tvRequestor, tvDaily, tvRequestorName, tvTechName;
     private String scode;
-    private RadioGroup hubmountz1, hubmountz2, coolerbarz1, coolerbarz2, verifybladez1, verifybladez2, bladetypez1, bladetypez2, ncsprismz1, ncsprismz2, bladesetupz1, bladesetupz2, bladedressingz1, bladedressingz2, bladebbdsetupz1, bladebbdsetupz2, tapez1, tapez2, waferbackside, bumpcheck,bladeexposurez1, bladeexposurez2;
-    private EditText bladelifelinez1, bladelifelinez2, bladencsz1, bladencsz2, bbdopenz1, bbdopenz2, bbdclosez1, bbdclosez2, ncsvaluez1, ncsvaluez2, ncsexpoz1, ncsexpoz2, receipez1, receipez2, precutz1, precutz2, verifykerf, buyoffkerf;
+    private RadioGroup hubmountz1, hubmountz2, coolerbarz1, coolerbarz2, verifybladez1, verifybladez2, bladetypez1, bladetypez2, ncsprismz1, ncsprismz2, bladesetupz1, bladesetupz2, bladedressingz1, bladedressingz2, bladebbdsetupz1, bladebbdsetupz2, tapez1, tapez2,  bumpcheck, bladeexposurez1, bladeexposurez2, chuckandspinnerz1, chuckandspinnerz2;
+    private EditText bladelifelinez1, bladelifelinez2, bladencsz1, bladencsz2, bbdopenz1, bbdopenz2, bbdclosez1, bbdclosez2, ncsvaluez1, ncsvaluez2, ncsexpoz1, ncsexpoz2, receipez1, receipez2, precutz1, precutz2, verifykerf, buyoffkerf, exposurez1, exposurez2;
     private CheckBox hairlinez1, hairlinez2,  inspection;
     private Spinner magslot;
     private Button submit;
@@ -66,6 +67,7 @@ public class saw_blade_replacement extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_saw_blade_replacement, container, false);
+        apilink = getString(R.string.api);
         tvEquipment = view.findViewById(R.id.equipmentname);
         tvJR = view.findViewById(R.id.jrnumber);
         tvDatetime = view.findViewById(R.id.nowdatetime);
@@ -132,6 +134,12 @@ public class saw_blade_replacement extends Fragment {
         bladeexposurez1 = view.findViewById(R.id.z1checkncs);
         bladeexposurez2 = view.findViewById(R.id.z2checkncs);
 
+        exposurez1 = view.findViewById(R.id.exposurez1); //Rev P
+        exposurez2 = view.findViewById(R.id.exposurez2); //Rev P
+
+        chuckandspinnerz1 = view.findViewById(R.id.z1chuckandspinner); //Rev P
+        chuckandspinnerz2 = view.findViewById(R.id.z2chuckandspinner); //Rev P
+
         bladebbdsetupz1 = view.findViewById(R.id.z1bbdbladesetup);
         bladebbdsetupz2 = view.findViewById(R.id.z2bbdbladesetup);
 
@@ -148,10 +156,6 @@ public class saw_blade_replacement extends Fragment {
         buyoffkerf = view.findViewById(R.id.buyoffkerf);
 
         bumpcheck = view.findViewById(R.id.bumpcheck);
-
-        waferbackside = view.findViewById(R.id.waferbackside);
-
-
 
         submit = view.findViewById(R.id.setupsubmit);
 
@@ -171,8 +175,7 @@ public class saw_blade_replacement extends Fragment {
     }
 
     private void GetBlade(){
-
-        String data = "/api/eCheckList?BladeJR=" + tvJR.getText().toString().replace("-","");
+        String data = apilink +  "BladeJR=" + tvJR.getText().toString().replace("-","");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
@@ -241,6 +244,11 @@ public class saw_blade_replacement extends Fragment {
             bladeexposurez1.getChildAt(0).setEnabled(false);
             bladeexposurez1.getChildAt(1).setEnabled(false);
 
+            exposurez1.setEnabled(false);
+
+            chuckandspinnerz1.getChildAt(0).setEnabled(false);
+            chuckandspinnerz1.getChildAt(1).setEnabled(false);
+
             bladebbdsetupz1.getChildAt(0).setEnabled(false);
             bladebbdsetupz1.getChildAt(1).setEnabled(false);
 
@@ -284,6 +292,10 @@ public class saw_blade_replacement extends Fragment {
             bladeexposurez2.getChildAt(0).setEnabled(false);
             bladeexposurez2.getChildAt(1).setEnabled(false);
 
+            exposurez2.setEnabled(false);
+
+            chuckandspinnerz2.getChildAt(0).setEnabled(false);
+            chuckandspinnerz2.getChildAt(1).setEnabled(false);
 
             bladebbdsetupz2.getChildAt(0).setEnabled(false);
             bladebbdsetupz2.getChildAt(1).setEnabled(false);
@@ -319,16 +331,26 @@ public class saw_blade_replacement extends Fragment {
                                                                                 if (hairlinez1.isChecked()) {
                                                                                     if (!TextUtils.isEmpty(bladencsz1.getText().toString())) {
                                                                                         if (bladeexposurez1.indexOfChild(view.findViewById(bladeexposurez1.getCheckedRadioButtonId())) != -1) {
-                                                                                            if (bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId())) != -1) {
-                                                                                                if (tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId())) != -1) {
-                                                                                                    blade1 = 1;
-                                                                                                } else {
-                                                                                                    tapez1.requestFocusFromTouch();
-                                                                                                    ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                            if(!TextUtils.isEmpty(exposurez1.getText().toString())){
+                                                                                                if(chuckandspinnerz1.indexOfChild(view.findViewById(chuckandspinnerz1.getCheckedRadioButtonId())) == 0) {
+                                                                                                    if (bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId())) != -1) {
+                                                                                                        if (tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId())) != -1) {
+                                                                                                            blade1 = 1;
+                                                                                                        } else {
+                                                                                                            tapez1.requestFocusFromTouch();
+                                                                                                            ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                                        }
+                                                                                                    } else {
+                                                                                                        bladebbdsetupz1.requestFocusFromTouch();
+                                                                                                        ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                                    }
+                                                                                                }else{
+                                                                                                    chuckandspinnerz1.requestFocusFromTouch();
+                                                                                                    ShowAlert("Alert!", "Invalid Chuck And Spinner Cleaning Selection!");
                                                                                                 }
-                                                                                            } else {
-                                                                                                bladebbdsetupz1.requestFocusFromTouch();
-                                                                                                ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                            }else{
+                                                                                                exposurez1.requestFocusFromTouch();
+                                                                                                ShowAlert("Alert!", "Invalid Exposure After Setup Value!");
                                                                                             }
                                                                                         } else {
                                                                                             bladeexposurez1.requestFocusFromTouch();
@@ -433,16 +455,26 @@ public class saw_blade_replacement extends Fragment {
                                                                     if(hairlinez2.isChecked()){
                                                                         if(!TextUtils.isEmpty(bladencsz2.getText().toString())){
                                                                             if(bladeexposurez2.indexOfChild(view.findViewById(bladeexposurez2.getCheckedRadioButtonId())) != -1){
-                                                                                if(bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId())) != -1){
-                                                                                    if(tapez2.indexOfChild(view.findViewById(tapez2.getCheckedRadioButtonId())) != -1){
-                                                                                        blade2 = 1;
+                                                                                if(!TextUtils.isEmpty(exposurez2.getText().toString())) {
+                                                                                    if(chuckandspinnerz2.indexOfChild(view.findViewById(chuckandspinnerz2.getCheckedRadioButtonId())) == 0) {
+                                                                                        if (bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId())) != -1) {
+                                                                                            if (tapez2.indexOfChild(view.findViewById(tapez2.getCheckedRadioButtonId())) != -1) {
+                                                                                                blade2 = 1;
+                                                                                            } else {
+                                                                                                tapez2.requestFocusFromTouch();
+                                                                                                ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                            }
+                                                                                        } else {
+                                                                                            bladebbdsetupz2.requestFocusFromTouch();
+                                                                                            ShowAlert("Alert!", "Invalid Blade Setup Selection!");
+                                                                                        }
                                                                                     }else{
-                                                                                        tapez2.requestFocusFromTouch();
-                                                                                        ShowAlert("Alert!", "Invalid Perform Tape Hairline Selection!");
+                                                                                        chuckandspinnerz2.requestFocusFromTouch();
+                                                                                        ShowAlert("Alert!", "Invalid Chuck And Spinner Cleaning Selection!");
                                                                                     }
                                                                                 }else{
-                                                                                    bladebbdsetupz2.requestFocusFromTouch();
-                                                                                    ShowAlert("Alert!", "Invalid Blade Setup Selection!");
+                                                                                    exposurez2.requestFocusFromTouch();
+                                                                                    ShowAlert("Alert!", "Invalid Exposure After Setup Value!");
                                                                                 }
                                                                             }else{
                                                                                 bladeexposurez2.requestFocusFromTouch();
@@ -523,12 +555,7 @@ public class saw_blade_replacement extends Fragment {
                     if(!TextUtils.isEmpty(verifykerf.getText().toString())) {
                         if(!TextUtils.isEmpty(buyoffkerf.getText().toString())) {
                             if (bumpcheck.indexOfChild(view.findViewById(bumpcheck.getCheckedRadioButtonId())) != -1) {
-                                if (waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId())) != -1) {
                                     CreateData();
-                                } else {
-                                    waferbackside.requestFocusFromTouch();
-                                    ShowAlert("Alert!", "Invalid Wafer Backside Check!");
-                                }
                             }else{
                                 bumpcheck.requestFocusFromTouch();
                                 ShowAlert("Alert!", "Invalid Bump Check!");
@@ -563,7 +590,7 @@ public class saw_blade_replacement extends Fragment {
         String dateStr = df.format(c);
 
 
-        data = "/api/eCheckListTest?BladeChangeInfo={\"jr\":\"" + jr
+        data =  apilink + "BladeChangeInfo={\"jr\":\"" + jr
                 + "\",\"techid\":\"" + tvTech.getText().toString()
                 + "\",\"time\":\"" + dateStr
                 + "\",\"scode\":\"" + scode
@@ -601,6 +628,10 @@ public class saw_blade_replacement extends Fragment {
                 + "\",\"bladencsz2\":\"" + bladencsz2.getText().toString()
                 + "\",\"bladeexposurez1\":\"" + bladeexposurez1.indexOfChild(view.findViewById(bladeexposurez1.getCheckedRadioButtonId()))
                 + "\",\"bladeexposurez2\":\"" + bladeexposurez2.indexOfChild(view.findViewById(bladeexposurez2.getCheckedRadioButtonId()))
+                + "\",\"exposurez1\":\"" + exposurez1.getText().toString()
+                + "\",\"exposurez2\":\"" + exposurez2.getText().toString()
+                + "\",\"chuckandspinnerz1\":\"" + chuckandspinnerz1.indexOfChild(view.findViewById(chuckandspinnerz1.getCheckedRadioButtonId()))
+                + "\",\"chuckandspinnerz2\":\"" + chuckandspinnerz2.indexOfChild(view.findViewById(chuckandspinnerz2.getCheckedRadioButtonId()))
                 + "\",\"bladebbdsetupz1\":\"" + bladebbdsetupz1.indexOfChild(view.findViewById(bladebbdsetupz1.getCheckedRadioButtonId()))
                 + "\",\"bladebbdsetupz2\":\"" + bladebbdsetupz2.indexOfChild(view.findViewById(bladebbdsetupz2.getCheckedRadioButtonId()))
                 + "\",\"tapez1\":\"" + tapez1.indexOfChild(view.findViewById(tapez1.getCheckedRadioButtonId()))
@@ -610,7 +641,6 @@ public class saw_blade_replacement extends Fragment {
                 + "\",\"verifykerf\":\"" + verifykerf.getText().toString()
                 + "\",\"buyoffkerf\":\"" + buyoffkerf.getText().toString()
                 + "\",\"bumpcheck\":\"" + bumpcheck.indexOfChild(view.findViewById(bumpcheck.getCheckedRadioButtonId()))
-                + "\",\"waferbackside\":\"" + waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId()))
                 + "\"}";
 
 

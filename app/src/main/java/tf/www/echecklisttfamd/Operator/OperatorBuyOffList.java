@@ -35,6 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class OperatorBuyOffList extends Fragment {
+    private String apilink;
     private ArrayList<JobAvailableClass> data;
     private ListView lv;
     private Timer timer;
@@ -54,6 +55,7 @@ public class OperatorBuyOffList extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_operator_buy_off_list, container, false);
+        apilink = getString(R.string.api);
         datamsg = false;
         GetBuyOffJobs();
 
@@ -70,7 +72,7 @@ public class OperatorBuyOffList extends Fragment {
     }
 
     private void GetBuyOffJobs(){
-        String requestapilink = "/api/eCheckList?OperatorBuyOff=";
+        String requestapilink =  apilink + "OperatorBuyOff=";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://pngjvfa01")
                 .addConverterFactory(GsonConverterFactory.create())

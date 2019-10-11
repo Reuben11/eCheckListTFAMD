@@ -45,6 +45,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class OperatorScanner extends Fragment {
+    private String apilink;
     private EditText eBarcode;
     private TextView tvBarcodeLabel, tvEquipmentID;
     private String link, type, empID, techID, techscode, jr, empscode, checkListType, area, checklist;
@@ -100,7 +101,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?Empcode={\"scode\":\"" + techscode + "\"}";
+        String link = apilink + "Empcode={\"scode\":\"" + techscode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -142,7 +143,7 @@ public class OperatorScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
+        String link = apilink + "OpeHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empscode + "\"}";
 
         Call<TechnicianScanner.resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
         call.enqueue(new Callback<TechnicianScanner.resultApi>() {
@@ -189,7 +190,7 @@ public class OperatorScanner extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    link = "/api/eCheckList?checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
+                    link = apilink + "checkInfo={\"name\":\"" + eBarcode.getText().toString() + "\",\"time\":\"" + dateStr + "\",\"area\":\"" + area + "\"}";
                     /*Toast.makeText(getContext(), eBarcode.getText().toString(), Toast.LENGTH_SHORT).show();*/
 
 
@@ -274,6 +275,7 @@ public class OperatorScanner extends Fragment {
         eBarcode = view.findViewById(R.id.operatorbarcodescanner);
         tvBarcodeLabel = view.findViewById(R.id.operatorbarcodelabe1);
         tvEquipmentID = view.findViewById(R.id.equipmentid);
+         apilink = getString(R.string.api);
         clearText = false;
         eBarcode.setShowSoftInputOnFocus(false);
         eBarcode.addTextChangedListener(textWatcher);

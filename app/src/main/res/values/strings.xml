@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">eCheckList</string>
+    <string name="app_name">Developer eCheckList</string>
     <string name="title_activity_login">Sign in</string>
 
 
     <string name="operatortermofuse">Terms Of Use</string>
     <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
+
+    <string name="api">/api/eCheckListTest?</string>
 
     <string name="magslot">Choose Magslot</string>
 
@@ -33,7 +35,7 @@
     </string-array>
     <string-array name="revision">
         <item>G</item>
-        <item>0</item>
+        <item>P</item>
     </string-array>
     <string-array name="areacolor">
         <item>#C58900</item>

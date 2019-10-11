@@ -602,7 +602,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/z2bladetype"
                     android:paddingTop="40dp"
-                    android:text="5. Blade Lifespan Setting"
+                    android:text="5. Blade Lifespan Value"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1641,7 +1641,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/kerfz2lbl"
                     android:paddingTop="43dp"
-                    android:text="17. Blade Exposure (NCS) after dressing \n(Please do this TWICE)"
+                    android:text="17. Perform (NCS) after dressing \n(Please do this TWICE)"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1728,6 +1728,173 @@
                         android:textStyle="bold" />
                 </RadioGroup>
 
+                <!-- exposure after setup -->
+                <TextView
+                    android:id="@+id/exposurelbl"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/z2checkncs"
+                    android:paddingTop="34dp"
+                    android:text="18. Exposure After Setup"
+                    android:textStyle="bold"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/exposurez1lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/z2checkncs"
+                    android:layout_toRightOf="@+id/exposurelbl"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:text="Z1"
+                    android:textColor="#000EC5"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+                <EditText
+                    android:id="@+id/exposurez1"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:layout_alignBaseline="@+id/exposurez1lbl"
+                    android:layout_toRightOf="@+id/exposurez1lbl"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:gravity="center_horizontal"
+                    />
+
+                <TextView
+                    android:id="@+id/exposurez2lbl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/exposurez1lbl"
+                    android:layout_toRightOf="@+id/exposurelbl"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="Z2"
+                    android:textColor="#BA00C5"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/exposurez2"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:maxLength="30"
+                    android:textStyle="bold"
+                    android:textSize="12dp"
+                    android:layout_alignBaseline="@+id/exposurez2lbl"
+                    android:layout_toRightOf="@+id/exposurez2lbl"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:gravity="center_horizontal"
+                    />
+
+                <!-- Perform Chuck And Spinner Table -->
+                <TextView
+                    android:id="@+id/chuckandspinnerlbl"
+                    android:layout_width="135dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/exposurez2"
+                    android:paddingTop="30dp"
+                    android:text="19. Perform Chuck Table and Spinner Table Cleaning prior production run using oil stone"
+                    android:textStyle="bold"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/chuckandspinnerz1lbl"
+                    android:layout_width="28dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/exposurez2"
+                    android:layout_toRightOf="@+id/chuckandspinnerlbl"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="34dp"
+                    android:text="Z1"
+                    android:textColor="#000EC5"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/z1chuckandspinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/exposurez2"
+                    android:layout_toRightOf="@+id/chuckandspinnerz1lbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/z1chuckandspinneryes"
+                        android:layout_width="100dp"
+                        android:layout_height="25dp"
+                        android:text="Yes"
+                        android:textColor="#00C523"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/z1chuckandspinnerno"
+                        android:layout_width="110dp"
+                        android:layout_height="25dp"
+                        android:text="No"
+                        android:textColor="#C50000"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/chuckandspinnerz2lbl"
+                    android:layout_width="28dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@id/chuckandspinnerz1lbl"
+                    android:layout_toRightOf="@+id/chuckandspinnerlbl"
+                    android:paddingLeft="10dp"
+                    android:text="Z2"
+                    android:textColor="#BA00C5"
+                    android:textSize="12dp"
+                    android:paddingTop="10dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/z2chuckandspinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/chuckandspinnerz1lbl"
+                    android:layout_toRightOf="@+id/chuckandspinnerz2lbl"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/z2chuckandspinneryes"
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:text="Yes"
+                        android:textColor="#00C523"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/z2chuckandspinnerno"
+                        android:layout_width="110dp"
+                        android:layout_height="20dp"
+                        android:text="No"
+                        android:textColor="#C50000"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
+                </RadioGroup>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -1760,7 +1927,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/brokenblade"
                     android:paddingTop="63dp"
-                    android:text="18. Blade Setup"
+                    android:text="20. Blade Setup"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1848,6 +2015,8 @@
                         android:textStyle="bold" />
                 </RadioGroup>
 
+
+
                 <!-- Tape Alignment -->
 
                 <TextView
@@ -1856,7 +2025,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/bbdbladesetupz2lbl"
                     android:paddingTop="40dp"
-                    android:text="19. Perform Tape hairline alignment on affected blade only"
+                    android:text="21. Perform Tape hairline alignment on affected blade only"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1976,7 +2145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/bladechangebuyoff"
                     android:paddingTop="20dp"
-                    android:text="20. Press &quot;Inspection&quot; button for first wafer buyoff"
+                    android:text="22. Press &quot;Inspection&quot; button for first wafer buyoff"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -1999,7 +2168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/inspectionlbl"
                     android:paddingTop="20dp"
-                    android:text="21. Check and fill in the wafer magazine slot number for first production wafer after changed blade."
+                    android:text="23. Check and fill in the wafer magazine slot number for first production wafer after changed blade."
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -2029,7 +2198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/checkmaglbl"
                     android:paddingTop="20dp"
-                    android:text="22. 1st kerf check hairline correction \n[Insert the adjustment value]"
+                    android:text="24. 1st kerf check hairline correction \n[Insert the adjustment value]"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -2059,7 +2228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/hairlinecorrectionlbl"
                     android:paddingTop="20dp"
-                    android:text="23. Buyoff the correction for the 1st Kerf Check \n[Insert the adjustment value]"
+                    android:text="25. Buyoff the correction for the 1st Kerf Check \n[Insert the adjustment value]"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -2089,7 +2258,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/buyoffkerflbl"
                     android:paddingTop="16dp"
-                    android:text="24. Bump checking"
+                    android:text="26. Bump checking"
                     android:textStyle="bold"
                     android:textSize="12dp" />
 
@@ -2123,7 +2292,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
+            <!--<RelativeLayout
                 android:id="@+id/productbuyofflayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -2145,46 +2314,9 @@
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/waferbacksidelbl"
-                    android:layout_width="135dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/productbuyoff"
-                    android:paddingTop="25dp"
-                    android:text="26. Wafer backside to check any chipping/particle \n3x magnifier. \nFrequency : 5 points/Z pattern"
-                    android:textStyle="bold"
-                    android:textSize="12dp" />
 
-                <RadioGroup
-                    android:id="@+id/waferbackside"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@id/waferbacksidelbl"
-                    android:layout_toRightOf="@+id/waferbacksidelbl"
-                    android:orientation="horizontal"
-                    android:paddingTop="5dp"
-                    >
 
-                    <RadioButton
-                        android:id="@+id/waferbacksidepass"
-                        android:layout_width="70dp"
-                        android:layout_height="20dp"
-                        android:text="Pass"
-                        android:textColor="#00C523"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <RadioButton
-                        android:id="@+id/waferbacksidefail"
-                        android:layout_width="110dp"
-                        android:layout_height="20dp"
-                        android:text="Fail"
-                        android:textColor="#C50000"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-                </RadioGroup>
-
-            </RelativeLayout>
+            </RelativeLayout>-->
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -35,11 +35,12 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class blade_replacement_buyoff extends Fragment {
+    private String apilink;
     private AlertDialog alertDialog;
     private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime, tvTechName, tvEmpName;
     private String empscode;
     private Button btnSubmit;
-    private RadioGroup topside;
+    private RadioGroup topside, waferbackside;
     View view;
 
     public blade_replacement_buyoff() {
@@ -61,6 +62,9 @@ public class blade_replacement_buyoff extends Fragment {
         tvDateTime = view.findViewById(R.id.nowdatetime);
         tvEmpName = view.findViewById(R.id.buyoffmsname);
         topside = view.findViewById(R.id.topside);
+        waferbackside = view.findViewById(R.id.topside);
+        apilink = getString(R.string.api);
+
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss,  dd MMM yy");
         String dateStr = df.format(c);
@@ -126,7 +130,12 @@ public class blade_replacement_buyoff extends Fragment {
         Boolean alert = true;
 
         if (topside.indexOfChild(view.findViewById(topside.getCheckedRadioButtonId())) != -1) {
+            if(waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId())) != -1) {
                 alert = false;
+            }else{
+                msg ="Invalid Wafer backside Check Selection!";
+                waferbackside.requestFocusFromTouch();
+            }
         }
         else{
             msg ="Invalid Topside Selection!";
@@ -140,11 +149,12 @@ public class blade_replacement_buyoff extends Fragment {
         else{
             final String textData;
             String jr = tvJR.getText().toString().replace("-","");
-            textData = "api/api/eChecklist?bladebuyoff={\"jr\":\"" + jr + "\",\"opid\":\""
-                    + tvEmp.getText().toString() + "\",\"topside\":\""
-                    + topside.indexOfChild(view.findViewById(topside.getCheckedRadioButtonId())) + "\",\"time\":\""
-                    + tvDateTime.getText().toString() + "\",\"scode\":\""
-                    + empscode + "\"}";
+            textData = apilink + "bladebuyoff={\"jr\":\"" + jr
+                    + "\",\"opid\":\"" + tvEmp.getText().toString()
+                    + "\",\"topside\":\"" + topside.indexOfChild(view.findViewById(topside.getCheckedRadioButtonId()))
+                    + "\",\"backside\":\"" + waferbackside.indexOfChild(view.findViewById(waferbackside.getCheckedRadioButtonId()))
+                    + "\",\"time\":\"" + tvDateTime.getText().toString()
+                    + "\",\"scode\":\"" + empscode + "\"}";
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://pngjvfa01")

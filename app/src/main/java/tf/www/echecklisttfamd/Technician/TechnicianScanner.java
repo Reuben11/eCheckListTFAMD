@@ -50,6 +50,7 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class TechnicianScanner extends Fragment {
+    private String apilink ;
     private String equipmentname, jr, msid, techScode, empScode, area;
     private EditText eBarcode;
     private Boolean clearText;
@@ -99,7 +100,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?Empcode={\"scode\":\"" + techScode + "\"}";
+        String link = apilink + "Empcode={\"scode\":\"" + techScode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {
@@ -143,7 +144,9 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eCheckList?TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + empScode + "\"}";
+        // test
+
+        String link = apilink + "TechHold={\"jr\":\"" + jr + "\",\"time\":\"" +  dateStr + "\",\"scode\":\"" + techScode + "\"}";
 
 
         Call<resultApi> call = retrofit.create(allclass.GetST.class).getSTDone(link);
@@ -217,7 +220,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = "/api/eChecklist?cleanequipment=" + eBarcode.getText().toString();
+        String link = apilink + "cleanequipment=" + eBarcode.getText().toString();
 
         /*Toast.makeText(getContext(), link, Toast.LENGTH_SHORT).show();*/
 
@@ -293,6 +296,7 @@ public class TechnicianScanner extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_technician_scanner, container, false);
+        apilink = getString(R.string.api);
         tvEquip = view.findViewById(R.id.equipmentid);
         GetSharesPreferences();
         eBarcode = view.findViewById(R.id.technicianbarcodescanner);
