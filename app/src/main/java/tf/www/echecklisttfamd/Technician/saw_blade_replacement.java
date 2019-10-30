@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -657,6 +658,8 @@ public class saw_blade_replacement extends Fragment {
                     //msg obj = response.body();
                     showToastMsg("Job Request JR " + tvJR.getText().toString() + " Blade Change Completed!");
 
+                    InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                     Fragment newFragment = new TermOfUseTechnician();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();

@@ -3,7 +3,6 @@ package tf.www.echecklisttfamd.Operator;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,8 +31,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
-import tf.www.echecklisttfamd.Technician.MachineSetup;
-import tf.www.echecklisttfamd.Technician.TechnicianActivity;
 import tf.www.echecklisttfamd.Technician.TechnicianScanner;
 import tf.www.echecklisttfamd.allclass;
 
@@ -152,7 +149,7 @@ public class OperatorScanner extends Fragment {
 
                 if (response.isSuccessful()) {
                   if(checklist.equals("Device Change Setup Checklist")) {
-                      Fragment newFragment = new Buy_Off_Check_List();
+                      Fragment newFragment = new pnp_buyoff();
                       FragmentTransaction transaction = getFragmentManager().beginTransaction();
                       transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                       transaction.replace(R.id.master_container, newFragment);

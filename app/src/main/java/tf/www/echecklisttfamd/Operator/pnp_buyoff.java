@@ -36,7 +36,7 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Buy_Off_Check_List extends Fragment {
+public class pnp_buyoff extends Fragment {
     private String apilink;
     private AlertDialog alertDialog;
     private TextView tvEmp, tvEquipmentName, tvJR, tvTechID,tvDateTime, tvTechName, tvEmpName;
@@ -46,9 +46,9 @@ public class Buy_Off_Check_List extends Fragment {
     private String empscode;
     View view;
 
-    public static Buy_Off_Check_List newWInstance() {
+    public static pnp_buyoff newWInstance() {
         // Required empty public constructor
-        Buy_Off_Check_List fragment = new Buy_Off_Check_List();
+        pnp_buyoff fragment = new pnp_buyoff();
         return fragment;
     }
 

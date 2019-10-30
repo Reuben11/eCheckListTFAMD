@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -291,6 +292,9 @@ public class Disco_DFD_6361_Machine_Blade_Change extends Fragment {
                     public void onResponse(Call<Device_Change_Setup_CheckList.jR> call, Response<Device_Change_Setup_CheckList.jR> response) {
                         if(response.isSuccessful()){
                             Device_Change_Setup_CheckList.jR obj = response.body();
+
+                            InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                             showToastMsg("Job Request JR " + obj.id + " created!");
 

@@ -147,7 +147,7 @@ public class OperatorActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.master_container);
-        if (f instanceof Device_Change_Setup_CheckList || f instanceof Buy_Off_Check_List || f instanceof OperatorScanner) {//the fragment on which you want to handle your back press
+        if (f instanceof Device_Change_Setup_CheckList || f instanceof pnp_buyoff || f instanceof OperatorScanner) {//the fragment on which you want to handle your back press
             /*Log.i("BACK PRESSED", "BACK PRESSED");*/
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.master_container, TermOfUseOperator.newInstance())

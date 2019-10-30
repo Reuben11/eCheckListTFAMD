@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -166,6 +167,9 @@ public class blade_replacement_buyoff extends Fragment {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if(response.isSuccessful()){
+
+                        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                         showToastMsg("Buy Off Submitted!");
 
