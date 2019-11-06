@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else {
 
-                        if(obj.employeeid.equals("495870") || obj.employeeid.equals("493740") || obj.employeeid.equals("495550") || obj.employeeid.equals("496326") || obj.employeeid.equals("342036") || obj.employeeid.equals("1002316")){
+                        if(obj.employeeid.equals("495870") || obj.employeeid.equals("493740") || obj.employeeid.equals("495550") || obj.employeeid.equals("496326") || obj.employeeid.equals("342036") || obj.employeeid.equals("1002316")||obj.employeeid.equals("497204")){
                             final String empid = obj.employeeid;
                             final String jobtitle = obj.jobtitle;
                             final String name = obj.employeename;

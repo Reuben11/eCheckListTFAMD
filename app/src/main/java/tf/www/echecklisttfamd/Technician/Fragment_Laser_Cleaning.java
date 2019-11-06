@@ -1,9 +1,10 @@
 package tf.www.echecklisttfamd.Technician;
 
-
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,14 +31,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import tf.www.echecklisttfamd.R;
 import tf.www.echecklisttfamd.allclass;
 
-import static android.content.Context.INPUT_METHOD_SERVICE;
 import static android.content.Context.MODE_PRIVATE;
-import static android.support.v4.content.ContextCompat.getSystemService;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Saw_Cleaning extends Fragment {
+public class Fragment_Laser_Cleaning extends Fragment {
+
     private String apilink;
     private String startTimestr, startTimeDB, endTimeDB, CLID;
     private TextView tvEquipment, tvDatetime, tvTech, tvTechName, tvShift, ChecklistTitle;
@@ -47,10 +47,11 @@ public class Fragment_Saw_Cleaning extends Fragment {
     private Button btnSubmit;
     View view;
 
-    public static Fragment_Saw_Cleaning newInstance() {
-        // Required empty public constructor
-        Fragment_Saw_Cleaning Fragment = new Fragment_Saw_Cleaning();
-        return  Fragment;
+    public static Fragment_Laser_Cleaning newInstance()
+    {
+        //Required empty public constructor
+        Fragment_Laser_Cleaning fragmentLaserCleaning = new Fragment_Laser_Cleaning();
+        return fragmentLaserCleaning;
     }
 
 
@@ -58,7 +59,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_saw_cleaning, container, false);
+        view= inflater.inflate(R.layout.fragment_saw_cleaning, container, false);
         apilink = getString(R.string.api);
         tvTech = view.findViewById(R.id.techemp);
         tvTechName = view.findViewById(R.id.techname);
@@ -71,7 +72,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
         rgtransport = view.findViewById(R.id.transport);
         ChecklistTitle = view.findViewById(R.id.cleaning);
 
-        ChecklistTitle.setText("SAW CLEANING");
+        ChecklistTitle.setText("LASER CLEANING");
 
         Date starttime = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
@@ -80,21 +81,22 @@ public class Fragment_Saw_Cleaning extends Fragment {
 
         SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         startTimeDB = sdf.format(starttime);
-
+//        Toast.makeText(getContext(), startTimeDB, Toast.LENGTH_SHORT).show();
 
         getAll();
 
         btnSubmit = view.findViewById(R.id.setupsubmit);
-        btnSubmit.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
 
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if(checkAnswer()==true){
                     ShowAlertSubmit("Machine Setup Submission","Please make sure all informations are correct before submission");
                     Date endtime = Calendar.getInstance().getTime();
                     SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     endTimeDB = sdf.format(endtime);
-                    CLID = "3";
-//                    Toast.makeText(getContext(), "CLID= " + CLID , Toast.LENGTH_SHORT).show();
+                    CLID = "5";
+//                    Toast.makeText(getContext(),  "CLID= "+  CLID, Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(getContext(), endTimeDB, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -102,7 +104,8 @@ public class Fragment_Saw_Cleaning extends Fragment {
         return view;
     }
 
-    private void ShowAlertSubmit(String title, String msg) {
+    private void ShowAlertSubmit(String title, String msg)
+    {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
         builder1.setTitle(title);
         builder1.setMessage(msg);
@@ -125,7 +128,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
         alert1.show();
     }
 
-    private Boolean checkAnswer(){
+    private Boolean checkAnswer() {
         Boolean ok = false;
 
         if(rgchuck.indexOfChild(view.findViewById(rgchuck.getCheckedRadioButtonId())) != -1){
@@ -150,6 +153,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
 
     private void CreateData(){
         String url;
+
         url = apilink + "CreateCleaning={\""
                 + "equipment\":\"" + tvEquipment.getText().toString() + "\",\""
                 + "techid\":\"" + tvTech.getText().toString() + "\",\""
@@ -163,7 +167,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
                 + "clid\":\"" + CLID + "\",\""
                 + "remarks\":\"" + etRemarks.getText().toString() + "\"}";
 
-        try {
+        try{
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://pngjvfa01")
                     .addConverterFactory(GsonConverterFactory.create())
@@ -173,10 +177,10 @@ public class Fragment_Saw_Cleaning extends Fragment {
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful()){
 
-                        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
-                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                        InputMethodManager inputManager= (InputMethodManager)getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
                         showToastMsg("Cleaning Record Updated!");
 
@@ -185,7 +189,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
                         transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
                         transaction.commit();
 
-                    } else {
+                    }else{
                         ShowAlert("No Response From Server!", "Please check the wireless connection. if problem persist, please contact IT");
                     }
                 }
@@ -205,17 +209,11 @@ public class Fragment_Saw_Cleaning extends Fragment {
 
             Fragment newFragment = new TermOfUseTechnician();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.master_container, TermOfUseTechnician.newInstance());
+            transaction.replace(R.id.master_container, new TermOfUseTechnician());
             transaction.commit();
-        }catch (Exception e){
-        }
 
+        }catch (Exception e){ }
     }
-
-//    private void hideKeybaord(View v) {
-//        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-//        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
-//    }
 
     private void showToastMsg(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG)
@@ -238,7 +236,7 @@ public class Fragment_Saw_Cleaning extends Fragment {
         alert1.show();
     }
 
-    protected void getAll(){
+    private void getAll() {
         SharedPreferences prefs = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
         tvEquipment.setText(prefs.getString("equipmentname","no data"));
         tvTech.setText(prefs.getString("techid","no data"));
@@ -246,5 +244,4 @@ public class Fragment_Saw_Cleaning extends Fragment {
         scode = prefs.getString("scode", "no data");
         tvShift.setText(prefs.getString("shift", "no data"));
     }
-
 }

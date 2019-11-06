@@ -70,6 +70,16 @@ public class TechnicianActivity extends AppCompatActivity {
                                         .replace(R.id.master_container, TechnicianScanner.newInstance())
                                         .commit();
                                 break;
+
+                            case R.id.lasercleaning:
+                                SetArea("0");
+
+                                getSupportFragmentManager().beginTransaction()
+                                        .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                                        .replace(R.id.master_container, TechnicianScannerLaser.newInstance())
+                                        .commit();
+                                    break;
+
                         }
                         return false;
                     }

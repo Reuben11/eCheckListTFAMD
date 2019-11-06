@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/SetupInfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/reqID_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MS Emp#"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+        android:id="@+id/reqName_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MS Name"
+        android:layout_alignStart="@id/reqID_lbl"
+        android:paddingLeft="10dp"
+        android:layout_below="@id/reqID_lbl"
+        android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/info_datetime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Time"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/reqName_lbl"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/bladechange_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blade Change"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/info_datetime"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/bladegroup_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blade Group"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/bladechange_lbl"
+            android:paddingTop="20dp" />
+
+        <ImageView
+            android:id="@+id/infobladegroup_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@+id/bladegroup_lbl"
+            android:layout_below="@id/bladechange_lbl"
+            android:src="@drawable/information" />
+
+        <TextView
+            android:id="@+id/bladecondition_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Used Blade Condition"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/bladegroup_lbl"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/bladelife_lbl"
+            android:layout_width="135dp"
+            android:layout_height="wrap_content"
+            android:text="Z1 or Z2 and blade life line on blade cover for the used blade"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/bladecondition_lbl"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/NbladeCondition_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Blade Condition"
+            android:layout_alignStart="@id/reqID_lbl"
+            android:paddingLeft="10dp"
+            android:layout_below="@id/bladelife_lbl"
+            android:paddingTop="20dp" />
+
+        <TextView
+            android:id="@+id/reqID_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emp ID"
+            android:layout_alignBaseline="@+id/reqID_lbl"
+            android:layout_marginLeft="100dp"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/reqID_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/reqName_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emp Name"
+            android:layout_alignBaseline="@+id/reqName_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:layout_below="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/reqName_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/infodatetime_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date Time"
+            android:layout_alignBaseline="@+id/info_datetime"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/info_datetime"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bladechange_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z1"
+            android:layout_alignBaseline="@+id/bladechange_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/bladechange_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bladegroup_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:layout_alignBaseline="@+id/bladegroup_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/bladegroup_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bladecondition_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z1: Good"
+            android:layout_alignBaseline="@+id/bladecondition_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/bladegroup_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/bladelife_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z1: Done"
+            android:layout_alignBaseline="@+id/bladelife_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/bladegroup_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/Nbladecondition_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Z1: Good"
+            android:layout_alignBaseline="@+id/NbladeCondition_lbl"
+            android:layout_alignStart="@id/reqID_value"
+            android:editable="false"
+            android:paddingTop="20dp"
+            android:layout_toRightOf="@id/bladegroup_lbl"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>
