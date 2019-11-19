@@ -18,4 +18,7 @@
 
     <color name="greenback">#a4c639</color>
     <color name="lightgreen">#adcb36</color>
+
+    <color name="greenPrimary">#199A36</color>
+    <color name="greenPrimaryDark">#00574B</color>
 </resources>

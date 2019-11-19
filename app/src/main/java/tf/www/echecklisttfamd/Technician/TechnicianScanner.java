@@ -91,7 +91,7 @@ public class TechnicianScanner extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        String link = apilink + "Empcode={\"scode\":\"" + techScode + "\"}";
+        String link = apilink + "Empcode={\"scode\":\"" + empScode + "\"}";
 
         Call<LoginActivity.EmpInfo> call = retrofit.create(allclass.GetEmpInfo.class).getEmpData(link);
         call.enqueue(new Callback<LoginActivity.EmpInfo>() {

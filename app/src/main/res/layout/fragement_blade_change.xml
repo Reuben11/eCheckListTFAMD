@@ -2133,7 +2133,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:paddingRight="10dp">
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp">
 
                     <Button
                         android:id="@+id/setupsubmit"

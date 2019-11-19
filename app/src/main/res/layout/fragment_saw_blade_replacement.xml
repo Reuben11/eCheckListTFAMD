@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,9 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:paddingRight="10dp"
             android:paddingBottom="10dp"
             android:scrollbars="vertical">
 
@@ -25,6 +24,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:visibility="visible">
                 <TextView
                     android:id="@+id/jrnumberlable"
@@ -200,30 +201,54 @@
                     android:textSize="14dp" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabLayout"
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:background="@drawable/layoutborder">
+
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/colorPrimaryOperator"
-                    app:tabIndicatorHeight="4dp"
-                    app:tabBackground="@color/colorPrimaryDarkOperator"
-                    app:tabMode="fixed"/>
+                    android:background="#5153FF"
+                    android:clipToPadding="true"
+                    android:padding="25dp">
 
-                <android.support.v4.view.ViewPager
+                    <View
+                        android:id="@+id/indicator"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/gradient_bg" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/tab_bg"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@null"
+                        app:tabIndicatorHeight="4dp"
+                        app:tabMode="fixed"
+                        app:tabRippleColor="@null"
+                        app:tabTextColor="#cbd2ed"
+                        app:tabSelectedTextColor="#ffffff" />
+
+                </FrameLayout>
+
+                <tf.www.echecklisttfamd.HeightWrappingViewPager
                     android:id="@+id/viewPager"
                     android:layout_below="@id/tabLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="3000dp"
+                    android:layout_height="match_parent"
                     android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"/>
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"/>
 
-            </RelativeLayout>
+            </LinearLayout>
 
 
 <!--            <RelativeLayout-->
@@ -2361,6 +2386,7 @@
 <!--                    android:text="Submit"-->
 <!--                    android:theme="@style/MyButton"/>-->
 <!--            </RelativeLayout>-->
+
         </LinearLayout>
 
     </ScrollView>

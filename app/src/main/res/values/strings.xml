@@ -7,6 +7,7 @@
     <string name="tou">TF-AMD Automation. All Right Reserved 2019</string>
 
     <string name="api">/api/eCheckListTest?</string>
+    <string name="api_live">/api/eChecklist?</string>
 
     <string name="magslot">Choose Magslot</string>
 

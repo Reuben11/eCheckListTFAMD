@@ -2,6 +2,7 @@ package tf.www.echecklisttfamd.Technician;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -55,11 +58,14 @@ public class saw_blade_replacement extends Fragment {
     private Spinner magslot;
     private Button submit;
     private Boolean z1, z2;
+    private View mIndicator;
 
     private TabAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private int indicatorWidth;
 
+    SharedPreferences prf;
     View view;
 
 
@@ -166,17 +172,54 @@ public class saw_blade_replacement extends Fragment {
 //        bumpcheck = view.findViewById(R.id.bumpcheck);
 //
 //        submit = view.findViewById(R.id.setupsubmit);
-
+        //Assign view reference
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tabLayout);
+        mIndicator = view.findViewById(R.id.indicator);
 
+        //Assign up the view pager and fragments
         adapter = new TabAdapter(getFragmentManager());
         adapter.addFragment(new Fragment_Setup_Info(), "Set Up Information");
         adapter.addFragment(new Fragment_Blade_Change(), "Blade Change Checklist");
 
-
         viewPager.setAdapter(adapter);
+        viewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         tabLayout.setupWithViewPager(viewPager);
+
+        //Determine indicator width at runtime
+        tabLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                indicatorWidth = tabLayout.getWidth()/tabLayout.getTabCount();
+
+                //Assign new width
+                FrameLayout.LayoutParams indicatorParams = (FrameLayout.LayoutParams)mIndicator.getLayoutParams();
+                indicatorParams.width = indicatorWidth;
+                mIndicator.setLayoutParams(indicatorParams);
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)mIndicator.getLayoutParams();
+
+                //Multiply positionOffset with indicatiorWidth to get tanslation
+                float translationOffset = (v+i)*indicatorWidth;
+                params.leftMargin = (int) translationOffset;
+                mIndicator.setLayoutParams(params);
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
 //        submit.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -601,6 +644,10 @@ public class saw_blade_replacement extends Fragment {
 
         jr = tvJR.getText().toString().replace("-","");
 
+//        prf = getContext().getSharedPreferences("jr_details", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prf.edit();
+//        editor.putString("jrid", jr);
+//        editor.commit();
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss ,  dd MMM yy");
@@ -720,13 +767,21 @@ public class saw_blade_replacement extends Fragment {
 
 
     protected void getAll(){
-        SharedPreferences prefs = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
-        tvJR.setText(prefs.getString("jr","no data"));
-        tvEquipment.setText(prefs.getString("equipmentname","no data"));
-        tvRequestor.setText(prefs.getString("requestor","no data"));
-        tvTech.setText(prefs.getString("techid","no data"));
-        tvRequestorName.setText(prefs.getString("msname", "no data"));
-        tvTechName.setText(prefs.getString("techname", "no data").toUpperCase());
-        scode = prefs.getString("scode", "no data");
+        SharedPreferences prefs_Tech = getContext().getSharedPreferences("Technician_Apps", MODE_PRIVATE);
+
+        tvJR.setText(prefs_Tech.getString("jr","no data"));
+        tvEquipment.setText(prefs_Tech.getString("equipmentname","no data"));
+        tvRequestor.setText(prefs_Tech.getString("requestor","no data"));
+        tvTech.setText(prefs_Tech.getString("techid","no data"));
+        tvRequestorName.setText(prefs_Tech.getString("msname", "no data"));
+        tvTechName.setText(prefs_Tech.getString("techname", "no data").toUpperCase());
+        scode = prefs_Tech.getString("scode", "no data");
+
+        String jr = tvJR.getText().toString().replace("-","");
+
+        prf = getContext().getSharedPreferences("jr_details", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prf.edit();
+        editor.putString("jrid", jr);
+        editor.commit();
     }
 }

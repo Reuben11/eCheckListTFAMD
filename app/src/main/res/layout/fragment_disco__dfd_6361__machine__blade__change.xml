@@ -198,9 +198,7 @@
                         android:paddingTop="20dp"
                         android:layout_toRightOf="@+id/bladegrouplbl"
                         android:layout_below="@id/bladechangelbl"
-                        android:src="@drawable/information"
-
-                        />
+                        android:src="@drawable/information" />
 
                     <RadioGroup
                         android:id="@+id/cbladegrouptype"

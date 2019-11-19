@@ -87,6 +87,11 @@ public class allclass {
         Call<String> getBladeSelection(@Url String url);
     }
 
+    public interface GetBSUInfo{
+        @GET
+        Call<String> getBladeSetupInfo(@Url String url);
+    }
+
  /*   public interface GetValidEmp{
         @GET
         Call<OperatorScanner.GetCert> getValid(@Url String url);
